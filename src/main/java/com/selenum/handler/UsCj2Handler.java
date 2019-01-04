@@ -226,7 +226,7 @@ public class UsCj2Handler {
 					if(answer(driver, 55, getNumber(2))  == true) continue ;
 					if(answer(driver, 56, getNumber(7))  == true) {
 						Thread.sleep(2000);
-						driver.findElement(By.xpath("//*[@id=\"btnSubmitQid52869\"]")).click();
+						
 						continue ;
 					}
 					//? 这里好像有一个提交按钮 yes 、no 、submit
@@ -243,7 +243,7 @@ public class UsCj2Handler {
 					if(answer(driver, 67, getNumber(3))  == true) continue ;
 					if(answer(driver, 68, getNumber(6))  == true)  {
 						Thread.sleep(2000);
-						driver.findElement(By.xpath("//*[@id=\"btnSubmitQid61379\"]")).click();
+						
 						continue ;
 					}
 					//? 这里好像有一个提交按钮 yes 、no 、submit
@@ -260,21 +260,18 @@ public class UsCj2Handler {
 					if(answer(driver, 79, getNumber(2))  == true) continue ;
 					if(answer(driver, 80, getNumber(7))  == true)  {
 						Thread.sleep(2000);
-						driver.findElement(By.xpath("//*[@id=\"btnSubmitQid49319\"]")).click();
 						continue ;
 					}
 					//? 这里好像有一个提交按钮 yes 、no 、submit
 					if(answer(driver, 81, getNumber(2))  == true) continue ;
 					if(answer(driver, 82, getNumber(6))  == true)  {
 						Thread.sleep(2000);
-						driver.findElement(By.xpath("//*[@id=\"btnSubmitQid55769\"]")).click();
 						continue ;
 					}
 					//? 这里好像有一个提交按钮 yes 、no 、submit
 					if(answer(driver, 83, getNumber(2))  == true) continue ;
 					if(answer(driver, 84, getNumber(5))  == true) {
 						Thread.sleep(2000);
-						driver.findElement(By.xpath("//*[@id=\"btnSubmitQid57669\"]")).click();
 						continue ;
 					}
 					//? 这里好像有一个提交按钮 yes 、no 、submit
@@ -285,14 +282,12 @@ public class UsCj2Handler {
 					if(answer(driver, 89, getNumber(5))  == true) continue ;
 					if(answer(driver, 90, getNumber(10))  == true)  {
 						Thread.sleep(2000);
-						driver.findElement(By.xpath("//*[@id=\"btnSubmitQid53109\"]")).click();
 						continue ;
 					}
 					//? 这里好像有一个提交按钮 yes 、no 、submit
 					if(answer(driver, 91, getNumber(2))  == true) continue ;
 					if(answer(driver, 92, getNumber(5))  == true) {
 						Thread.sleep(2000);
-						driver.findElement(By.xpath("//*[@id=\"btnSubmitQid53109\"]")).click();
 						continue ;
 					}
 					if(answer(driver, 93, getNumber(3))  == true) continue ;
@@ -391,6 +386,31 @@ public class UsCj2Handler {
 			} catch (Exception e) {
 				driver.findElement(By.xpath("//*[@id='Qnum" + question + "']/table/tbody/tr/td/div[" + getNumber(2) +"]/label")).click();
 			}
+			try {
+				driver.findElement(By.xpath("//*[@id=\"btnSubmitQid32401\"]")).click();
+			} catch (Exception e) { }
+			try {
+				driver.findElement(By.xpath("//*[@id=\"btnSubmitQid49319\"]")).click();
+			} catch (Exception e) { }
+			try {
+				driver.findElement(By.xpath("//*[@id=\"btnSubmitQid52869\"]")).click();
+			} catch (Exception e) { }
+			try {
+				driver.findElement(By.xpath("//*[@id=\"btnSubmitQid53109\"]")).click();
+				
+			} catch (Exception e) { }
+			try {
+				driver.findElement(By.xpath("//*[@id=\"btnSubmitQid55769\"]")).click();
+				
+			} catch (Exception e) { }
+			try {
+				driver.findElement(By.xpath("//*[@id=\"btnSubmitQid57669\"]")).click();
+				
+			} catch (Exception e) { }
+			try {
+				driver.findElement(By.xpath("//*[@id=\"btnSubmitQid61379\"]")).click();
+			} catch (Exception e) { }
+			
 			System.err.println("检测问题成功，问题是第" + question + "道题！");
 			s_question = question;
 			Thread.sleep(Integer.valueOf(next.toString() + "000"));

@@ -13,6 +13,7 @@ import java.util.Random;
 import org.apache.commons.lang3.StringUtils;
 import org.assertj.core.util.Lists;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -60,24 +61,24 @@ public class CjController {
 	@Autowired
 	private AuWishDao wishDao;
 	
-	private static String defaultIP = "106.120.89.26";
+	private static String defaultIP = "113.77.46.183";
 	private static String prevIP = null;
 	
-	private final static String driverPath = "E:\\workspaces\\using\\selenium\\src\\main\\resources\\chromedriver.exe";
-	private final static String proxyToolPath = "E:\\911S5 2018-09-10\\ProxyTool\\AutoProxyTool.exe";
-	private final static String jsPath = "E:\\workspaces\\using\\selenium\\src\\main\\resources\\main.js";
-	private final static String filePath = "E:\\workspaces\\using\\selenium\\src\\main\\resources\\us_data.xls";
-	private final static String emailPath = "E:\\workspaces\\using\\selenium\\src\\main\\resources\\EMAIL.txt";
-	private final static String au_filePath = "E:\\workspaces\\using\\selenium\\src\\main\\resources\\au_data.xlsx";
-	private final static String uaPath = "E:\\workspaces\\using\\selenium\\src\\main\\resources\\ua.log";
+	private final static String driverPath = "E:\\workspaces\\selenium\\src\\main\\resources\\chromedriver.exe";
+	private final static String proxyToolPath = "C:\\Users\\Administrator\\Desktop\\911S5 2018-05-23\\911S5 2018-05-23 fixed\\ProxyTool\\AutoProxyTool.exe";
+	private final static String jsPath = "E:\\workspaces\\selenium\\src\\main\\resources\\main.js";
+	private final static String filePath = "E:\\workspaces\\selenium\\src\\main\\resources\\us_data.xls";
+	private final static String emailPath = "E:\\workspaces\\selenium\\src\\main\\resources\\EMAIL.txt";
+	private final static String au_filePath = "E:\\workspaces\\selenium\\src\\main\\resources\\au_data.xlsx";
+	private final static String uaPath = "E:\\workspaces\\selenium\\src\\main\\resources\\ua.log";
 	
 	private final static List<String> usofferList = Lists.newArrayList();
 	private final static List<String> auofferList = Lists.newArrayList();
 	private final static Map<String, String> stateMap = Maps.newHashMap(); 
 	
 	static  {
-		usofferList.add("http://www.braverymobtracking.com/tl?a=1372&o=18351"); //0  
-		usofferList.add("http://www.braverymobtracking.com/tl?a=1372&o=17593"); //1
+		usofferList.add("https://track.cpa.tpgrn.com/?aff_id=571578&offer_id=14418"); //0  
+		usofferList.add("https://track.cpa.offerseven.com/?aff_id=390475&offer_id=29634"); //1
 		
 //		auofferList.add("https://c.sparkletrace.com/?a=643&c=1144&E=N%2fI8oeJiWSM%3d&s1=");//1167 0
 //		auofferList.add("https://c.sparkletrace.com/?a=643&c=1521&E=KGg5N%2fZmtLY%3d&s1="); //1576 1  
@@ -140,25 +141,38 @@ public class CjController {
 			return JsonResult.error(ErrorEnum.ERROR_SYSTEM, "调用代理失败！");
 		}
 		Thread.sleep(5000);
+		//检测ip
+		WebElement ip = null;
 		WebDriverWait webDriverWait = new WebDriverWait(driver, 60);
 		try {
 			driver.get("https://whoer.net/zh"); 
 			driver.navigate().to(driver.getCurrentUrl());
-			WebElement ip = webDriverWait.until(new ExpectedCondition<WebElement>() {
+			ip = webDriverWait.until(new ExpectedCondition<WebElement>() {
 				@Override
 				public WebElement apply(WebDriver d) {
 					return d.findElement(By.xpath("//*[@id=\"content\"]/div[1]/div/div[1]/div/strong"));
 				}
 			});
-			String nowIP = ip.getText();
-			if(defaultIP.equals(nowIP) || (prevIP != null && prevIP.equals(nowIP))) {
+			
+		} catch (Exception e) {
+			try {
+				driver.get("https://google.com");
+				Thread.sleep(5000);
+				driver.findElement(By.xpath("//*[@id=\"tsf\"]/div[2]/div/div[2]/div/div[1]/input")).sendKeys("ip", Keys.RETURN);
+				Thread.sleep(5000);
+				ip = driver.findElement(By.xpath("//*[@id=\"rso\"]/div[1]/div/div/div[1]/div[1]/w-answer/w-answer-desktop/div[1]"));
+			} catch (Exception e2) {
 				return JsonResult.error(ErrorEnum.ERROR_SYSTEM, "调用代理失败！");
 			}
-			prevIP = nowIP;
-			System.err.println("调用代理成功！");
-		} catch (Exception e) {
+		}
+		
+		String nowIP = ip.getText();
+		if(defaultIP.equals(nowIP) || (prevIP != null && prevIP.equals(nowIP))) {
+			System.out.println("调用代理失败");
 			return JsonResult.error(ErrorEnum.ERROR_SYSTEM, "调用代理失败！");
 		}
+		prevIP = nowIP;
+		System.err.println("调用代理成功！");
 		
 		driver.manage().deleteAllCookies();
 		System.err.println("切换代理完毕，等待5s，offer自动化准备开始！");
@@ -223,26 +237,37 @@ public class CjController {
 		Thread.sleep(5000);
 		
 		//检测ip
+		WebElement ip = null;
 		WebDriverWait webDriverWait = new WebDriverWait(driver, 60);
 		try {
 			driver.get("https://whoer.net/zh"); 
 			driver.navigate().to(driver.getCurrentUrl());
-			WebElement ip = webDriverWait.until(new ExpectedCondition<WebElement>() {
+			ip = webDriverWait.until(new ExpectedCondition<WebElement>() {
 				@Override
 				public WebElement apply(WebDriver d) {
 					return d.findElement(By.xpath("//*[@id=\"content\"]/div[1]/div/div[1]/div/strong"));
 				}
 			});
-			String nowIP = ip.getText();
-			if(defaultIP.equals(nowIP) || (prevIP != null && prevIP.equals(nowIP))) {
-				System.out.println("调用代理失败");
+			
+		} catch (Exception e) {
+			try {
+				driver.get("https://google.com");
+				Thread.sleep(5000);
+				driver.findElement(By.xpath("//*[@id=\"tsf\"]/div[2]/div/div[2]/div/div[1]/input")).sendKeys("ip", Keys.RETURN);
+				Thread.sleep(5000);
+				ip = driver.findElement(By.xpath("//*[@id=\"rso\"]/div[1]/div/div/div[1]/div[1]/w-answer/w-answer-desktop/div[1]"));
+			} catch (Exception e2) {
 				return JsonResult.error(ErrorEnum.ERROR_SYSTEM, "调用代理失败！");
 			}
-			prevIP = nowIP;
-			System.err.println("调用代理成功！");
-		} catch (Exception e) {
+		}
+		
+		String nowIP = ip.getText();
+		if(defaultIP.equals(nowIP) || (prevIP != null && prevIP.equals(nowIP))) {
+			System.out.println("调用代理失败");
 			return JsonResult.error(ErrorEnum.ERROR_SYSTEM, "调用代理失败！");
 		}
+		prevIP = nowIP;
+		System.err.println("调用代理成功！");
 		
 		//标识资料数据被使用
 		auDataMapper.updateStatusById(99 + "," + 99, data.getId(), new Date(), "");
@@ -407,7 +432,7 @@ public class CjController {
 	
 	@RequestMapping("importWishToAU")
 	public JsonResult<String> importWishToAU() throws IOException {
-		File file = new File("E:\\workspaces\\using\\selenium\\src\\main\\resources\\au_wish.txt");
+		File file = new File("E:\\workspaces\\selenium\\src\\main\\resources\\au_wish.txt");
 		BufferedReader br = new BufferedReader(new FileReader(file));
 		String line = "";
 		int num = 0;
