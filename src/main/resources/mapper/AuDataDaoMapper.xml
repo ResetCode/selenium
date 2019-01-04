@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.selenum.dao.AuDataDao">
+
+	<select id="findByUseStatus" resultType="com.selenum.model.AuData">
+		select * from au_data
+		where use_status = #{status} limit 1
+	</select>
+
+	<update id="updateStatusById">
+		update au_data set use_status = #{status},
+		submit_time = #{submitTime}, offer_url = #{offerUrl}
+		where id = #{id}
+	</update>
+
+	<insert id="insert">
+		INSERT INTO `au_data` (`id`, `email`, `name`,
+		`first_name`, `last_name`, `state`, `city`, `address`, `zip_code`,
+		`phone`, `birth_day`, `birth_month`, `birth_year`, `use_status`,
+		`create_time`, `submit_time`, `offer_url`) VALUES (#{id}, #{email},
+		#{name}, #{firstName}, #{lastName}, #{state}, #{city}, #{address},
+		#{zipCode}, #{phone}, #{birthDay}, #{birthMonth}, #{birthYear},
+		#{useStatus}, #{createTime}, #{submitTime}, #{offerUrl})
+	</insert>
+
+	<select id="findByFirstNameIsNull" resultType="com.selenum.model.AuData">
+		select * from
+		au_data where first_name is null limit 1
+	</select>
+	<select id="findBirthYearIsNull" resultType="com.selenum.model.AuData">
+		select * from
+		au_data where birth_year is null limit 1
+	</select>
+
+	<select id="findByEmailIsNull" resultType="com.selenum.model.AuData">
+		select * from au_data
+		where email is null limit 1
+	</select>
+
+	<update id="update">
+		UPDATE `au_data`
+		<set>
+			<if test="id != null">
+				`id` = #{id},
+			</if>
+			<if test="email != null">
+				`email` = #{email},
+			</if>
+			<if test="name != null">
+				`name` = #{name},
+			</if>
+			<if test="firstName != null">
+				`first_name` = #{firstName},
+			</if>
+			<if test="lastName != null">
+				`last_name` = #{lastName},
+			</if>
+			<if test="state != null">
+				`state` = #{state},
+			</if>
+			<if test="city != null">
+				`city` = #{city},
+			</if>
+			<if test="address != null">
+				`address` = #{address},
+			</if>
+			<if test="zipCode != null">
+				`zip_code` = #{zipCode},
+			</if>
+			<if test="phone != null">
+				`phone` = #{phone},
+			</if>
+			<if test="birthDay != null">
+				`birth_day` = #{birthDay},
+			</if>
+			<if test="birthMonth != null">
+				`birth_month` = #{birthMonth},
+			</if>
+			<if test="birthYear != null">
+				`birth_year` = #{birthYear},
+			</if>
+			<if test="useStatus != null">
+				`use_status` = #{useStatus},
+			</if>
+			<if test="createTime != null">
+				`create_time` = #{createTime},
+			</if>
+			<if test="submitTime != null">
+				`submit_time` = #{submitTime},
+			</if>
+			<if test="offerUrl != null">
+				`offer_url` = #{offerUrl},
+			</if>
+		</set>
+		<where>
+			`id` = #{id}
+		</where>
+	</update>
+</mapper>

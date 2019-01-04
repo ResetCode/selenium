@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.selenum.dao.UserAgentDao">
+
+	<select id="findCount" resultType="java.lang.Integer">
+		select count(*) from user_agent
+	</select>
+	
+	<select id="findOneByLimit" resultType="com.selenum.model.UserAgent">
+		select * from user_agent limit #{limit},1
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO `user_agent` (`id`, `device`, `system`, `browser`, `user_agent`, `is_mobile`) VALUES (#{id}, #{device}, #{system}, #{browser}, #{userAgent}, #{isMobile})
+	</insert>
+</mapper>
