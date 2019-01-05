@@ -20,7 +20,7 @@ public class TableAll {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 		dataSource.setUrl(
-				"jdbc:mysql://172.22.30.110:3306/choujiang?useSSL=false&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useInformationSchema=true&autoReconnect=true&failOverReadOnly=false");
+				"jdbc:mysql://127.0.0.1:3306/choujiang?useSSL=false&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useInformationSchema=true&autoReconnect=true&failOverReadOnly=false");
 		dataSource.setUsername("root");
 		dataSource.setPassword("root123");
 

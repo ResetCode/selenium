@@ -80,7 +80,7 @@ public class AuSpark1167Handler {
 			driver.findElement(By.id("fieldPostcode")).sendKeys(data.getZipCode());
 			Thread.sleep(3000);
 			
-			driver.findElement(By.id("fieldMobileNumber")).sendKeys(data.getPhone().substring(2));
+			driver.findElement(By.id("fieldMobileNumber")).sendKeys(data.getPhone().substring(1));
 			Thread.sleep(3000);
 			driver.findElement(By.xpath("//*[@id='page-address']/div[2]/div[7]/div/label/span")).click();
 			Thread.sleep(3000);
@@ -187,7 +187,7 @@ public class AuSpark1167Handler {
 		   e.printStackTrace();
 		   return 3;
 	   }finally {
-		   driver.quit();
+//		   driver.quit();
 	   }
 	}
 	

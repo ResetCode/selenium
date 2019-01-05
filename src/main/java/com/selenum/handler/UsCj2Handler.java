@@ -324,7 +324,7 @@ public class UsCj2Handler {
 			Thread.sleep(3000);
 			return 3;
 		}finally {
-			driver.quit();
+//			driver.quit();
 		}
 		
 		return 1;

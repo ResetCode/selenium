@@ -22,11 +22,12 @@ public class AuSpark1576Handler {
 			Thread.sleep(30000);
 			
 			try {
-				driver.findElement(By.xpath("//*[@id=\"fname\"]")).sendKeys(wish); //wish
+				driver.findElement(By.xpath("//*[@id=\"fname\"]"));
 			} catch (Exception e) {
 				driver.navigate().to(driver.getCurrentUrl());
 			}
-			driver.findElement(By.xpath("//*[@id=\"fname\"]")).sendKeys("a new car"); //email
+			driver.findElement(By.xpath("//*[@id=\"fname\"]")).sendKeys(wish); //wish
+			Thread.sleep(3000);
 			driver.findElement(By.xpath("//*[@id=\"question0\"]/div[2]/div")).click(); //enter now
 			Thread.sleep(10000);
 			

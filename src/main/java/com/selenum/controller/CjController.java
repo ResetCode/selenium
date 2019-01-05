@@ -28,18 +28,21 @@ import org.springframework.web.bind.annotation.RestController;
 import com.google.common.collect.Maps;
 import com.selenum.dao.AuDataDao;
 import com.selenum.dao.AuWishDao;
+import com.selenum.dao.ScreenDao;
 import com.selenum.dao.UsDataDao;
 import com.selenum.dao.UsDataStateDao;
 import com.selenum.dao.UserAgentDao;
 import com.selenum.handler.AUTemplatePoiHandler;
 import com.selenum.handler.AuGetDataFromUrlHandler;
 import com.selenum.handler.AuSpark1167Handler;
+import com.selenum.handler.AuSpark1576Handler;
 import com.selenum.handler.USTemplatePoiHandler;
 import com.selenum.handler.UsCj2Handler;
 import com.selenum.handler.UsGetDataFromUrlHandler;
 import com.selenum.handler.UsSpark6063Handler;
 import com.selenum.model.AuData;
 import com.selenum.model.AuWish;
+import com.selenum.model.Screen;
 import com.selenum.model.UsData;
 import com.selenum.model.UsDataState;
 import com.selenum.model.UserAgent;
@@ -60,30 +63,30 @@ public class CjController {
 	private AuDataDao auDataMapper;
 	@Autowired
 	private AuWishDao wishDao;
+	@Autowired
+	private ScreenDao screenDao;
 	
 	private static String defaultIP = "113.77.46.183";
 	private static String prevIP = null;
 	
-	private final static String driverPath = "E:\\workspaces\\selenium\\src\\main\\resources\\chromedriver.exe";
-	private final static String proxyToolPath = "C:\\Users\\Administrator\\Desktop\\911S5 2018-05-23\\911S5 2018-05-23 fixed\\ProxyTool\\AutoProxyTool.exe";
-	private final static String jsPath = "E:\\workspaces\\selenium\\src\\main\\resources\\main.js";
-	private final static String filePath = "E:\\workspaces\\selenium\\src\\main\\resources\\us_data.xls";
-	private final static String emailPath = "E:\\workspaces\\selenium\\src\\main\\resources\\EMAIL.txt";
-	private final static String au_filePath = "E:\\workspaces\\selenium\\src\\main\\resources\\au_data.xlsx";
-	private final static String uaPath = "E:\\workspaces\\selenium\\src\\main\\resources\\ua.log";
+	private final static String driverPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\chromedriver.exe";
+	private final static String proxyToolPath = "E:\\911S5 2018-09-10\\ProxyTool\\AutoProxyTool.exe";
+	private final static String jsPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\main.js";
+	private final static String filePath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\us_data.xls";
+	private final static String emailPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\EMAIL.txt";
+	private final static String au_filePath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\au_data.xlsx";
+	private final static String uaPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\ua.log";
 	
 	private final static List<String> usofferList = Lists.newArrayList();
 	private final static List<String> auofferList = Lists.newArrayList();
 	private final static Map<String, String> stateMap = Maps.newHashMap(); 
 	
 	static  {
-		usofferList.add("https://track.cpa.tpgrn.com/?aff_id=571578&offer_id=14418"); //0  
-		usofferList.add("https://track.cpa.offerseven.com/?aff_id=390475&offer_id=29634"); //1
+		usofferList.add("http://www.braverymobtracking.com/tl?a=1372&o=18255"); //0  
+		usofferList.add("http://www.braverymobtracking.com/tl?a=1372&o=18168"); //1
 		
-//		auofferList.add("https://c.sparkletrace.com/?a=643&c=1144&E=N%2fI8oeJiWSM%3d&s1=");//1167 0
-//		auofferList.add("https://c.sparkletrace.com/?a=643&c=1521&E=KGg5N%2fZmtLY%3d&s1="); //1576 1  
-//		auofferList.add("https://c.sparkletrace.com/?a=643&c=1144&E=N%2fI8oeJiWSM%3d&s1=");//1167 0
-//		auofferList.add("https://c.sparkletrace.com/?a=267&c=1521&E=PPXI2j%2f39Eo%3d&s1="); //1576 1  
+//		auofferList.add("http://www.braverymobtracking.com/tl?a=1372&o=17590");//1167 0
+//		auofferList.add("http://www.braverymobtracking.com/tl?a=1372&o=17891"); //1576 1  
 		
 		stateMap.put("New South Wales", "NSW");
 		stateMap.put("Victoria", "Vic");
@@ -127,11 +130,18 @@ public class CjController {
 		Random random = new Random();
 		UserAgent ua = userAgentDao.findOneByLimit(random.nextInt(count));
 		
+		Integer scount = screenDao.findCount();
+		Screen screen = screenDao.findOneByLimit(random.nextInt(scount));
+		
 		//切换ip
 		System.setProperty("webdriver.chrome.driver", driverPath);
 		ChromeOptions chromeOptions = new ChromeOptions();
 		chromeOptions.addArguments("--user-agent=" + ua.getUserAgent());
+		chromeOptions.addArguments("--window-size=" + screen.getScreen());
+		chromeOptions.addArguments("--incognito");
 		chromeOptions.addArguments("-lang=en-us");
+		chromeOptions.addArguments("--disable-infobars");
+		
 		ChromeDriver driver = new ChromeDriver(chromeOptions);
 		
 		Runtime rt = Runtime.getRuntime();
@@ -195,7 +205,7 @@ public class CjController {
 		resultBuffer.append(",").append(result2);
 		
 		usDataMapper.updateStatusById(resultBuffer.toString(), data.getId(), new Date());
-		
+		driver.quit();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		return JsonResult.success(null, "执行结束时间：" + sdf.format(new Date()));
 	}
@@ -273,24 +283,24 @@ public class CjController {
 		auDataMapper.updateStatusById(99 + "," + 99, data.getId(), new Date(), "");
 		
 		//处理州名
-		String state = data.getState();
-		data.setState(stateMap.get(state));
+//		String state = data.getState();
+//		data.setState(stateMap.get(state));
 		
 		//执行脚本1
 		int result = AuSpark1167Handler.handle(data, driver, auofferList.get(offerIndex), jsPath);
 		
 		//标识wish被使用
-//		AuWish wish = wishDao.findOne();
-//		wish.setUseStatus("1");
-//		wishDao.update(wish);
+		AuWish wish = wishDao.findOne();
+		wish.setUseStatus("1");
+		wishDao.update(wish);
 		
 		//执行脚本2
-//		int result2 = AuSpark1576Handler.handle(data, driver, auofferList.get(offerIndex2), wish.getContent());
+		int result2 = AuSpark1576Handler.handle(data, driver, auofferList.get(offerIndex2), wish.getContent());
 		
 		//再次表示资料数据
 		StringBuffer resultBuffer = new StringBuffer();
 		resultBuffer.append(result);
-//		resultBuffer.append(",").append(result2);
+		resultBuffer.append(",").append(result2);
 		auDataMapper.updateStatusById(resultBuffer.toString(), data.getId(), new Date(), auofferList.get(offerIndex) + "," + auofferList.get(offerIndex2));
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -416,9 +426,8 @@ public class CjController {
 		BufferedReader br = new BufferedReader(new FileReader(file));
 		String line = "";
 		int num = 0;
-		while(br.read() != -1) {
+		while((line = br.readLine()) != null) {
 			num++;
-			line = br.readLine();
 			UserAgent userAgent = new UserAgent();
 			userAgent.setUserAgent(line);
 			userAgentDao.insert(userAgent);
@@ -432,7 +441,7 @@ public class CjController {
 	
 	@RequestMapping("importWishToAU")
 	public JsonResult<String> importWishToAU() throws IOException {
-		File file = new File("E:\\workspaces\\selenium\\src\\main\\resources\\au_wish.txt");
+		File file = new File("E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\au_wish.txt");
 		BufferedReader br = new BufferedReader(new FileReader(file));
 		String line = "";
 		int num = 0;

@@ -31,15 +31,15 @@ public class AUTemplatePoiHandler {
 			for(Cell cell : row) {
 				cell.setCellType(CellType.STRING);
 			}
-			String email = row.getCell(0).getStringCellValue();
-			String name = row.getCell(1).getStringCellValue();
-			String firstName = row.getCell(2).getStringCellValue();
-			String lastName = row.getCell(3).getStringCellValue();
-			String phone = row.getCell(4).getStringCellValue();
-			String state = row.getCell(6).getStringCellValue();
-			String city = row.getCell(7).getStringCellValue();
-			String address = row.getCell(8).getStringCellValue(); 
-			String zip_code = String.valueOf(row.getCell(9).getStringCellValue()); //F
+			String name = row.getCell(0).getStringCellValue();
+			String firstName = row.getCell(1).getStringCellValue();
+			String lastName = row.getCell(2).getStringCellValue();
+			String email = row.getCell(3).getStringCellValue();
+			String address = row.getCell(5).getStringCellValue(); 
+			String city = row.getCell(6).getStringCellValue();
+			String state = row.getCell(7).getStringCellValue();
+			String zip_code = row.getCell(8).getStringCellValue(); //F
+			String phone = row.getCell(9).getStringCellValue();
 			
 			AuData data = new AuData();
 			data.setEmail(email);
