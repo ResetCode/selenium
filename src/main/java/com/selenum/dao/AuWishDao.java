@@ -8,7 +8,7 @@ import com.selenum.model.AuWish;
 @Repository
 public interface AuWishDao {
 
-	public AuWish findOne();
+	public AuWish findOne(@Param("type") Integer type);
 	
 	public int updateStatusById(@Param("status") Integer status, @Param("id") Long id);
 

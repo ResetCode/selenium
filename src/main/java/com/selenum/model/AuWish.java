@@ -5,6 +5,7 @@ public class AuWish {
 	private Long id;
 	private String content;
 	private String useStatus;
+	private Integer type;
 	
 	public Long getId() {
 		return id;
@@ -23,6 +24,12 @@ public class AuWish {
 	}
 	public void setUseStatus(String useStatus) {
 		this.useStatus = useStatus;
+	}
+	public Integer getType() {
+		return type;
+	}
+	public void setType(Integer type) {
+		this.type = type;
 	}
 	
 	

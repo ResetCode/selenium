@@ -15,7 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.selenum.model.UsData;
 import com.selenum.test.UsCjDemo;
 
-public class UsSpark6063Handler extends UsCjDemo {
+public class UsCj1Handler extends UsCjDemo {
 
 	public static int handle(ChromeDriver driver, UsData data, String jsPath, String offerUrl) throws InterruptedException {
 

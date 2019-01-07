@@ -4,6 +4,7 @@ import java.util.Random;
 import java.util.Set;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WebDriver.TargetLocator;
@@ -20,25 +21,15 @@ public class TestWindowHandler {
 	
 	public static void main(String[] args) throws InterruptedException {
 		
-		System.setProperty("webdriver.chrome.driver","E:\\chromedriver_win32\\chromedriver.exe");
-		ChromeDriver driver = new ChromeDriver(new ChromeOptions());
+		System.setProperty("webdriver.chrome.driver", "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\chromedriver.exe");
+		ChromeOptions chromeOptions = new ChromeOptions();
+		ChromeDriver driver = new ChromeDriver(chromeOptions);
+		driver.get("C:\\Users\\lyx-pc-0018\\Desktop\\test.html");
 		
-		driver.get("https://whoer.net/zh"); 
-		driver.navigate().to(driver.getCurrentUrl());
-		WebDriverWait webDriverWait = new WebDriverWait(driver, 60);
-		WebElement ip = webDriverWait.until(new ExpectedCondition<WebElement>() {
-			@Override
-			public WebElement apply(WebDriver d) {
-				return d.findElement(By.xpath("//*[@id=\"content\"]/div[1]/div/div[1]/div/strong"));
-			}
-		});
-		String nowIP = ip.getText();
-		if(defaultIP.equals(nowIP) || (prevIP != null && prevIP.equals(nowIP))) {
-			System.out.println("调用代理失败");
-		}
-		prevIP = nowIP;
-		System.err.println("调用代理成功！");
+		((JavascriptExecutor) driver).executeScript("document.getElementById('street').value = '123';");
 		
+		Thread.sleep(10000);							 
+		((JavascriptExecutor) driver).executeScript("document.getElementById('street').value = '456'");
 //		Set<String> handles = driver.getWindowHandles();
 //		Object[] objects = handles.toArray();
 //		TargetLocator to = driver.switchTo();

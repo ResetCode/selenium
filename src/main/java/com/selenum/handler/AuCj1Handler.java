@@ -15,7 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.selenum.model.AuData;
 
-public class AuSpark1167Handler {
+public class AuCj1Handler {
 
 	private static int s_question = 0;
 	

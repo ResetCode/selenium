@@ -6,7 +6,7 @@
 
 	<select id="findOne" resultType="com.selenum.model.AuWish">
 		select * from au_wish
-		where use_status = 0 limit 1
+		where use_status = 0 and type = #{type} limit 1
 	</select>
 
 	<update id="updateStatusById">
@@ -15,7 +15,7 @@
 	</update>
 
 	<insert id="insert">
-		INSERT INTO `au_wish` (`id`, `content`, `use_status`) VALUES (#{id}, #{content}, #{useStatus})
+		INSERT INTO `au_wish` (`id`, `content`, `use_status`,`type`) VALUES (#{id}, #{content}, #{useStatus},#{type})
 	</insert>
 
 	<update id="update">

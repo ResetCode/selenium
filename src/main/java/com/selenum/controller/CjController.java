@@ -34,12 +34,13 @@ import com.selenum.dao.UsDataStateDao;
 import com.selenum.dao.UserAgentDao;
 import com.selenum.handler.AUTemplatePoiHandler;
 import com.selenum.handler.AuGetDataFromUrlHandler;
-import com.selenum.handler.AuSpark1167Handler;
-import com.selenum.handler.AuSpark1576Handler;
+import com.selenum.handler.AuCj1Handler;
+import com.selenum.handler.AuCj2Handler;
+import com.selenum.handler.AuCj3Handler;
 import com.selenum.handler.USTemplatePoiHandler;
 import com.selenum.handler.UsCj2Handler;
 import com.selenum.handler.UsGetDataFromUrlHandler;
-import com.selenum.handler.UsSpark6063Handler;
+import com.selenum.handler.UsCj1Handler;
 import com.selenum.model.AuData;
 import com.selenum.model.AuWish;
 import com.selenum.model.Screen;
@@ -68,7 +69,20 @@ public class CjController {
 	
 	private static String prevIP = null;
 	
-//	private static String defaultIP = "111.194.49.215";
+	private static String defaultIP = "106.120.89.26";
+	private final static String driverPath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\chromedriver.exe";
+	private final static String proxyToolPath = "C:\\Users\\lyx-pc-0018\\Desktop\\911S5 2018-05-23\\911S5 2018-05-23 fixed\\ProxyTool\\AutoProxyTool.exe";
+	private final static String jsPath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\main.js";
+	private final static String filePath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\us_data.xls";
+	private final static String emailPath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\EMAIL.txt";
+	private final static String au_filePath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\au_data.xlsx";
+	private final static String uaPath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\ua.log";
+	private final static String ipPath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\ip.html";
+	private final static String wishPath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\au_wish.txt";
+	private final static String winPath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\au_win.txt";
+
+	//家
+	//	private static String defaultIP = "111.194.49.215";
 //	private final static String driverPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\chromedriver.exe";
 //	private final static String proxyToolPath = "E:\\911S5 2018-09-10\\ProxyTool\\AutoProxyTool.exe";
 //	private final static String jsPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\main.js";
@@ -78,16 +92,16 @@ public class CjController {
 //	private final static String uaPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\ua.log";
 //	private final static String ipPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\ip.html";
 	
-	//
-	private static String defaultIP = "113.77.46.183";
-	private final static String driverPath = "E:\\workspaces\\selenium\\src\\main\\resources\\chromedriver.exe";
-	private final static String proxyToolPath = "C:\\Users\\Administrator\\Desktop\\911S5 2018-05-23 fixed\\ProxyTool\\AutoProxyTool.exe";
-	private final static String jsPath = "E:\\workspaces\\selenium\\src\\main\\resources\\main.js";
-	private final static String filePath = "E:\\workspaces\\selenium\\src\\main\\resources\\us_data.xls";
-	private final static String emailPath = "E:\\workspaces\\selenium\\src\\main\\resources\\EMAIL.txt";
-	private final static String au_filePath = "E:\\workspaces\\selenium\\src\\main\\resources\\au_data.xlsx";
-	private final static String uaPath = "E:\\workspaces\\selenium\\src\\main\\resources\\ua.log";
-	private final static String ipPath = "E:\\workspaces\\selenium\\src\\main\\resources\\ip.html";
+	//meow 
+//	private static String defaultIP = "113.77.46.183";
+//	private final static String driverPath = "E:\\workspaces\\selenium\\src\\main\\resources\\chromedriver.exe";
+//	private final static String proxyToolPath = "C:\\Users\\Administrator\\Desktop\\911S5 2018-05-23 fixed\\ProxyTool\\AutoProxyTool.exe";
+//	private final static String jsPath = "E:\\workspaces\\selenium\\src\\main\\resources\\main.js";
+//	private final static String filePath = "E:\\workspaces\\selenium\\src\\main\\resources\\us_data.xls";
+//	private final static String emailPath = "E:\\workspaces\\selenium\\src\\main\\resources\\EMAIL.txt";
+//	private final static String au_filePath = "E:\\workspaces\\selenium\\src\\main\\resources\\au_data.xlsx";
+//	private final static String uaPath = "E:\\workspaces\\selenium\\src\\main\\resources\\ua.log";
+//	private final static String ipPath = "E:\\workspaces\\selenium\\src\\main\\resources\\ip.html";
 	
 	private final static List<String> usofferList = Lists.newArrayList();
 	private final static List<String> auofferList = Lists.newArrayList();
@@ -97,8 +111,8 @@ public class CjController {
 		usofferList.add("http://www.braverymobtracking.com/tl?a=1372&o=18255"); //0  
 		usofferList.add("http://www.braverymobtracking.com/tl?a=1372&o=17557"); //1
 		
-//		auofferList.add("http://www.braverymobtracking.com/tl?a=1372&o=17590");//1167 0
-//		auofferList.add("http://www.braverymobtracking.com/tl?a=1372&o=17891"); //1576 1  
+		auofferList.add("http://www.braverymobtracking.com/tl?a=1372&o=14904");//1167 0
+		auofferList.add(""); //1576 1  
 		
 		stateMap.put("New South Wales", "NSW");
 		stateMap.put("Victoria", "Vic");
@@ -202,7 +216,7 @@ public class CjController {
 		//标识资料数据被使用
 		usDataMapper.updateStatusById(99 + "," + 99, data.getId(), new Date());
 		
-		int result = UsSpark6063Handler.handle(driver, data, jsPath, usofferList.get(offerIndex));
+		int result = UsCj1Handler.handle(driver, data, jsPath, usofferList.get(offerIndex));
 		int result2 = UsCj2Handler.handle(driver, data, usofferList.get(offerIndex2));
 		
 		//再次表示资料数据
@@ -258,6 +272,8 @@ public class CjController {
 		try {
 			driver.get(ipPath); 
 			driver.navigate().to(driver.getCurrentUrl());
+			Thread.sleep(5000);
+			driver.navigate().to(driver.getCurrentUrl());
 			ip = webDriverWait.until(new ExpectedCondition<WebElement>() {
 				@Override
 				public WebElement apply(WebDriver d) {
@@ -284,21 +300,20 @@ public class CjController {
 //		String state = data.getState();
 //		data.setState(stateMap.get(state));
 		
-		//执行脚本1
-		int result = AuSpark1167Handler.handle(data, driver, auofferList.get(offerIndex), jsPath);
-		
 		//标识wish被使用
-		AuWish wish = wishDao.findOne();
+		AuWish wish = wishDao.findOne(1);
 		wish.setUseStatus("1");
 		wishDao.update(wish);
-		
-		//执行脚本2
-		int result2 = AuSpark1576Handler.handle(data, driver, auofferList.get(offerIndex2), wish.getContent());
+
+		//执行脚本1
+		int result = AuCj3Handler.handle(data, driver, auofferList.get(offerIndex),wish.getContent());
+//		//执行脚本2
+//		int result2 = AuCj2Handler.handle(data, driver, auofferList.get(offerIndex2), wish.getContent());
 		
 		//再次表示资料数据
 		StringBuffer resultBuffer = new StringBuffer();
 		resultBuffer.append(result);
-		resultBuffer.append(",").append(result2);
+//		resultBuffer.append(",").append(result2);
 		auDataMapper.updateStatusById(resultBuffer.toString(), data.getId(), new Date(), auofferList.get(offerIndex) + "," + auofferList.get(offerIndex2));
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -439,16 +454,37 @@ public class CjController {
 	
 	@RequestMapping("importWishToAU")
 	public JsonResult<String> importWishToAU() throws IOException {
-		File file = new File("E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\au_wish.txt");
+		File file = new File(wishPath);
 		BufferedReader br = new BufferedReader(new FileReader(file));
 		String line = "";
 		int num = 0;
-		while(br.read() != -1) {
+		while((line = br.readLine()) != null) {
 			num++;
-			line = br.readLine();
 			AuWish wish = new AuWish();
 			wish.setContent(line);
 			wish.setUseStatus("0");
+			wish.setType(0);
+			wishDao.insert(wish);
+		}
+		
+		br.close();
+		JsonResult<String> result = new JsonResult<>();
+		result.setSuccessData("成功" + num + "条数据！");
+		return result; 
+	}
+	
+	@RequestMapping("importWinReasonToAU")
+	public JsonResult<String> importWinReasonToAU() throws IOException {
+		File file = new File(winPath);
+		BufferedReader br = new BufferedReader(new FileReader(file));
+		String line = "";
+		int num = 0;
+		while((line = br.readLine()) != null) {
+			num++;
+			AuWish wish = new AuWish();
+			wish.setContent(line);
+			wish.setUseStatus("0");
+			wish.setType(1);
 			wishDao.insert(wish);
 		}
 		

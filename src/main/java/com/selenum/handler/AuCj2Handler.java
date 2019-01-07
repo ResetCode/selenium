@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.Select;
 import com.google.common.collect.Maps;
 import com.selenum.model.AuData;
 
-public class AuSpark1576Handler {
+public class AuCj2Handler {
 
 //	private static int s_question = 0;
 	
@@ -228,4 +228,5 @@ public class AuSpark1576Handler {
 		int nextInt = random.nextInt(n);
 		return nextInt;
 	}
+	
 }
