@@ -66,16 +66,28 @@ public class CjController {
 	@Autowired
 	private ScreenDao screenDao;
 	
-	private static String defaultIP = "113.77.46.183";
 	private static String prevIP = null;
 	
-	private final static String driverPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\chromedriver.exe";
-	private final static String proxyToolPath = "E:\\911S5 2018-09-10\\ProxyTool\\AutoProxyTool.exe";
-	private final static String jsPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\main.js";
-	private final static String filePath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\us_data.xls";
-	private final static String emailPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\EMAIL.txt";
-	private final static String au_filePath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\au_data.xlsx";
-	private final static String uaPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\ua.log";
+//	private static String defaultIP = "111.194.49.215";
+//	private final static String driverPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\chromedriver.exe";
+//	private final static String proxyToolPath = "E:\\911S5 2018-09-10\\ProxyTool\\AutoProxyTool.exe";
+//	private final static String jsPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\main.js";
+//	private final static String filePath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\us_data.xls";
+//	private final static String emailPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\EMAIL.txt";
+//	private final static String au_filePath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\au_data.xlsx";
+//	private final static String uaPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\ua.log";
+//	private final static String ipPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\ip.html";
+	
+	//
+	private static String defaultIP = "113.77.46.183";
+	private final static String driverPath = "E:\\workspaces\\selenium\\src\\main\\resources\\chromedriver.exe";
+	private final static String proxyToolPath = "C:\\Users\\Administrator\\Desktop\\911S5 2018-05-23 fixed\\ProxyTool\\AutoProxyTool.exe";
+	private final static String jsPath = "E:\\workspaces\\selenium\\src\\main\\resources\\main.js";
+	private final static String filePath = "E:\\workspaces\\selenium\\src\\main\\resources\\us_data.xls";
+	private final static String emailPath = "E:\\workspaces\\selenium\\src\\main\\resources\\EMAIL.txt";
+	private final static String au_filePath = "E:\\workspaces\\selenium\\src\\main\\resources\\au_data.xlsx";
+	private final static String uaPath = "E:\\workspaces\\selenium\\src\\main\\resources\\ua.log";
+	private final static String ipPath = "E:\\workspaces\\selenium\\src\\main\\resources\\ip.html";
 	
 	private final static List<String> usofferList = Lists.newArrayList();
 	private final static List<String> auofferList = Lists.newArrayList();
@@ -83,7 +95,7 @@ public class CjController {
 	
 	static  {
 		usofferList.add("http://www.braverymobtracking.com/tl?a=1372&o=18255"); //0  
-		usofferList.add("http://www.braverymobtracking.com/tl?a=1372&o=18168"); //1
+		usofferList.add("http://www.braverymobtracking.com/tl?a=1372&o=17557"); //1
 		
 //		auofferList.add("http://www.braverymobtracking.com/tl?a=1372&o=17590");//1167 0
 //		auofferList.add("http://www.braverymobtracking.com/tl?a=1372&o=17891"); //1576 1  
@@ -155,25 +167,19 @@ public class CjController {
 		WebElement ip = null;
 		WebDriverWait webDriverWait = new WebDriverWait(driver, 60);
 		try {
-			driver.get("https://whoer.net/zh"); 
+			driver.get(ipPath); 
+			driver.navigate().to(driver.getCurrentUrl());
+			Thread.sleep(5000);
 			driver.navigate().to(driver.getCurrentUrl());
 			ip = webDriverWait.until(new ExpectedCondition<WebElement>() {
 				@Override
 				public WebElement apply(WebDriver d) {
-					return d.findElement(By.xpath("//*[@id=\"content\"]/div[1]/div/div[1]/div/strong"));
+					return d.findElement(By.id("ip"));
 				}
 			});
 			
 		} catch (Exception e) {
-			try {
-				driver.get("https://google.com");
-				Thread.sleep(5000);
-				driver.findElement(By.xpath("//*[@id=\"tsf\"]/div[2]/div/div[2]/div/div[1]/input")).sendKeys("ip", Keys.RETURN);
-				Thread.sleep(5000);
-				ip = driver.findElement(By.xpath("//*[@id=\"rso\"]/div[1]/div/div/div[1]/div[1]/w-answer/w-answer-desktop/div[1]"));
-			} catch (Exception e2) {
-				return JsonResult.error(ErrorEnum.ERROR_SYSTEM, "调用代理失败！");
-			}
+			return JsonResult.error(ErrorEnum.ERROR_SYSTEM, "调用代理失败！");
 		}
 		
 		String nowIP = ip.getText();
@@ -250,25 +256,17 @@ public class CjController {
 		WebElement ip = null;
 		WebDriverWait webDriverWait = new WebDriverWait(driver, 60);
 		try {
-			driver.get("https://whoer.net/zh"); 
+			driver.get(ipPath); 
 			driver.navigate().to(driver.getCurrentUrl());
 			ip = webDriverWait.until(new ExpectedCondition<WebElement>() {
 				@Override
 				public WebElement apply(WebDriver d) {
-					return d.findElement(By.xpath("//*[@id=\"content\"]/div[1]/div/div[1]/div/strong"));
+					return d.findElement(By.id("ip"));
 				}
 			});
 			
 		} catch (Exception e) {
-			try {
-				driver.get("https://google.com");
-				Thread.sleep(5000);
-				driver.findElement(By.xpath("//*[@id=\"tsf\"]/div[2]/div/div[2]/div/div[1]/input")).sendKeys("ip", Keys.RETURN);
-				Thread.sleep(5000);
-				ip = driver.findElement(By.xpath("//*[@id=\"rso\"]/div[1]/div/div/div[1]/div[1]/w-answer/w-answer-desktop/div[1]"));
-			} catch (Exception e2) {
-				return JsonResult.error(ErrorEnum.ERROR_SYSTEM, "调用代理失败！");
-			}
+			return JsonResult.error(ErrorEnum.ERROR_SYSTEM, "调用代理失败！");
 		}
 		
 		String nowIP = ip.getText();

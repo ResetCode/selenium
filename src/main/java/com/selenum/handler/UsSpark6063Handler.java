@@ -29,6 +29,8 @@ public class UsSpark6063Handler extends UsCjDemo {
 			
 			try {
 				driver.get(offerUrl);
+				driver.navigate().to(driver.getCurrentUrl());
+				Thread.sleep(5000);
 				scoll(driver);
 			} catch (Exception e) {
 				return -1;

@@ -20,7 +20,7 @@ public class UsCj2Handler {
 	private static int s_question = 0;
 	
 	public static int handle(ChromeDriver driver, UsData data, String offerUrl) throws InterruptedException {
-		
+		s_question = 0;
 		try {
 			Random r = new Random();
 			//TODO 比例
@@ -30,7 +30,9 @@ public class UsCj2Handler {
 //			//检测ip
 			WebDriverWait webDriverWait = new WebDriverWait(driver, 60);
 			
-			driver.get("http://www.braverymobtracking.com/tl?a=1372&o=17412");
+			driver.get(offerUrl);
+			driver.navigate().to(driver.getCurrentUrl());
+			Thread.sleep(5000);
 			driver.manage().deleteAllCookies();
 			
 			Thread.sleep(60000);
