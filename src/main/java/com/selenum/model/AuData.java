@@ -19,6 +19,8 @@ public class AuData {
 	protected String city;
 	/** 街道 */
 	protected String address;
+	/** 街道 */
+	protected String address2;
 	/** 邮编 */
 	protected String zipCode;
 	/** 电话 */
@@ -365,4 +367,11 @@ public class AuData {
 		this.offerUrl = offerUrl;
 	}
 
+	public String getAddress2() {
+		return address2;
+	}
+
+	public void setAddress2(String address2) {
+		this.address2 = address2;
+	}
 }

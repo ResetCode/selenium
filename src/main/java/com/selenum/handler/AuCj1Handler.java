@@ -17,9 +17,7 @@ import com.selenum.model.AuData;
 
 public class AuCj1Handler {
 
-	private static int s_question = 0;
-	
-	public static int handle(AuData data, ChromeDriver driver, String offerUrl, String jsPath) throws InterruptedException {
+	public static int handle(AuData data, ChromeDriver driver, String offerUrl) throws InterruptedException {
 		Random r = new Random();
 		int b = r.nextInt(101);
 		
@@ -70,7 +68,7 @@ public class AuCj1Handler {
 	            public WebElement apply(WebDriver d) {
 	                return d.findElement(By.xpath("//*[@id='fieldAddress']"));
 	            }
-	        }).sendKeys(data.getAddress()); 
+	        }).sendKeys(data.getAddress2()); 
 			
 			driver.findElement(By.xpath("//*[@id='fieldSuburb']")).sendKeys(data.getCity());
 			Thread.sleep(3000);
@@ -84,8 +82,11 @@ public class AuCj1Handler {
 			Thread.sleep(3000);
 			driver.findElement(By.xpath("//*[@id='page-address']/div[2]/div[7]/div/label/span")).click();
 			Thread.sleep(3000);
-			
-			driver.findElementByXPath("//*[@id='page-address']/div[2]/div[8]/div/label/label/label").click();
+			try {
+				driver.findElementByXPath("//*[@id=\"page-address\"]/div[2]/div[9]/div/label/label").click();
+			} catch (Exception e) {
+				driver.findElementByXPath("//*[@id='page-address']/div[2]/div[8]/div/label/label/label").click();
+			}
 			Thread.sleep(3000);
 			driver.findElementByXPath("//*[@id='page-address']/a").click();
 			Thread.sleep(15000);
@@ -116,7 +117,7 @@ public class AuCj1Handler {
 				} catch (Exception e) {}
 				if(answer(driver, 4, getNumber(5)) == true) continue; //4
 				if(answer(driver, 4, getNumber(2)) == true) continue; //4
-				if(answer2(driver, 5, 1) == true) {
+				if(answer(driver, 5, 1) == true) {
 					if(b >= 20 & b < 25){
 						System.err.println("20%-25%提交完毕！");
 						return 1;
@@ -133,10 +134,10 @@ public class AuCj1Handler {
 					continue;
 				} //8
 				if(answer(driver, 9, getNumber(5)) == true) continue; //9
-				if(answer2(driver, 10, getNumber(2)) == true) continue; //10
+				if(answer(driver, 10, getNumber(2)) == true) continue; //10
 				if(answer(driver, 11, getNumber(4)) == true) continue; //11
-				if(answer2(driver, 12, getNumber(2)) == true) continue; //12
-				if(answer2(driver, 13, getNumber(2)) == true) continue; //13 Do you own a car?
+				if(answer(driver, 12, getNumber(2)) == true) continue; //12
+				if(answer(driver, 13, getNumber(2)) == true) continue; //13 Do you own a car?
 				if(answer(driver, 14, getNumber(7)) == true) continue; //14
 				if(answer(driver, 15, getNumber(5)) == true) continue; //15 Do you gamble online?
 				if(answer(driver, 16, getNumber(18)) == true) continue; //16
@@ -183,7 +184,6 @@ public class AuCj1Handler {
 			return 1;
 			
 	   } catch(Exception e) {
-		   Thread.sleep(60000);
 		   e.printStackTrace();
 		   return 3;
 	   }finally {
@@ -248,9 +248,6 @@ public class AuCj1Handler {
 	}
 	
 	public static boolean answer2(ChromeDriver driver,int question, int number)  {
-		if(question <= s_question) {
-			return false;
-		}
 		Random r = new Random();
 		Integer next = 5;
 		while(true) {
@@ -260,11 +257,10 @@ public class AuCj1Handler {
 			}
 		}
 		try {
-			System.err.println("随机数为：" + number);
 			driver.findElement(By.xpath("//*[@id='coregs']/div[" + question + "]/div/div/a[" + number + "]")).click();
+			System.err.println("随机数为：" + number);
 			System.out.println("检测问题成功，问题是第" + question + "道题！");
 			Thread.sleep(Integer.valueOf(next.toString() + "000"));
-			s_question = question;
 			return true;
 		} catch (Exception e) {
 			return false;
@@ -272,9 +268,6 @@ public class AuCj1Handler {
 	}
 	
 	public static boolean answer(ChromeDriver driver,int question, int number)  {
-		if(question <= s_question) {
-			return false;
-		}
 		
 		Random r = new Random();
 		Integer next = 5;
@@ -295,7 +288,7 @@ public class AuCj1Handler {
 				driver.findElement(By.xpath("//*[@id='coregs']/div["+ question +"]/div[1]/div/div/label["+ number +"]/input")).click();
 			}
 			System.out.println("检测问题成功，问题是第" + question + "道题！");
-			try {												   //*[@id="coregs"]/div[4]/div/div/a
+			try {												  
 				WebElement noThanks = driver.findElement(By.xpath("//*[@id='coregs']/div[" + question + "]/div/div/a"));  //no thanks
 				Random random = new Random();
 				int bfb = random.nextInt(101);
@@ -304,16 +297,14 @@ public class AuCj1Handler {
 					noThanks.click();
 					System.err.println("no thanks!");
 				} else {
-												 //*[@id="coregs"]/div[4]/div/div/button
 					driver.findElement(By.xpath("//*[@id='coregs']/div[" + question + "]/div/div/button")).click();
 				}
 			} catch (Exception e) {
 			}
-			s_question = question;
 			Thread.sleep(Integer.valueOf(next.toString() + "000"));
 			return true;
 		} catch (Exception e) {
-			return false;
+			return answer2(driver, question, number);
 		}
 	}
 	

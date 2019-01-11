@@ -11,30 +11,22 @@ import org.openqa.selenium.support.ui.Select;
 import com.google.common.collect.Maps;
 import com.selenum.model.AuData;
 
-public class AuCj2Handler {
+public class AuCj2Handler2 {
 
 //	private static int s_question = 0;
 	
-	public static int handle(AuData data, ChromeDriver driver, String offerUrl, String wish) throws InterruptedException {
+	public static int handle(AuData data, ChromeDriver driver, String offerUrl) throws InterruptedException {
 		
 		try {
 			driver.get(offerUrl);
 			Thread.sleep(30000);
 			
-			try {
-				driver.findElement(By.xpath("//*[@id=\"fname\"]"));
-			} catch (Exception e) {
-				driver.navigate().to(driver.getCurrentUrl());
-			}
-			driver.findElement(By.xpath("//*[@id=\"fname\"]")).sendKeys(wish); //wish
+			driver.findElementByXPath("//*[@id=\"question_1\"]/button["+ getNumber(4) +"]").click();
 			Thread.sleep(3000);
-			driver.findElement(By.xpath("//*[@id=\"question0\"]/div[2]/div")).click(); //enter now
-			Thread.sleep(10000);
-			
-			driver.findElement(By.xpath("//*[@id=\"c_pic_"+ getNumber(4) +"_text\"]/input")); //q1
+			driver.findElementByXPath("//*[@id=\"question_2\"]/button["+ getNumber(4) +"]").click();
 			Thread.sleep(3000);
-			driver.findElement(By.xpath("//*[@id=\"prize_picker\"]/div[3]/div[2]/div[4]/button")).click();
-			Thread.sleep(3000);
+			driver.findElementByXPath("//*[@id=\"question_3\"]/button["+ getNumber(4) +"]").click();
+			Thread.sleep(20000);
 			
 			if(data.getName().equals("f")) {//sex
 				JavascriptExecutor js = ((JavascriptExecutor) driver);
@@ -88,7 +80,11 @@ public class AuCj2Handler {
 				try {
 					driver.findElementByXPath("//*[@id=\"coreg_1163_yes\"]").click(); //yes
 				} catch (Exception e2) {
-					driver.findElementByXPath("//*[@id=\"coreg_1209_yes\"]").click(); //yes
+					try {
+						driver.findElementByXPath("//*[@id=\"coreg_1209_yes\"]").click(); //yes
+					} catch (Exception e3) {
+						driver.findElementByXPath("//*[@id=\"coreg_1014_yes\"]").click(); //yes
+					}
 				}
 			}
 			Thread.sleep(3000);
@@ -123,6 +119,7 @@ public class AuCj2Handler {
 				if(answer(driver, 1131, getNumberHas0(2))) continue;
 				if(answer(driver, 1139, getNumberHas0(2))) continue;
 				if(answer(driver, 1181, getNumberHas0(2))) continue;
+				if(answer(driver, 1187, getNumberHas0(2))) continue;
 				if(answer(driver, 1191, getNumberHas0(2))) continue;
 				if(answer(driver, 1196, getNumberHas0(2))) continue;
 				if(answer(driver, 1207, getNumberHas0(2))) continue;
@@ -147,20 +144,18 @@ public class AuCj2Handler {
 				if(	answer(driver, 1272, getNumberHas0(2))) continue;
 				int number = getNumberHas0(2);
 				if(	answer(driver, 1279, number)) {
-					if(number == 0) {
-						String[] types = {"Combined","Hospital","Extras"};
-						String[] funds = {"Not Sure","Others","Not Insured"};
-						String[] stages = {"Single","Couple","Family","Single Parent"};
+					String[] types = {"Combined","Hospital","Extras"};
+					String[] funds = {"Not Sure","Others","Not Insured"};
+					String[] stages = {"Single","Couple","Family","Single Parent"};
 
-						new Select(driver.findElementByXPath("//*[@id=\"complex_answer_1279_1\"]")).selectByVisibleText(types[getNumberHas0(3)]);
-						Thread.sleep(3000);
-						new Select(driver.findElementByXPath("//*[@id=\"complex_answer_1279_2\"]")).selectByVisibleText(funds[getNumberHas0(3)]);
-						Thread.sleep(3000);
-						new Select(driver.findElementByXPath("//*[@id=\"complex_answer_1279_3\"]")).selectByVisibleText(stages[getNumberHas0(4)]);
-						Thread.sleep(3000);
-						driver.findElement(By.xpath("//*[@id=\"submit_complex_1279\"]")).click();
-						Thread.sleep(6000);
-					}
+					new Select(driver.findElementByXPath("//*[@id=\"complex_answer_1279_1\"]")).selectByVisibleText(types[getNumberHas0(3)]);
+					Thread.sleep(3000);
+					new Select(driver.findElementByXPath("//*[@id=\"complex_answer_1279_2\"]")).selectByVisibleText(funds[getNumberHas0(3)]);
+					Thread.sleep(3000);
+					new Select(driver.findElementByXPath("//*[@id=\"complex_answer_1279_3\"]")).selectByVisibleText(stages[getNumberHas0(4)]);
+					Thread.sleep(3000);
+					driver.findElement(By.xpath("//*[@id=\"submit_complex_1279\"]")).click();
+					Thread.sleep(6000);
 					continue;
 				} 
 				if(answer(driver, 1279, getNumberHas0(2))) continue;
@@ -170,9 +165,13 @@ public class AuCj2Handler {
 			
 			driver.findElementByXPath("//*[@id=\"coreg_1005no0\"]/u").click();
 			Thread.sleep(6000);
+			if(	answer(driver, 1039, getNumberHas0(2))) ;
+			Thread.sleep(6000);
+			if(	answer(driver, 1139, 0)) ;
+			Thread.sleep(6000);
 			driver.findElementByXPath("//*[@id=\"coreg_done_continue\"]/div").click();
 			Thread.sleep(6000);
-			driver.findElementByXPath("/html/body/div[4]/div[3]/div[3]/div[1]/button[2]").click();
+			driver.findElementByXPath("//*[@id=\"coreg_done_continue\"]/div").click();
 			Thread.sleep(5000);
 			
 		} catch (Exception e) {

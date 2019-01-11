@@ -41,6 +41,7 @@ public class AUTemplatePoiHandler {
 			String state = row.getCell(7).getStringCellValue();
 			String zip_code = row.getCell(8).getStringCellValue(); //F
 			String phone = row.getCell(9).getStringCellValue();
+			String address2 = row.getCell(11).getStringCellValue();
 			
 			String[] births = birthDay.split("/");
 			AuData data = new AuData();
@@ -51,9 +52,10 @@ public class AUTemplatePoiHandler {
 			System.err.println(birthDay);
 			data.setBirthMonth(births[0].substring(0,1).equals("0") ? births[0].substring(1) : births[0]);
 			data.setBirthDay(births[1].substring(0,1).equals("0") ? births[1].substring(1) : births[1]);
-			data.setBirthYear(births[2]);
+			data.setBirthYear(births[2].startsWith("19") == true ? births[2] : ("19" + births[2]));
 			data.setPhone(phone);
 			data.setState(state);
+			data.setAddress2(address2);
 			
 			String[] citys = city.split(" ");
 			StringBuffer sb = new StringBuffer();

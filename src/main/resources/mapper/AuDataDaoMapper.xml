@@ -19,10 +19,10 @@
 		INSERT INTO `au_data` (`id`, `email`, `name`,
 		`first_name`, `last_name`, `state`, `city`, `address`, `zip_code`,
 		`phone`, `birth_day`, `birth_month`, `birth_year`, `use_status`,
-		`create_time`, `submit_time`, `offer_url`) VALUES (#{id}, #{email},
+		`create_time`, `submit_time`, `offer_url`,`address2`) VALUES (#{id}, #{email},
 		#{name}, #{firstName}, #{lastName}, #{state}, #{city}, #{address},
 		#{zipCode}, #{phone}, #{birthDay}, #{birthMonth}, #{birthYear},
-		#{useStatus}, #{createTime}, #{submitTime}, #{offerUrl})
+		#{useStatus}, #{createTime}, #{submitTime}, #{offerUrl},#{address2})
 	</insert>
 
 	<select id="findByFirstNameIsNull" resultType="com.selenum.model.AuData">
