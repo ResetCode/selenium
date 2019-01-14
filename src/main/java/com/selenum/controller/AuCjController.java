@@ -177,24 +177,27 @@ public class AuCjController {
 		System.err.println("调用代理成功！");
 		
 		//标识资料数据被使用
-		auDataMapper.updateStatusById(99 + "," + 99, data.getId(), new Date(), "");
+		auDataMapper.updateStatusById(99 + "," + 99 + "," + 99, data.getId(), new Date(), "");
 		
 		//处理州名
 //		String state = data.getState();
 //		data.setState(stateMap.get(state));
-		
-		//标识wish被使用
-		AuWish wish = wishDao.findOne(1);
-		wish.setUseStatus("1");
-		wishDao.update(wish);
 
 		//执行脚本1
 		int result = AuCj1Handler.handle(data, driver, auofferList.get(offerIndex));
-//		//执行脚本2
-		int result2 = AuCj2Handler.handle(data, driver, auofferList.get(offerIndex2), wish.getContent());
-		//执行脚本3
-		int result3 = AuCj3Handler2.handle(data, driver, auofferList.get(offerIndex3), wish.getContent());
+//		
+		//执行脚本2
+		AuWish wish0 = wishDao.findOne(0);
+		int result2 = AuCj2Handler.handle(data, driver, auofferList.get(offerIndex2), wish0);
+		//标识wish被使用
+		wishDao.update(wish0);
 		
+		
+		//执行脚本3
+		AuWish wish1 = wishDao.findOne(1);
+		int result3 = AuCj3Handler2.handle(data, driver, auofferList.get(offerIndex3), wish1);
+		//标识wish被使用
+		wishDao.update(wish0);
 		
 		//再次表示资料数据
 		StringBuffer resultBuffer = new StringBuffer();

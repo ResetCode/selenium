@@ -17,13 +17,14 @@ import com.google.common.collect.Range;
 import com.google.common.collect.RangeMap;
 import com.google.common.collect.TreeRangeMap;
 import com.selenum.model.AuData;
+import com.selenum.model.AuWish;
 
 /**
  * 模板三-2：校车
  */
 public class AuCj3Handler2 {
 
-	public static int handle(AuData data, ChromeDriver driver, String offerUrl, String words) throws InterruptedException {
+	public static int handle(AuData data, ChromeDriver driver, String offerUrl, AuWish wish) throws InterruptedException {
 		
 		try {
 			driver.get(offerUrl);
@@ -222,7 +223,8 @@ public class AuCj3Handler2 {
 			//Complete the survey by telling us why you should WIN in 25 words or less.
 			suiji = random.nextInt(100);
 			if(suiji < 50) {
-				driver.findElementByXPath("//*[@id=\"question-387\"]/div/textarea").sendKeys(words);
+				driver.findElementByXPath("//*[@id=\"question-387\"]/div/textarea").sendKeys(wish.getContent());
+				wish.setUseStatus("1");
 				Thread.sleep(10000);
 				driver.findElementByXPath("//*[@id=\"question-387\"]/div/button[1]");
 				Thread.sleep(10000);

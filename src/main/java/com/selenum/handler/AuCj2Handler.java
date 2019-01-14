@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import com.google.common.collect.Maps;
 import com.selenum.model.AuData;
+import com.selenum.model.AuWish;
 
 /**
  * 模板二-1：心愿
@@ -18,7 +19,7 @@ public class AuCj2Handler {
 
 //	private static int s_question = 0;
 	
-	public static int handle(AuData data, ChromeDriver driver, String offerUrl, String wish) throws InterruptedException {
+	public static int handle(AuData data, ChromeDriver driver, String offerUrl, AuWish wish0) throws InterruptedException {
 		
 		try {
 			driver.get(offerUrl);
@@ -31,7 +32,9 @@ public class AuCj2Handler {
 			}
 			
 			try {
-				driver.findElement(By.xpath("//*[@id=\"fname\"]")).sendKeys(wish); //wish
+				driver.findElement(By.xpath("//*[@id=\"fname\"]")).sendKeys(wish0.getContent()); //wish
+				//标记被使用
+				wish0.setUseStatus("1");
 				Thread.sleep(3000);
 				driver.findElement(By.xpath("//*[@id=\"question0\"]/div[2]/div")).click(); //enter now
 				Thread.sleep(10000);
