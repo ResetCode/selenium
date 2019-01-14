@@ -7,17 +7,19 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Maps;
 import com.selenum.model.AuData;
 import com.selenum.model.AuWish;
 
 /**
- * 模板二-1：心愿
+ * 模板二-心愿
  */
 public class AuCj2Handler {
 
-//	private static int s_question = 0;
+	private final static Logger logger = LoggerFactory.getLogger(AuCj2Handler.class);
 	
 	public static int handle(AuData data, ChromeDriver driver, String offerUrl, AuWish wish0) throws InterruptedException {
 		
@@ -33,7 +35,7 @@ public class AuCj2Handler {
 				driver.findElementByXPath("//*[@id=\"question_3\"]/button["+ getNumber(4) +"]").click();
 				Thread.sleep(20000);
 			} catch (Exception e) {
-				System.err.println("跳过问卷调查三道题！");
+				logger.debug("跳过问卷调查三道题！");
 			}
 			
 			try {
@@ -49,7 +51,7 @@ public class AuCj2Handler {
 				driver.findElement(By.xpath("//*[@id=\"prize_picker\"]/div[3]/div[2]/div[4]/button")).click();
 				Thread.sleep(3000);
 			} catch (Exception e) {
-				System.err.println("跳过心愿单！");
+				logger.debug("跳过心愿单！");
 			}
 			
 			if(data.getName().equals("f")) {//sex
@@ -210,52 +212,52 @@ public class AuCj2Handler {
 		}
 		try {
 			driver.findElement(By.xpath("//*[@id='coreg_"+ question + "_yes_"+ number + "']")).click();
-			System.err.println("题为："+ question + "随机数为：" + number);
+			logger.debug("题为："+ question + "随机数为：" + number);
 			Thread.sleep(Integer.valueOf(next.toString() + "000"));
 			return true;
 		} catch (Exception e) {}
 		
 		try {
 			driver.findElement(By.xpath("//*[@id='coreg_"+ question + "_no_"+ number + "']")).click();
-			System.err.println("题为："+ question + "随机数为：" + number);
+			logger.debug("题为："+ question + "随机数为：" + number);
 			Thread.sleep(Integer.valueOf(next.toString() + "000"));
 			return true;
 		} catch (Exception e) {}
 		
 		try {
 			driver.findElement(By.xpath("//*[@id='coreg_"+ question + "_yes']")).click();
-			System.err.println("题为："+ question + "随机数为：" + number);
+			logger.debug("题为："+ question + "随机数为：" + number);
 			Thread.sleep(Integer.valueOf(next.toString() + "000"));
 			return true;
 		} catch (Exception e2) { }
 		
 		try {
 			driver.findElement(By.xpath("//*[@id='coreg_"+ question + "_no_pre_"+ number + "']")).click();
-			System.err.println("题为："+ question + "随机数为：" + number);
+			logger.debug("题为："+ question + "随机数为：" + number);
 			Thread.sleep(Integer.valueOf(next.toString() + "000"));
 			return true;
 		} catch (Exception e) {}
 		try {
 			driver.findElement(By.xpath("//*[@id='coreg_"+ question + "_yes_pre_"+ number + "']")).click();
-			System.err.println("题为："+ question + "随机数为：" + number);
+			logger.debug("题为："+ question + "随机数为：" + number);
 			Thread.sleep(Integer.valueOf(next.toString() + "000"));
 			return true;
 		} catch (Exception e3) {}
 		try {
 			driver.findElement(By.xpath("//*[@id='coreg_"+ question + "no"+ number + "']")).click();
-			System.err.println("题为："+ question + "随机数为：" + number);
+			logger.debug("题为："+ question + "随机数为：" + number);
 			Thread.sleep(Integer.valueOf(next.toString() + "000"));
 			return true;
-		} catch (Exception e) {
-		}
+		} catch (Exception e) {}
+		
 		try {
 			driver.findElementByXPath("//*[@id='coreg-inner-"+ question +"']/div[2]/div/label[" + number + "]").click();
-			System.err.println("题为："+ question + "随机数为：" + number);
+			logger.debug("题为："+ question + "随机数为：" + number);
 			Thread.sleep(3000);
 			driver.findElementByXPath("//*[@id='submit_survey_multi_"+ question +"']");
 			Thread.sleep(Integer.valueOf(next.toString() + "000"));
 			return true;
-		} catch (Exception e4) { }
+		} catch (Exception e4) {}
 		
 		return false;
 	}
