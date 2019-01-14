@@ -18,6 +18,9 @@ import com.google.common.collect.RangeMap;
 import com.google.common.collect.TreeRangeMap;
 import com.selenum.model.AuData;
 
+/**
+ * 模板三-2：校车
+ */
 public class AuCj3Handler2 {
 
 	public static int handle(AuData data, ChromeDriver driver, String offerUrl, String words) throws InterruptedException {
@@ -26,6 +29,19 @@ public class AuCj3Handler2 {
 			driver.get(offerUrl);
 			Thread.sleep(30000);
 			
+			try {
+				driver.findElementByXPath("//*[@id=\"page1\"]/div[1]/div[1]/div[5]/button").click(); //let's do this right now
+				Thread.sleep(3000);
+				//How many times a week do you visit the supermarket?
+				answer(driver, 1 , getNumber(2));
+				//What do you typically spend a week on groceries?
+				answer(driver, 2 , getNumber(2));
+				//Have you ever had groceries delivered to your house?						   
+				answer(driver, 3 , getNumber(2));
+				Thread.sleep(10000); //回答完问题，等待跳转填写资料
+			} catch (Exception e) {
+				System.err.println("直接跳转填写资料！");
+			}
 			
 			Integer sex = 1; 
 			if(data.getName().equals("f")) {
@@ -77,9 +93,7 @@ public class AuCj3Handler2 {
 					"city.options[parseInt(randomNum,10)].selected = true;");
 			
 			Thread.sleep(5000);
-			driver.findElementByXPath("//*[@id='phone']").clear();
-			driver.findElementByXPath("//*[@id='phone']").sendKeys(data.getPhone());
-			driver.findElementByXPath("//*[@id='phone']").sendKeys(data.getPhone());
+			driver.findElementByXPath("//*[@id='phone']").sendKeys(data.getPhone().substring(1));
 			//What is your current housing situation?
 			String[] aboutHouse = {"Own my own home","Paying off mortgage","Remortgaged","Renting"}; 
 			Select aboutHouseSelect = new Select(driver.findElementByXPath("//*[@id=\"coreg-container\"]/div[1]/div/div/span/select"));
@@ -92,13 +106,13 @@ public class AuCj3Handler2 {
 			Thread.sleep(20000); //资料填写完毕，开始回答调查问卷
 			
 			
-			//"Santa Claus was handing out presents to the children."
+			//"bus"
 			// Who handed out presents?
 			//*[@id="question-374"]/div/ul/li[2]/label/span
 			webDriverWait.until(new ExpectedCondition<WebElement>() {
 				@Override
 				public WebElement apply(WebDriver driver) {
-					return driver.findElement(By.xpath("//*[@id='question-374']/div/ul/li["+ 2 +"]/label"));
+					return driver.findElement(By.xpath("//*[@id='question-374']/div/ul/li["+ 1 +"]/label"));
 				}
 			}).click();
 			Thread.sleep(5000);

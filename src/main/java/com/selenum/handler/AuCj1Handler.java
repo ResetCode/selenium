@@ -15,6 +15,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.selenum.model.AuData;
 
+/**
+ * 模板一
+ *
+ */
 public class AuCj1Handler {
 
 	public static int handle(AuData data, ChromeDriver driver, String offerUrl) throws InterruptedException {

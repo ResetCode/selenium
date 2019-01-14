@@ -10,10 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import org.apache.commons.lang3.StringUtils;
 import org.assertj.core.util.Lists;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -29,26 +27,15 @@ import com.google.common.collect.Maps;
 import com.selenum.dao.AuDataDao;
 import com.selenum.dao.AuWishDao;
 import com.selenum.dao.ScreenDao;
-import com.selenum.dao.UsDataDao;
-import com.selenum.dao.UsDataStateDao;
 import com.selenum.dao.UserAgentDao;
 import com.selenum.handler.AUTemplatePoiHandler;
-import com.selenum.handler.AuGetDataFromUrlHandler;
 import com.selenum.handler.AuCj1Handler;
 import com.selenum.handler.AuCj2Handler;
-import com.selenum.handler.AuCj2Handler2;
-import com.selenum.handler.AuCj3Handler;
 import com.selenum.handler.AuCj3Handler2;
-import com.selenum.handler.AuCj3Handler3;
-import com.selenum.handler.USTemplatePoiHandler;
-import com.selenum.handler.UsCj2Handler;
-import com.selenum.handler.UsGetDataFromUrlHandler;
-import com.selenum.handler.UsCj1Handler;
+import com.selenum.handler.AuGetDataFromUrlHandler;
 import com.selenum.model.AuData;
 import com.selenum.model.AuWish;
 import com.selenum.model.Screen;
-import com.selenum.model.UsData;
-import com.selenum.model.UsDataState;
 import com.selenum.model.UserAgent;
 import com.using.common.core.bean.ErrorEnum;
 import com.using.common.core.bean.JsonResult;
@@ -204,9 +191,9 @@ public class AuCjController {
 		//执行脚本1
 		int result = AuCj1Handler.handle(data, driver, auofferList.get(offerIndex));
 //		//执行脚本2
-		int result2 = AuCj2Handler2.handle(data, driver, auofferList.get(offerIndex2));
+		int result2 = AuCj2Handler.handle(data, driver, auofferList.get(offerIndex2), wish.getContent());
 		//执行脚本3
-		int result3 = AuCj3Handler3.handle(data, driver, auofferList.get(offerIndex3), wish.getContent());
+		int result3 = AuCj3Handler2.handle(data, driver, auofferList.get(offerIndex3), wish.getContent());
 		
 		
 		//再次表示资料数据

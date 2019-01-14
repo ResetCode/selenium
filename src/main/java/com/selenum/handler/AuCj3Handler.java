@@ -18,6 +18,9 @@ import com.google.common.collect.RangeMap;
 import com.google.common.collect.TreeRangeMap;
 import com.selenum.model.AuData;
 
+/**
+ * 模板三-1:圣诞老人
+ */
 public class AuCj3Handler {
 
 	public static int handle(AuData data, ChromeDriver driver, String offerUrl, String words) throws InterruptedException {
