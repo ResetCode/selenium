@@ -31,7 +31,7 @@ import com.selenum.dao.UserAgentDao;
 import com.selenum.handler.AUTemplatePoiHandler;
 import com.selenum.handler.AuCj1Handler;
 import com.selenum.handler.AuCj2Handler;
-import com.selenum.handler.AuCj3Handler2;
+import com.selenum.handler.AuCj3Handler;
 import com.selenum.handler.AuGetDataFromUrlHandler;
 import com.selenum.model.AuData;
 import com.selenum.model.AuWish;
@@ -77,7 +77,7 @@ public class AuCjController {
 	//meow 
 	private static String defaultIP = "14.156.26.55";
 	private final static String driverPath = "E:\\workspaces\\selenium\\src\\main\\resources\\chromedriver.exe";
-	private final static String proxyToolPath = "C:\\Users\\Administrator\\Desktop\\911S5 2018-05-23 fixed\\ProxyTool\\AutoProxyTool.exe";
+	private final static String proxyToolPath = "C:\\Users\\Administrator\\Desktop\\911S5 2018-05-23\\911S5 2018-05-23 fixed\\ProxyTool\\AutoProxyTool.exe";
 	private final static String au_filePath = "E:\\workspaces\\selenium\\src\\main\\resources\\au_data.xlsx";
 	private final static String ipPath = "E:\\workspaces\\selenium\\src\\main\\resources\\ip.html";
 	private final static String wishPath = "E:\\workspaces\\selenium\\src\\main\\resources\\au_wish.txt";
@@ -87,9 +87,9 @@ public class AuCjController {
 	private final static Map<String, String> stateMap = Maps.newHashMap(); 
 	
 	static  {
-		auofferList.add("https://newgamesapp.net/?id=48053&offer_id=164998");
+		auofferList.add("https://c.sparkletrace.com/?a=267&c=1144&E=kMiR3lfNIZU%3d&s1=");
 		auofferList.add("https://c.sparkletrace.com/?a=267&c=1521&E=N%2fI8oeJiWSM%3d&s1=");
-		auofferList.add("http://www.braverymobtracking.com/tl?a=1372&o=14904");
+		auofferList.add("https://trck.addiliate.com/redirect.html?ad=84559E62");
 		
 		stateMap.put("New South Wales", "NSW");
 		stateMap.put("Victoria", "Vic");
@@ -141,7 +141,7 @@ public class AuCjController {
 			rt.exec(proxyToolPath + " -changeproxy/AU/" + data.getState());
 		} catch (IOException e) {
 			driver.quit();
-			System.err.println("调用代理失败！");
+			System.err.println("调用代理失败：插件路径错误！");
 		}
 		Thread.sleep(5000);
 		
@@ -152,7 +152,8 @@ public class AuCjController {
 			driver.get(ipPath); 
 			driver.navigate().to(driver.getCurrentUrl());
 			Thread.sleep(5000);
-			driver.navigate().to(driver.getCurrentUrl());
+			driver.get(ipPath);
+			Thread.sleep(5000);
 			ip = webDriverWait.until(new ExpectedCondition<WebElement>() {
 				@Override
 				public WebElement apply(WebDriver d) {
@@ -162,12 +163,12 @@ public class AuCjController {
 			
 		} catch (Exception e) {
 			driver.quit();
-			return JsonResult.error(ErrorEnum.ERROR_SYSTEM, "调用代理失败！");
+			return JsonResult.error(ErrorEnum.ERROR_SYSTEM, "调用代理失败，测试页面ip读取不到！");
 		}
 		
 		String nowIP = ip.getText();
 		if(defaultIP.equals(nowIP) || (prevIP != null && prevIP.equals(nowIP))) {
-			System.out.println("调用代理失败");
+			System.out.println("调用代理失败：");
 			driver.quit();
 			return JsonResult.error(ErrorEnum.ERROR_SYSTEM, "调用代理失败！");
 		}
@@ -193,9 +194,9 @@ public class AuCjController {
 		
 		//执行脚本3
 		AuWish wish1 = wishDao.findOne(1);
-		int result3 = AuCj3Handler2.handle(data, driver, auofferList.get(offerIndex3), wish1);
+		int result3 = AuCj3Handler.handle(data, driver, auofferList.get(offerIndex3), wish1);
 		//标识wish被使用
-		wishDao.update(wish0);
+		wishDao.update(wish1);
 		
 		//再次表示资料数据
 		StringBuffer resultBuffer = new StringBuffer();
