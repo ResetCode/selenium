@@ -26,9 +26,14 @@ public class AuCj2Handler {
 			Thread.sleep(30000);
 			
 			try {
-				driver.findElement(By.xpath("//*[@id=\"fname\"]"));
+				driver.findElementByXPath("//*[@id=\"question_1\"]/button["+ getNumber(4) +"]").click();
+				Thread.sleep(3000);
+				driver.findElementByXPath("//*[@id=\"question_2\"]/button["+ getNumber(4) +"]").click();
+				Thread.sleep(3000);
+				driver.findElementByXPath("//*[@id=\"question_3\"]/button["+ getNumber(4) +"]").click();
+				Thread.sleep(20000);
 			} catch (Exception e) {
-				driver.navigate().to(driver.getCurrentUrl());
+				System.err.println("跳过问卷调查三道题！");
 			}
 			
 			try {

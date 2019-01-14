@@ -109,13 +109,18 @@ public class AuCj3Handler {
 			Thread.sleep(20000); //资料填写完毕，开始回答调查问卷
 			
 			
-			//"Santa Claus was handing out presents to the children."
-			// Who handed out presents?
-			//*[@id="question-374"]/div/ul/li[2]/label/span
+			//选项一是 the bus， 选项二是圣诞老人
+			String firstAnswer = webDriverWait.until(new ExpectedCondition<WebElement>() {
+				@Override
+				public WebElement apply(WebDriver driver) {
+					return driver.findElement(By.xpath("//*[@id=\"question-374\"]/div/ul/li[1]/label/span"));
+				}
+			}).getText();
+			
 			webDriverWait.until(new ExpectedCondition<WebElement>() {
 				@Override
 				public WebElement apply(WebDriver driver) {
-					return driver.findElement(By.xpath("//*[@id='question-374']/div/ul/li["+ 2 +"]/label"));
+					return driver.findElement(By.xpath("//*[@id='question-374']/div/ul/li["+ (firstAnswer.contains("The Bus") == true ? 1 : 2) +"]/label"));
 				}
 			}).click();
 			Thread.sleep(5000);
