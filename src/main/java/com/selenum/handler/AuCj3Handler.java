@@ -17,13 +17,14 @@ import com.google.common.collect.Range;
 import com.google.common.collect.RangeMap;
 import com.google.common.collect.TreeRangeMap;
 import com.selenum.model.AuData;
+import com.selenum.model.AuWish;
 
 /**
- * 模板三-1:圣诞老人
+ * 模板三-2：校车
  */
 public class AuCj3Handler {
 
-	public static int handle(AuData data, ChromeDriver driver, String offerUrl, String words) throws InterruptedException {
+	public static int handle(AuData data, ChromeDriver driver, String offerUrl, AuWish wish) throws InterruptedException {
 		
 		try {
 			driver.get(offerUrl);
@@ -42,7 +43,6 @@ public class AuCj3Handler {
 			} catch (Exception e) {
 				System.err.println("直接跳转填写资料！");
 			}
-		
 			
 			Integer sex = 1; 
 			if(data.getName().equals("f")) {
@@ -94,9 +94,7 @@ public class AuCj3Handler {
 					"city.options[parseInt(randomNum,10)].selected = true;");
 			
 			Thread.sleep(5000);
-			driver.findElementByXPath("//*[@id='phone']").clear();
-			driver.findElementByXPath("//*[@id='phone']").sendKeys(data.getPhone());
-			driver.findElementByXPath("//*[@id='phone']").sendKeys(data.getPhone());
+			driver.findElementByXPath("//*[@id='phone']").sendKeys(data.getPhone().substring(1));
 			//What is your current housing situation?
 			String[] aboutHouse = {"Own my own home","Paying off mortgage","Remortgaged","Renting"}; 
 			Select aboutHouseSelect = new Select(driver.findElementByXPath("//*[@id=\"coreg-container\"]/div[1]/div/div/span/select"));
@@ -143,7 +141,7 @@ public class AuCj3Handler {
 						return driver.findElement(By.xpath("//*[@id=\"question-6204\"]/div[2]/div[2]/button[2]"));
 					}
 				}).click();
-				Thread.sleep(10000);
+				Thread.sleep(5000);
 			} else {
 				driver.findElementByXPath("//*[@id=\"question-6519\"]/div/div[2]/button[2]").click();
 				Thread.sleep(10000);
@@ -166,6 +164,10 @@ public class AuCj3Handler {
 			electricitySelect.selectByVisibleText(rangeMap.get(random.nextInt(540)));
 			Thread.sleep(10000);
 			
+			//Do you pay the electricity bills in your household?
+			driver.findElementByXPath("//*[@id=\"question-6420\"]/div/div[2]/button[1]").click(); //yes
+			Thread.sleep(10000);
+			
 			//We provide free legal services to Aboriginal communities and others in need across the Kimberley.
 			driver.findElementByXPath("//*[@id=\"question-7083\"]/div[2]/div[3]/button[1]").click(); //yes
 			Thread.sleep(10000);
@@ -185,20 +187,13 @@ public class AuCj3Handler {
 			aboutHouseSelect.selectByVisibleText(aboutHouse[aboutHouseNumber]);
 			Thread.sleep(10000);
 			
+			//Want access to the BEST DEALS on worldwide cruises & travel?
+			driver.findElementByXPath("//*[@id=\"question-3284\"]/div[2]/ul/li["+ getNumber(7) + "]/label/span").click();
+			Thread.sleep(10000);
+			
 			//Are you a member of Woolworths Rewards?
 			driver.findElementByXPath("//*[@id=\"question-1811\"]/div/div[2]/button["+ getNumber(2)+ "]");
 			Thread.sleep(10000);
-			
-			//JOIN Woolworths Rewards today to receive 1,700 Bonus Points to kick start your savings. Select ‘YES’ and we’ll send you the link to register via SMS & email.
-			suiji = random.nextInt(100);
-			if(suiji <= 30) {
-				driver.findElementByXPath("//*[@id=\"question-1812\"]/div[2]/div[3]/button[2]");
-				Thread.sleep(10000);
-			} else {
-				//*[@id="question-1812"]/div[2]/div[3]/button[1]
-				driver.findElementByXPath("//*[@id=\"question-1812\"]/div[2]/div[3]/button[1]");
-				Thread.sleep(10000);
-			}
 			
 			//Join Kogan and get big discounts on electronics, appliances, homewares, fashion & more!
 			suiji = random.nextInt(100);
@@ -233,7 +228,8 @@ public class AuCj3Handler {
 			//Complete the survey by telling us why you should WIN in 25 words or less.
 			suiji = random.nextInt(100);
 			if(suiji < 50) {
-				driver.findElementByXPath("//*[@id=\"question-387\"]/div/textarea").sendKeys(words);
+				driver.findElementByXPath("//*[@id=\"question-387\"]/div/textarea").sendKeys(wish.getContent());
+				wish.setUseStatus("1");
 				Thread.sleep(10000);
 				driver.findElementByXPath("//*[@id=\"question-387\"]/div/button[1]");
 				Thread.sleep(10000);
@@ -252,6 +248,11 @@ public class AuCj3Handler {
 				Thread.sleep(10000);
 			}
 			
+			//Do you want to have the chance to be one of the next millionaires?
+			driver.findElementByXPath("//*[@id=\"question-7462\"]/div[2]/ul/li["+getNumber(2)+"]/label/span");
+			Thread.sleep(10000);
+			
+			
 			//Do you feel you pay too much for Health Insurance?
 			suiji = random.nextInt(100);
 			if(suiji < 30) {
@@ -262,20 +263,6 @@ public class AuCj3Handler {
 				Thread.sleep(10000);
 			}
 			
-			WebDriver sdriver = otherDriver(driver, 1);
-			scoll(sdriver);
-			otherDriver(driver, 0);
-			Thread.sleep(10000);
-			
-			//Let Health Deal contact you to save your money on your health cover Plus, go into the draw to Win 6 Months Free Health Cover!
-			suiji = random.nextInt(100);
-			if(suiji < 30) {
-				driver.findElementByXPath("//*[@id=\"question-5235\"]/div[2]/div[3]/button[2]"); //yes 弹offer
-				Thread.sleep(10000);
-			} else {
-				driver.findElementByXPath("//*[@id=\"question-5235\"]/div[2]/div[3]/button[1]");
-				Thread.sleep(10000);
-			}
 			Thread.sleep(20000); //问卷调查结束，等待跳转页面
 			
 			//点击跳转去抽奖
@@ -288,7 +275,7 @@ public class AuCj3Handler {
 				driver.findElementByXPath("//*[@id=\"modal01\"]/div/div/button").click();//弹框
 				Thread.sleep(5000);
 				
-				sdriver = otherDriver(driver, 1);
+				WebDriver sdriver = otherDriver(driver, 1);
 				Thread.sleep(5000);
 				
 				Integer clickNumber = getNumberHas0(12);
