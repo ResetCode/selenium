@@ -2,11 +2,13 @@ package com.selenum.handler;
 
 import java.util.Random;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriver.TargetLocator;
+import org.openqa.selenium.WebDriver.Timeouts;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -29,22 +31,22 @@ public class AuCj1Handler {
 		try{
 			driver.get(offerUrl);
 			driver.manage().deleteAllCookies();
-			Thread.sleep(20000);
+			Timeouts timeouts = driver.manage().timeouts();
 			
 			
 			driver.findElement(By.xpath("//*[@id='page-intro']/div[2]/div/div[2]/label[" + getNumber(3) + "]")).click(); //选颜色
-			Thread.sleep(3000);
+			timeouts.implicitlyWait(3, TimeUnit.SECONDS);
 			driver.findElement(By.xpath("//*[@id='page-intro']/div[3]/a")).click();
-			Thread.sleep(5000);
+			timeouts.implicitlyWait(5, TimeUnit.SECONDS);
 			
 			driver.findElement(By.xpath("//*[@id='page-basic']/div[2]/div[1]/div/label["+ getNumber(2) + "]/label")).click(); //性别
-			Thread.sleep(3000);
+			timeouts.implicitlyWait(3, TimeUnit.SECONDS);
 			driver.findElement(By.xpath("//*[@id='fieldFirstname']")).sendKeys(data.getFirstName()); //名
-			Thread.sleep(3000); 
+			timeouts.implicitlyWait(3, TimeUnit.SECONDS);
 			driver.findElement(By.xpath("//*[@id='fieldLastname']")).sendKeys(data.getLastName()); //姓
-			Thread.sleep(3000);
+			timeouts.implicitlyWait(3, TimeUnit.SECONDS);
 			driver.findElement(By.xpath("//*[@id='fieldEmail']")).sendKeys(data.getEmail()); //邮箱
-			Thread.sleep(3000);
+			timeouts.implicitlyWait(3, TimeUnit.SECONDS);
 			
 			
 			Select fieldDay = new Select(driver.findElement(By.id("fieldDay"))); //生日
