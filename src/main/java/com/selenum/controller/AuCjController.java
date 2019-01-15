@@ -55,22 +55,22 @@ public class AuCjController {
 	
 	private static String prevIP = null;
 	
-//	private static String defaultIP = "106.120.89.26";
-//	private final static String driverPath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\chromedriver.exe";
-//	private final static String proxyToolPath = "C:\\Users\\lyx-pc-0018\\Desktop\\911S5 2018-05-23\\911S5 2018-05-23 fixed\\ProxyTool\\AutoProxyTool.exe";
-//	private final static String au_filePath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\au_data.xlsx";
-//	private final static String ipPath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\ip.html";
-//	private final static String wishPath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\au_wish.txt";
-//	private final static String winPath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\au_win.txt";
+	private static String defaultIP = "106.120.89.26";
+	private final static String driverPath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\chromedriver.exe";
+	private final static String proxyToolPath = "C:\\Users\\lyx-pc-0018\\Desktop\\911S5 2018-05-23\\911S5 2018-05-23 fixed\\ProxyTool\\AutoProxyTool.exe";
+	private final static String au_filePath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\au_data.xlsx";
+	private final static String ipPath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\ip.html";
+	private final static String wishPath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\au_wish.txt";
+	private final static String winPath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\au_win.txt";
 
 	//家
-	private static String defaultIP = "111.194.47.123";
-	private final static String driverPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\chromedriver.exe";
-	private final static String proxyToolPath = "E:\\911S5 2018-09-10\\ProxyTool\\AutoProxyTool.exe";
-	private final static String au_filePath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\au_data.xlsx";
-	private final static String ipPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\ip.html";
-	private final static String wishPath = "E:\\workspace\\Java\\selenium\\selenium\\src\\main\\resources\\au_wish.txt";
-	private final static String winPath = "E:\\workspace\\Java\\selenium\\selenium\\src\\main\\resources\\au_win.txt";
+//	private static String defaultIP = "111.194.47.123";
+//	private final static String driverPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\chromedriver.exe";
+//	private final static String proxyToolPath = "E:\\911S5 2018-09-10\\ProxyTool\\AutoProxyTool.exe";
+//	private final static String au_filePath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\au_data.xlsx";
+//	private final static String ipPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\ip.html";
+//	private final static String wishPath = "E:\\workspace\\Java\\selenium\\selenium\\src\\main\\resources\\au_wish.txt";
+//	private final static String winPath = "E:\\workspace\\Java\\selenium\\selenium\\src\\main\\resources\\au_win.txt";
 	
 	//meow 
 //	private static String defaultIP = "14.156.26.55";

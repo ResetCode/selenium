@@ -7,18 +7,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Maps;
 import com.selenum.model.AuData;
 import com.selenum.model.AuWish;
 
-/**
- * 模板二-心愿
- */
 public class AuCj2Handler {
 
+//	private static int s_question = 0;
+	
 	public static int handle(AuData data, ChromeDriver driver, String offerUrl, AuWish wish0) throws InterruptedException {
 		
 		try {
@@ -51,7 +48,7 @@ public class AuCj2Handler {
 			} catch (Exception e) {
 				System.out.println("跳过心愿单！");
 			}
-			
+
 			if(data.getName().equals("f")) {//sex
 				JavascriptExecutor js = ((JavascriptExecutor) driver);
 				String jsCode = "document.getElementById('gender_f').click();";
@@ -192,6 +189,7 @@ public class AuCj2Handler {
 				if(answer(driver, 1291, getNumberHas0(2))) continue;
 				if(answer(driver, 1292, getNumberHas0(5))) continue;
 				if(answer(driver, 1292, getNumberHas0(2))) continue;
+
 			}
 			
 			driver.findElementByXPath("//*[@id=\"coreg_1005no0\"]/u").click();
@@ -213,57 +211,61 @@ public class AuCj2Handler {
 	public static boolean answer(ChromeDriver driver,int question, int number) throws NumberFormatException, InterruptedException  {
 		Random r = new Random();
 		Integer next = 5;
-		next = r.nextInt(11);
+		while(true) {
+			next = r.nextInt(11);
+			if(next >= 5 && next <= 10) {
+				break;
+			}
+		}
 		try {
 			driver.findElement(By.xpath("//*[@id='coreg_"+ question + "_yes_"+ number + "']")).click();
-			System.out.println("题为："+ question + "随机数为：" + number);
+			System.err.println("题为："+ question + "随机数为：" + number);
 			Thread.sleep(Integer.valueOf(next.toString() + "000"));
 			return true;
 		} catch (Exception e) {}
 		
 		try {
 			driver.findElement(By.xpath("//*[@id='coreg_"+ question + "_no_"+ number + "']")).click();
-			System.out.println("题为："+ question + "随机数为：" + number);
+			System.err.println("题为："+ question + "随机数为：" + number);
 			Thread.sleep(Integer.valueOf(next.toString() + "000"));
 			return true;
 		} catch (Exception e) {}
 		
 		try {
 			driver.findElement(By.xpath("//*[@id='coreg_"+ question + "_yes']")).click();
-			System.out.println("题为："+ question + "随机数为：" + number);
+			System.err.println("题为："+ question + "随机数为：" + number);
 			Thread.sleep(Integer.valueOf(next.toString() + "000"));
 			return true;
 		} catch (Exception e2) { }
 		
 		try {
 			driver.findElement(By.xpath("//*[@id='coreg_"+ question + "_no_pre_"+ number + "']")).click();
-			System.out.println("题为："+ question + "随机数为：" + number);
+			System.err.println("题为："+ question + "随机数为：" + number);
 			Thread.sleep(Integer.valueOf(next.toString() + "000"));
 			return true;
 		} catch (Exception e) {}
 		try {
 			driver.findElement(By.xpath("//*[@id='coreg_"+ question + "_yes_pre_"+ number + "']")).click();
-			System.out.println("题为："+ question + "随机数为：" + number);
+			System.err.println("题为："+ question + "随机数为：" + number);
 			Thread.sleep(Integer.valueOf(next.toString() + "000"));
 			return true;
 		} catch (Exception e3) {}
 		try {
 			driver.findElement(By.xpath("//*[@id='coreg_"+ question + "no"+ number + "']")).click();
-			System.out.println("题为："+ question + "随机数为：" + number);
+			System.err.println("题为："+ question + "随机数为：" + number);
 			Thread.sleep(Integer.valueOf(next.toString() + "000"));
 			return true;
-		} catch (Exception e) {}
-		
+		} catch (Exception e) {
+		}
 		try {
-									   //*[@id="coreg-inner-1213"]/div[2]/div/label[1]
 			driver.findElementByXPath("//*[@id='coreg-inner-"+ question +"']/div[2]/div/label[" + number + "]").click();
-			System.out.println("题为："+ question + "随机数为：" + number);
+			System.err.println("题为："+ question + "随机数为：" + number);
 			Thread.sleep(3000);
 			driver.findElementByXPath("//*[@id='submit_survey_multi_"+ question +"']");
 			Thread.sleep(Integer.valueOf(next.toString() + "000"));
 			return true;
-		} catch (Exception e4) {}
-		System.out.println("不是第 "+ question +" 题，number " +  number);
+		} catch (Exception e4) { }
+		
 		return false;
 	}
 	
