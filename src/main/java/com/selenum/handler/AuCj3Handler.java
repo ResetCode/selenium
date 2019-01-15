@@ -411,12 +411,7 @@ public class AuCj3Handler {
 			
 			Random r = new Random();
 			Integer next = 5;
-			while(true) {
-				next = r.nextInt(11);
-				if(next >= 5 && next <= 10) {
-					break;
-				}
-			}
+			next = r.nextInt(11);
 			Thread.sleep(Integer.valueOf(next.toString() + "000"));
 			return true;
 		} catch (Exception e) {return false;}

@@ -19,8 +19,6 @@ import com.selenum.model.AuWish;
  */
 public class AuCj2Handler {
 
-	private final static Logger logger = LoggerFactory.getLogger(AuCj2Handler.class);
-	
 	public static int handle(AuData data, ChromeDriver driver, String offerUrl, AuWish wish0) throws InterruptedException {
 		
 		try {
@@ -215,12 +213,7 @@ public class AuCj2Handler {
 	public static boolean answer(ChromeDriver driver,int question, int number) throws NumberFormatException, InterruptedException  {
 		Random r = new Random();
 		Integer next = 5;
-		while(true) {
-			next = r.nextInt(11);
-			if(next >= 5 && next <= 10) {
-				break;
-			}
-		}
+		next = r.nextInt(11);
 		try {
 			driver.findElement(By.xpath("//*[@id='coreg_"+ question + "_yes_"+ number + "']")).click();
 			System.out.println("题为："+ question + "随机数为：" + number);

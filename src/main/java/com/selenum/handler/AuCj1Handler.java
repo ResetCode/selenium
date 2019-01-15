@@ -217,12 +217,7 @@ public class AuCj1Handler {
 		
 		Random r = new Random();
 		Integer next = 5;
-		while(true) {
-			next = r.nextInt(11);
-			if(next >= 5 && next <= 10) {
-				break;
-			}
-		}
+		next = r.nextInt(11);
 		try {
 			try {
 				driver.findElement(By.xpath("//*[@id='coregs']/div[" + question +"]/div/div/div/label[" + number +"]/input")).click();
