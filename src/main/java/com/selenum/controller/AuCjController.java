@@ -64,7 +64,7 @@ public class AuCjController {
 //	private final static String winPath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\au_win.txt";
 
 	//家
-	private static String defaultIP = "111.194.49.215";
+	private static String defaultIP = "111.194.47.123";
 	private final static String driverPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\chromedriver.exe";
 	private final static String proxyToolPath = "E:\\911S5 2018-09-10\\ProxyTool\\AutoProxyTool.exe";
 	private final static String au_filePath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\au_data.xlsx";
@@ -85,9 +85,9 @@ public class AuCjController {
 	private final static Map<String, String> stateMap = Maps.newHashMap(); 
 	
 	static  {
-		auofferList.add("https://c.sparkletrace.com/?a=267&c=1144&E=kMiR3lfNIZU%3d&s1=");
-		auofferList.add("https://c.sparkletrace.com/?a=267&c=1521&E=N%2fI8oeJiWSM%3d&s1=");
-		auofferList.add("https://trck.addiliate.com/redirect.html?ad=84559E62");
+		auofferList.add("http://track.comgrate.com/click.php?c=14&key=jd4bc580r023re7l02w5a9qq");
+		auofferList.add("http://track.comgrate.com/click.php?c=15&key=97s1oug757shhp98g78mu7yi");
+		auofferList.add("http://track.comgrate.com/click.php?c=16&key=chqt7ald289w1gs41qq0chm4");
 		
 		stateMap.put("New South Wales", "NSW");
 		stateMap.put("Victoria", "Vic");

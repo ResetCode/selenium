@@ -101,7 +101,7 @@ public class AuCj1Handler {
 			Thread.sleep(15000);
 			
 			if(b < 10) {
-				logger.debug("0%-10%提交完毕！");
+				logger.error("0%-10%提交完毕！");
 				return 1;
 			}
 			
@@ -110,7 +110,7 @@ public class AuCj1Handler {
 			
 				if(answer(driver, 1, getNumber(7)) == true) {
 					if(b >= 10 & b < 15){
-						logger.debug("10%-15%提交完毕！");
+						logger.error("10%-15%提交完毕！");
 						return 1;
 					}
 					continue;
@@ -120,10 +120,10 @@ public class AuCj1Handler {
 				
 				try {
 					driver.findElementByXPath("/html/body/main/div/div[1]/div[2]/div/div[4]/div[3]/div[3]/div/div/a["+ getNumber(2) + "]").click(); //3
-					logger.debug("检测问题成功，问题是第3道题！");
+					logger.error("检测问题成功，问题是第3道题！");
 					Thread.sleep(3000);
 					if(b >= 15 & b < 20){
-						logger.debug("15%-20%提交完毕！");
+						logger.error("15%-20%提交完毕！");
 						return 1;
 					}
 					continue;
@@ -132,7 +132,7 @@ public class AuCj1Handler {
 				if(answer(driver, 4, getNumber(2)) == true) continue; //4
 				if(answer(driver, 5, 1) == true) {
 					if(b >= 20 & b < 25){
-						logger.debug("20%-25%提交完毕！");
+						logger.error("20%-25%提交完毕！");
 						return 1;
 					}
 					continue;
@@ -141,7 +141,7 @@ public class AuCj1Handler {
 				if(answer(driver, 7, getNumber(23)) == true) continue; //7
 				if(answer(driver, 8, getNumber(14)) == true) {
 					if(b >= 25 & b < 30){
-						logger.debug("25%-30%提交完毕！");
+						logger.error("25%-30%提交完毕！");
 						return 1;
 					}
 					continue;
@@ -157,7 +157,7 @@ public class AuCj1Handler {
 				if(answer(driver, 17, getNumber(9)) == true) continue; //17
 				if(answer(driver, 18, 5) == true) {
 					if(b >= 30 & b < 40){
-						logger.debug("30%-40%提交完毕！");
+						logger.error("30%-40%提交完毕！");
 						return 1;
 					}
 					continue;
@@ -176,23 +176,23 @@ public class AuCj1Handler {
 				Thread.sleep(Integer.valueOf(next.toString() + "000"));
 				
 				if(b >= 40 & b < 50 && j == 2){
-					logger.debug("40%-50%提交完毕！");
+					logger.error("40%-50%提交完毕！");
 					return 1;
 				}
 				
 				if(b >= 50 & b < 60 && j == 4){
-					logger.debug("50%-60%提交完毕！");
+					logger.error("50%-60%提交完毕！");
 					return 1;
 				}
 				
 				if(b >= 60 & b < 70 && j == 6){
-					logger.debug("60%-70%提交完毕！");
+					logger.error("60%-70%提交完毕！");
 					return 1;
 				}
 				continue;
 			}
 			
-			logger.debug("完成问卷调查！点击next进行下一步！");
+			logger.error("完成问卷调查！点击next进行下一步！");
 			driver.findElement(By.id("next")).click();//完成进度条
 			 
 			Thread.sleep(10000);
@@ -217,7 +217,7 @@ public class AuCj1Handler {
 		
 		Random r = new Random();
 		try {
-			logger.debug("随机数为 {} " , number);
+			logger.error("随机数为 {} " , number);
 			try {
 				driver.findElement(By.xpath("//*[@id='coregs']/div[" + question +"]/div/div/div/label[" + number +"]/input")).click();
 			} catch (Exception e) {
@@ -227,14 +227,14 @@ public class AuCj1Handler {
 				driver.findElement(By.xpath("//*[@id='coregs']/div[" + question +"]/div/div/a[" + number + "]")).click();
 			}}
 			
-			logger.debug("检测问题成功，问题是第 {} 道题！", question);
+			logger.error("检测问题成功，问题是第 {} 道题！", question);
 			try {												  
 				WebElement noThanks = driver.findElement(By.xpath("//*[@id='coregs']/div[" + question + "]/div/div/a"));  //no thanks
 				int bfb = r.nextInt(101);
 				//检测
 				if(bfb < 30) {
 					noThanks.click();
-					logger.debug("no thanks!");
+					logger.error("no thanks!");
 				} else {
 					driver.findElement(By.xpath("//*[@id='coregs']/div[" + question + "]/div/div/button")).click();
 				}
@@ -251,6 +251,7 @@ public class AuCj1Handler {
 			Thread.sleep(Integer.valueOf(next.toString() + "000"));
 			return true;
 		} catch (Exception e) {
+			logger.error("不是第 {} 道题，number {}", question, number);
 			return false;
 		}
 	}
