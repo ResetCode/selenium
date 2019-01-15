@@ -213,13 +213,17 @@ public class AuCj1Handler {
 		Integer next = 5;
 		next = r.nextInt(11);
 		try {
-			try {
+			try {							                    //*[@id="coregs"]/div[7]/div[1]/div/div/label[1]/span
 				driver.findElement(By.xpath("//*[@id='coregs']/div[" + question +"]/div/div/div/label[" + number +"]/input")).click();
 			} catch (Exception e) {
 				try {
 					driver.findElement(By.xpath("//*[@id='coregs']/div[" + question +"]/div[1]/div/div/label["+ number +"]/input")).click();
 				} catch (Exception e1) {
-					driver.findElement(By.xpath("//*[@id='coregs']/div[" + question +"]/div/div/a[" + number + "]")).click();
+					try {
+						driver.findElement(By.xpath("//*[@id='coregs']/div[" + question +"]/div[1]/div/div/label["+ number +"]/span")).click();
+					} catch (Exception e2) {
+						driver.findElement(By.xpath("//*[@id='coregs']/div[" + question +"]/div/div/a[" + number + "]")).click();
+					}
 				}
 			}
 			System.out.println("检测问题成功，问题是第 " + question + " 道题！随机数  " +  number);
