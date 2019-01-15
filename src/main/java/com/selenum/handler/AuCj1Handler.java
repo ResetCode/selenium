@@ -216,18 +216,24 @@ public class AuCj1Handler {
 	public static boolean answer(ChromeDriver driver,int question, int number)  {
 		
 		Random r = new Random();
+		Integer next = 5;
+		while(true) {
+			next = r.nextInt(11);
+			if(next >= 5 && next <= 10) {
+				break;
+			}
+		}
 		try {
-			logger.error("随机数为 {} " , number);
 			try {
 				driver.findElement(By.xpath("//*[@id='coregs']/div[" + question +"]/div/div/div/label[" + number +"]/input")).click();
 			} catch (Exception e) {
-			try {
-				driver.findElement(By.xpath("//*[@id='coregs']/div[" + question +"]/div[1]/div/div/label["+ number +"]/input")).click();
-			} catch (Exception e1) {
-				driver.findElement(By.xpath("//*[@id='coregs']/div[" + question +"]/div/div/a[" + number + "]")).click();
-			}}
-			
-			logger.error("检测问题成功，问题是第 {} 道题！", question);
+				try {
+					driver.findElement(By.xpath("//*[@id='coregs']/div[" + question +"]/div[1]/div/div/label["+ number +"]/input")).click();
+				} catch (Exception e1) {
+					driver.findElement(By.xpath("//*[@id='coregs']/div[" + question +"]/div/div/a[" + number + "]")).click();
+				}
+			}
+			logger.error("检测问题成功，问题是第 {} 道题！随机数 {} ", question, number);
 			try {												  
 				WebElement noThanks = driver.findElement(By.xpath("//*[@id='coregs']/div[" + question + "]/div/div/a"));  //no thanks
 				int bfb = r.nextInt(101);
@@ -239,15 +245,6 @@ public class AuCj1Handler {
 					driver.findElement(By.xpath("//*[@id='coregs']/div[" + question + "]/div/div/button")).click();
 				}
 			} catch (Exception e) {}
-			
-			
-			Integer next = 5;
-			while(true) {
-				next = r.nextInt(11);
-				if(next >= 5 && next <= 10) {
-					break;
-				}
-			}
 			Thread.sleep(Integer.valueOf(next.toString() + "000"));
 			return true;
 		} catch (Exception e) {
