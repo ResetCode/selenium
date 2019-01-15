@@ -2,13 +2,11 @@ package com.selenum.handler;
 
 import java.util.Random;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriver.TargetLocator;
-import org.openqa.selenium.WebDriver.Timeouts;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -31,22 +29,21 @@ public class AuCj1Handler {
 		try{
 			driver.get(offerUrl);
 			driver.manage().deleteAllCookies();
-			Timeouts timeouts = driver.manage().timeouts();
 			
 			
 			driver.findElement(By.xpath("//*[@id='page-intro']/div[2]/div/div[2]/label[" + getNumber(3) + "]")).click(); //选颜色
-			timeouts.implicitlyWait(3, TimeUnit.SECONDS);
+			Thread.sleep(3000);
 			driver.findElement(By.xpath("//*[@id='page-intro']/div[3]/a")).click();
-			timeouts.implicitlyWait(5, TimeUnit.SECONDS);
+			Thread.sleep(5000);
 			
 			driver.findElement(By.xpath("//*[@id='page-basic']/div[2]/div[1]/div/label["+ getNumber(2) + "]/label")).click(); //性别
-			timeouts.implicitlyWait(3, TimeUnit.SECONDS);
+			Thread.sleep(3000);
 			driver.findElement(By.xpath("//*[@id='fieldFirstname']")).sendKeys(data.getFirstName()); //名
-			timeouts.implicitlyWait(3, TimeUnit.SECONDS);
+			Thread.sleep(3000);
 			driver.findElement(By.xpath("//*[@id='fieldLastname']")).sendKeys(data.getLastName()); //姓
-			timeouts.implicitlyWait(3, TimeUnit.SECONDS);
+			Thread.sleep(3000);
 			driver.findElement(By.xpath("//*[@id='fieldEmail']")).sendKeys(data.getEmail()); //邮箱
-			timeouts.implicitlyWait(3, TimeUnit.SECONDS);
+			Thread.sleep(3000);
 			
 			
 			Select fieldDay = new Select(driver.findElement(By.id("fieldDay"))); //生日
@@ -98,25 +95,29 @@ public class AuCj1Handler {
 			Thread.sleep(15000);
 			
 			if(b < 10) {
-				System.err.println("0%-10%提交完毕！");
+				System.out.println("0%-10%提交完毕！");
 				return 1;
 			}
+			
 			//开始问卷
 			for(int i=0; i < 20; i++) {
+			
 				if(answer(driver, 1, getNumber(7)) == true) {
 					if(b >= 10 & b < 15){
-						System.err.println("10%-15%提交完毕！");
+						System.out.println("10%-15%提交完毕！");
 						return 1;
 					}
 					continue;
 				} //1
+				
 				if(answer(driver, 2, getNumber(7)) == true) continue; //2
+				
 				try {
 					driver.findElementByXPath("/html/body/main/div/div[1]/div[2]/div/div[4]/div[3]/div[3]/div/div/a["+ getNumber(2) + "]").click(); //3
-					System.err.println("检测问题成功，问题是第3道题！");
+					System.out.println("检测问题成功，问题是第3道题！");
 					Thread.sleep(3000);
 					if(b >= 15 & b < 20){
-						System.err.println("15%-20%提交完毕！");
+						System.out.println("15%-20%提交完毕！");
 						return 1;
 					}
 					continue;
@@ -125,7 +126,7 @@ public class AuCj1Handler {
 				if(answer(driver, 4, getNumber(2)) == true) continue; //4
 				if(answer(driver, 5, 1) == true) {
 					if(b >= 20 & b < 25){
-						System.err.println("20%-25%提交完毕！");
+						System.out.println("20%-25%提交完毕！");
 						return 1;
 					}
 					continue;
@@ -134,7 +135,7 @@ public class AuCj1Handler {
 				if(answer(driver, 7, getNumber(23)) == true) continue; //7
 				if(answer(driver, 8, getNumber(14)) == true) {
 					if(b >= 25 & b < 30){
-						System.err.println("25%-30%提交完毕！");
+						System.out.println("25%-30%提交完毕！");
 						return 1;
 					}
 					continue;
@@ -150,7 +151,7 @@ public class AuCj1Handler {
 				if(answer(driver, 17, getNumber(9)) == true) continue; //17
 				if(answer(driver, 18, 5) == true) {
 					if(b >= 30 & b < 40){
-						System.err.println("30%-40%提交完毕！");
+						System.out.println("30%-40%提交完毕！");
 						return 1;
 					}
 					continue;
@@ -158,25 +159,34 @@ public class AuCj1Handler {
 			}
 			
 			for(int j=0; j <= 15; j++) {
-				answer3(driver);
+				end_answer(driver);
+				Integer next = 5;
+				while(true) {
+					next = r.nextInt(11);
+					if(next >= 5 && next <= 10) {
+						break;
+					}
+				}
+				Thread.sleep(Integer.valueOf(next.toString() + "000"));
+				
 				if(b >= 40 & b < 50 && j == 2){
-					System.err.println("40%-50%提交完毕！");
+					System.out.println("40%-50%提交完毕！");
 					return 1;
 				}
 				
 				if(b >= 50 & b < 60 && j == 4){
-					System.err.println("50%-60%提交完毕！");
+					System.out.println("50%-60%提交完毕！");
 					return 1;
 				}
 				
 				if(b >= 60 & b < 70 && j == 6){
-					System.err.println("60%-70%提交完毕！");
+					System.out.println("60%-70%提交完毕！");
 					return 1;
 				}
 				continue;
 			}
 			
-			System.err.println("完成问卷调查！点击next进行下一步！");
+			System.out.println("完成问卷调查！点击next进行下一步！");
 			driver.findElement(By.id("next")).click();//完成进度条
 			 
 			Thread.sleep(10000);
@@ -192,131 +202,103 @@ public class AuCj1Handler {
 	   } catch(Exception e) {
 		   e.printStackTrace();
 		   return 3;
-	   }finally {
-//		   driver.quit();
 	   }
 	}
 	
-	public static void answer3(ChromeDriver driver) throws NumberFormatException, InterruptedException  {
-		Random r = new Random();
-		Integer next = 5;
-		while(true) {
-			next = r.nextInt(11);
-			if(next >= 5 && next <= 10) {
-				break;
-			}
-		}
-		
-		try {
-			driver.findElement(By.xpath("//*[@id='panel17']/div/div/div/div/div/div/div/div[" + getNumber(2) + "]/button")).click();
-		} catch (Exception e) { }
-		
-		try {
-			driver.findElement(By.xpath("//*[@id='panel398']/div/div/div/div/div/div/div/div["+ getNumber(2) + "]/button")).click();
-		} catch (Exception e) { }
-		
-		try {
-			driver.findElement(By.xpath("//*[@id='panel399']/div/div/div/div/div/div/div/div["+ getNumber(2) + "]/button")).click();
-		} catch (Exception e) { }
-		
-		try {
-			driver.findElement(By.xpath("//*[@id='panel316']/div/div/div/div/div/div/div/div["+ getNumber(2) + "]")).click();
-		} catch (Exception e) { }
-		
-		
-		try {
-			driver.findElement(By.xpath("//*[@id='panel347']/div/div/div/div/div/div/div/div["+ getNumber(2) + "]/button")).click();
-		} catch (Exception e) { }
-		
-		try {
-			driver.findElement(By.xpath("//*[@id=\"panel360\"]/div/div[2]/div/div/div/div/div/div[1]/button")).click();
-		} catch (Exception e) { }
-		
-		try {
-			driver.findElement(By.xpath("//*[@id=\"panel410\"]/div/div[2]/div/div/div/div/div/div["+ getNumber(2) + "]/button")).click(); //选项1弹offer
-		} catch (Exception e) { }
-		
-		try {
-			driver.findElement(By.xpath("//*[@id=\"panel411\"]/div/div[2]/div/div/div/div/div/div["+ getNumber(2) +"]/button")).click(); //选项1弹offer
-		} catch (Exception e) { }
-		
-		try {
-			driver.findElement(By.xpath("//*[@id=\"panel413\"]/div/div[2]/div/div/div/div/div/div["+ getNumber(2) + "]/button")).click(); //选项1弹offer
-		} catch (Exception e) { }
-		
-		try {
-			driver.findElement(By.xpath("//*[@id=\"panel428\"]/div/div[2]/div/div/div/div/div/div["+ getNumber(3) + "]/button")).click();
-		} catch (Exception e) { }
-		try {
-			driver.findElement(By.xpath("//*[@id='panel432']/div/div/div/div/div/div[1]/div/div[" + getNumber(2) + "]/button")).click();
-		} catch (Exception e) { }
-		Thread.sleep(Integer.valueOf(next.toString() + "000"));
-	}
 	
-	public static boolean answer2(ChromeDriver driver,int question, int number)  {
-		Random r = new Random();
-		Integer next = 5;
-		while(true) {
-			next = r.nextInt(11);
-			if(next >= 5 && next <= 10) {
-				break;
-			}
-		}
-		try {
-			driver.findElement(By.xpath("//*[@id='coregs']/div[" + question + "]/div/div/a[" + number + "]")).click();
-			System.err.println("随机数为：" + number);
-			System.out.println("检测问题成功，问题是第" + question + "道题！");
-			Thread.sleep(Integer.valueOf(next.toString() + "000"));
-			return true;
-		} catch (Exception e) {
-			return false;
-		}
-	}
 	
 	public static boolean answer(ChromeDriver driver,int question, int number)  {
 		
 		Random r = new Random();
 		Integer next = 5;
-		while(true) {
-			next = r.nextInt(11);
-			if(next >= 5 && next <= 10) {
-				break;
-			}
-		}
-		
+		next = r.nextInt(11);
 		try {
-			number = doAnswerBefore(driver,question, number);
-			System.err.println("随机数为：" + number);
 			try {
 				driver.findElement(By.xpath("//*[@id='coregs']/div[" + question +"]/div/div/div/label[" + number +"]/input")).click();
-				
 			} catch (Exception e) {
-				driver.findElement(By.xpath("//*[@id='coregs']/div["+ question +"]/div[1]/div/div/label["+ number +"]/input")).click();
+				try {
+					driver.findElement(By.xpath("//*[@id='coregs']/div[" + question +"]/div[1]/div/div/label["+ number +"]/input")).click();
+				} catch (Exception e1) {
+					driver.findElement(By.xpath("//*[@id='coregs']/div[" + question +"]/div/div/a[" + number + "]")).click();
+				}
 			}
-			System.out.println("检测问题成功，问题是第" + question + "道题！");
+			System.out.println("检测问题成功，问题是第 " + question + " 道题！随机数  " +  number);
 			try {												  
 				WebElement noThanks = driver.findElement(By.xpath("//*[@id='coregs']/div[" + question + "]/div/div/a"));  //no thanks
-				Random random = new Random();
-				int bfb = random.nextInt(101);
+				int bfb = r.nextInt(101);
 				//检测
 				if(bfb < 30) {
 					noThanks.click();
-					System.err.println("no thanks!");
+					System.out.println("no thanks!");
 				} else {
 					driver.findElement(By.xpath("//*[@id='coregs']/div[" + question + "]/div/div/button")).click();
 				}
-			} catch (Exception e) {
-			}
+			} catch (Exception e) {}
 			Thread.sleep(Integer.valueOf(next.toString() + "000"));
 			return true;
 		} catch (Exception e) {
-			return answer2(driver, question, number);
+			System.out.println("不是第 "+ question + " 道题，number " + number);
+			return false;
 		}
 	}
 	
-	//对问题进行特殊性选择处理
-	private static int doAnswerBefore(ChromeDriver driver,int question, int number) { 
-		return number;
+	public static void end_answer(ChromeDriver driver) throws NumberFormatException, InterruptedException  {
+		
+		try {
+			driver.findElement(By.xpath("//*[@id='panel17']/div/div/div/div/div/div/div/div[" + getNumber(2) + "]/button")).click();
+			return;
+		} catch (Exception e) { }
+		
+		try {
+			driver.findElement(By.xpath("//*[@id='panel398']/div/div/div/div/div/div/div/div["+ getNumber(2) + "]/button")).click();
+			return;
+		} catch (Exception e) { }
+		
+		try {
+			driver.findElement(By.xpath("//*[@id='panel399']/div/div/div/div/div/div/div/div["+ getNumber(2) + "]/button")).click();
+			return;
+		} catch (Exception e) { }
+		
+		try {
+			driver.findElement(By.xpath("//*[@id='panel316']/div/div/div/div/div/div/div/div["+ getNumber(2) + "]")).click();
+			return;
+		} catch (Exception e) { }
+		
+		
+		try {
+			driver.findElement(By.xpath("//*[@id='panel347']/div/div/div/div/div/div/div/div["+ getNumber(2) + "]/button")).click();
+			return;
+		} catch (Exception e) { }
+		
+		try {
+			driver.findElement(By.xpath("//*[@id=\"panel360\"]/div/div[2]/div/div/div/div/div/div[1]/button")).click();
+			return;
+		} catch (Exception e) { }
+		
+		try {
+			driver.findElement(By.xpath("//*[@id=\"panel410\"]/div/div[2]/div/div/div/div/div/div["+ getNumber(2) + "]/button")).click(); //选项1弹offer
+			return;
+		} catch (Exception e) { }
+		
+		try {
+			driver.findElement(By.xpath("//*[@id=\"panel411\"]/div/div[2]/div/div/div/div/div/div["+ getNumber(2) +"]/button")).click(); //选项1弹offer
+			return;
+		} catch (Exception e) { }
+		
+		try {
+			driver.findElement(By.xpath("//*[@id=\"panel413\"]/div/div[2]/div/div/div/div/div/div["+ getNumber(2) + "]/button")).click(); //选项1弹offer
+			return;
+		} catch (Exception e) { }
+		
+		try {
+			driver.findElement(By.xpath("//*[@id=\"panel428\"]/div/div[2]/div/div/div/div/div/div["+ getNumber(3) + "]/button")).click();
+			return;
+		} catch (Exception e) { }
+		try {
+			driver.findElement(By.xpath("//*[@id='panel432']/div/div/div/div/div/div[1]/div/div[" + getNumber(2) + "]/button")).click();
+			return;
+		} catch (Exception e) { }
+		System.out.println("现有题库未检测到当前问题！");
 	}
 	
 	
