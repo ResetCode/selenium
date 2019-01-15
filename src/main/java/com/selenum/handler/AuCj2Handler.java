@@ -35,7 +35,7 @@ public class AuCj2Handler {
 				driver.findElementByXPath("//*[@id=\"question_3\"]/button["+ getNumber(4) +"]").click();
 				Thread.sleep(20000);
 			} catch (Exception e) {
-				logger.error("跳过问卷调查三道题！");
+				System.out.println("跳过问卷调查三道题！");
 			}
 			
 			try {
@@ -51,7 +51,7 @@ public class AuCj2Handler {
 				driver.findElement(By.xpath("//*[@id=\"prize_picker\"]/div[3]/div[2]/div[4]/button")).click();
 				Thread.sleep(3000);
 			} catch (Exception e) {
-				logger.error("跳过心愿单！");
+				System.out.println("跳过心愿单！");
 			}
 			
 			if(data.getName().equals("f")) {//sex
@@ -113,6 +113,7 @@ public class AuCj2Handler {
 			driver.findElementByXPath("//*[@id=\"submitBtn\"]").click();
 			Thread.sleep(6000);
 			
+			Integer glabo = -1;
 			//问卷开始
 			for(int i = 0; i < 40; i++) {
 				if(answer(driver, 90, getNumberHas0(2))) continue;;
@@ -133,7 +134,10 @@ public class AuCj2Handler {
 				if(answer(driver, 1045, getNumberHas0(2))) continue;
 				if(answer(driver, 1046, getNumberHas0(2))) continue;
 				if(answer(driver, 1049, getNumberHas0(5))) continue;
-				if(answer(driver, 1066, getNumberHas0(2))) continue;
+				if(glabo == -1) {
+					glabo = getNumberHas0(2);
+				}
+				if(answer(driver, 1066, glabo)) continue;
 				if(answer(driver, 1083, getNumberHas0(2))) continue;
 				if(answer(driver, 1083, getNumberHas0(4))) continue;
 				if(answer(driver, 1088, getNumberHas0(2))) continue;
@@ -145,6 +149,7 @@ public class AuCj2Handler {
 				if(answer(driver, 1187, getNumberHas0(2))) continue;
 				if(answer(driver, 1191, getNumberHas0(2))) continue;
 				if(answer(driver, 1196, getNumberHas0(2))) continue;
+				if(answer(driver, 1204, getNumberHas0(2))) continue;
 				if(answer(driver, 1207, getNumberHas0(2))) continue;
 				if(answer(driver, 1213, getNumber(11))) {
 					driver.findElementByXPath("//*[@id=\"submit_survey_multi_1213\"]").click();
@@ -165,6 +170,7 @@ public class AuCj2Handler {
 				if(answer(driver, 1270, getNumberHas0(2))) continue;
 				if(answer(driver, 1271, getNumberHas0(2))) continue;
 				if(	answer(driver, 1272, getNumberHas0(2))) continue;
+				if(	answer(driver, 1276, getNumberHas0(2))) continue;
 				int number = getNumberHas0(2);
 				if(	answer(driver, 1279, number)) {
 					String[] types = {"Combined","Hospital","Extras"};
@@ -184,6 +190,10 @@ public class AuCj2Handler {
 				if(answer(driver, 1279, getNumberHas0(2))) continue;
 				if(answer(driver, 1288, getNumberHas0(2))) continue;
 				if(answer(driver, 1289, getNumberHas0(2))) continue;
+				if(answer(driver, 1290, getNumberHas0(2))) continue;
+				if(answer(driver, 1291, getNumberHas0(2))) continue;
+				if(answer(driver, 1292, getNumberHas0(5))) continue;
+				if(answer(driver, 1292, getNumberHas0(2))) continue;
 			}
 			
 			driver.findElementByXPath("//*[@id=\"coreg_1005no0\"]/u").click();
@@ -213,40 +223,40 @@ public class AuCj2Handler {
 		}
 		try {
 			driver.findElement(By.xpath("//*[@id='coreg_"+ question + "_yes_"+ number + "']")).click();
-			logger.error("题为："+ question + "随机数为：" + number);
+			System.out.println("题为："+ question + "随机数为：" + number);
 			Thread.sleep(Integer.valueOf(next.toString() + "000"));
 			return true;
 		} catch (Exception e) {}
 		
 		try {
 			driver.findElement(By.xpath("//*[@id='coreg_"+ question + "_no_"+ number + "']")).click();
-			logger.error("题为："+ question + "随机数为：" + number);
+			System.out.println("题为："+ question + "随机数为：" + number);
 			Thread.sleep(Integer.valueOf(next.toString() + "000"));
 			return true;
 		} catch (Exception e) {}
 		
 		try {
 			driver.findElement(By.xpath("//*[@id='coreg_"+ question + "_yes']")).click();
-			logger.error("题为："+ question + "随机数为：" + number);
+			System.out.println("题为："+ question + "随机数为：" + number);
 			Thread.sleep(Integer.valueOf(next.toString() + "000"));
 			return true;
 		} catch (Exception e2) { }
 		
 		try {
 			driver.findElement(By.xpath("//*[@id='coreg_"+ question + "_no_pre_"+ number + "']")).click();
-			logger.error("题为："+ question + "随机数为：" + number);
+			System.out.println("题为："+ question + "随机数为：" + number);
 			Thread.sleep(Integer.valueOf(next.toString() + "000"));
 			return true;
 		} catch (Exception e) {}
 		try {
 			driver.findElement(By.xpath("//*[@id='coreg_"+ question + "_yes_pre_"+ number + "']")).click();
-			logger.error("题为："+ question + "随机数为：" + number);
+			System.out.println("题为："+ question + "随机数为：" + number);
 			Thread.sleep(Integer.valueOf(next.toString() + "000"));
 			return true;
 		} catch (Exception e3) {}
 		try {
 			driver.findElement(By.xpath("//*[@id='coreg_"+ question + "no"+ number + "']")).click();
-			logger.error("题为："+ question + "随机数为：" + number);
+			System.out.println("题为："+ question + "随机数为：" + number);
 			Thread.sleep(Integer.valueOf(next.toString() + "000"));
 			return true;
 		} catch (Exception e) {}
@@ -254,13 +264,13 @@ public class AuCj2Handler {
 		try {
 									   //*[@id="coreg-inner-1213"]/div[2]/div/label[1]
 			driver.findElementByXPath("//*[@id='coreg-inner-"+ question +"']/div[2]/div/label[" + number + "]").click();
-			logger.error("题为："+ question + "随机数为：" + number);
+			System.out.println("题为："+ question + "随机数为：" + number);
 			Thread.sleep(3000);
 			driver.findElementByXPath("//*[@id='submit_survey_multi_"+ question +"']");
 			Thread.sleep(Integer.valueOf(next.toString() + "000"));
 			return true;
 		} catch (Exception e4) {}
-		logger.error("不是第 {} 题，number {}", question, number);
+		System.out.println("不是第 "+ question +" 题，number " +  number);
 		return false;
 	}
 	

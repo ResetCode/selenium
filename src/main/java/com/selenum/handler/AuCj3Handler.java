@@ -100,7 +100,7 @@ public class AuCj3Handler {
 			Thread.sleep(5000);
 			driver.findElementByXPath("//*[@id='phone']").sendKeys(data.getPhone().substring(1));
 			//What is your current housing situation?
-			String[] aboutHouse = {"Own my own home","Paying off mortgage","Remortgaged","Renting"}; 
+			String[] aboutHouse = {"Own my own home" + "Paying off mortgage" + "Remortgaged" + "Renting"}; 
 			Select aboutHouseSelect = new Select(driver.findElementByXPath("//*[@id=\"coreg-container\"]/div[1]/div/div/span/select"));
 			Integer aboutHouseNumber = getNumberHas0(4);
 			aboutHouseSelect.selectByVisibleText(aboutHouse[aboutHouseNumber]);
@@ -122,10 +122,10 @@ public class AuCj3Handler {
 			Integer firstLabel = 0;
 			if(firstAnswer.contains("The Bus") == true) {
 				firstLabel = 1;
-				logger.error("问卷调查检测第一题为 校车问答！答案选择为 {}", firstLabel);
+				System.out.println("问卷调查检测第一题为 校车问答！答案选择为 {}" +  firstLabel);
 			} else {
 				firstLabel = 2;
-				logger.error("问卷调查检测第一题为 圣诞老人！答案选择为 {}", firstLabel);
+				System.out.println("问卷调查检测第一题为 圣诞老人！答案选择为 {}" +  firstLabel);
 			}
 			driver.findElement(By.xpath("//*[@id='question-374']/div/ul/li["+ firstLabel +"]/label")).click();
 			Thread.sleep(15000);
@@ -142,10 +142,10 @@ public class AuCj3Handler {
 					} else {
 						driver.findElementByXPath("//*[@id=\"question-6519\"]/div/div[2]/button[2]").click();
 					}
-					logger.error("yes - {} ", as);
+					System.out.println("yes - {} " +  as);
 					Thread.sleep(10000);
 					continue;
-				} catch (Exception e) {logger.error("no - {}", as);}
+				} catch (Exception e) {System.out.println("no - {}" +  as);}
 				
 				
 				as = "//***";
@@ -155,10 +155,10 @@ public class AuCj3Handler {
 					} else {
 						driver.findElementByXPath("//*[@id=\"question-6204\"]/div[2]/div[2]/button[1]").click();
 					}
-					logger.error("yes - {}", as );
+					System.out.println("yes - {}" +  as );
 					Thread.sleep(10000);
 					continue;
-				} catch (Exception e) {logger.error("no - {} ", as);}
+				} catch (Exception e) {System.out.println("no - {} " +  as);}
 				
 				as = "//Who is your current electricity supplier?";
 				try {
@@ -174,28 +174,28 @@ public class AuCj3Handler {
 					rangeMap.put(Range.openClosed(490, 520), "Sumo Power"); //30
 					rangeMap.put(Range.openClosed(520, 540), "Other"); //20
 					electricitySelect.selectByVisibleText(rangeMap.get(random.nextInt(540)));
-					logger.error("yes - {} ", as);
+					System.out.println("yes - {} " +  as);
 					Thread.sleep(10000);
 					continue;
-				} catch (Exception e) {logger.error("no - {} ", as);}
+				} catch (Exception e) {System.out.println("no - {} " +  as);}
 				
 				
 				as = "//Do you pay the electricity bills in your household?";
 				try {
 					driver.findElementByXPath("//*[@id=\"question-6420\"]/div/div[2]/button[1]").click(); //yes
-					logger.error("yes - {} ", as);
+					System.out.println("yes - {} " +  as);
 					Thread.sleep(10000);
 					continue;
-				} catch (Exception e) {logger.error("no - {} ", as);}
+				} catch (Exception e) {System.out.println("no - {} " +  as);}
 				
 				
 				as = "//We provide free legal services to Aboriginal communities and others in need across the Kimberley.";
 				try {
 					driver.findElementByXPath("//*[@id=\"question-7083\"]/div[2]/div[3]/button[1]").click(); //yes
-					logger.error("yes - {} ", as);
+					System.out.println("yes - {} " +  as);
 					Thread.sleep(10000);
 					continue;
-				} catch (Exception e) {logger.error("no - {} ", as);}
+				} catch (Exception e) {System.out.println("no - {} " +  as);}
 				
 				as = "//Thank you, your support will help provide legal representation, respect for human rights and protection from discrimination. Select yes if you would like to donate";
 				try {
@@ -205,36 +205,36 @@ public class AuCj3Handler {
 					} else {
 						driver.findElementByXPath("//*[@id=\"question-7085\"]/div[2]/div[2]/button[1]").click();
 					}
-					logger.error("yes - {} ", as);
+					System.out.println("yes - {} " +  as);
 					Thread.sleep(10000);
 					continue;
-				} catch (Exception e) {logger.error("no - {} ", as);}
+				} catch (Exception e) {System.out.println("no - {} " +  as);}
 				
 				
 				as = "//What is your current housing situation?";
 				try {
 					aboutHouseSelect = new Select(driver.findElementByXPath("//*[@id=\"question-3560\"]/div/div[2]/select"));
 					aboutHouseSelect.selectByVisibleText(aboutHouse[aboutHouseNumber]);
-					logger.error("yes - {} ", as);
+					System.out.println("yes - {} " +  as);
 					Thread.sleep(10000);
 					continue;
-				} catch (Exception e) {logger.error("no - {} ", as);}
+				} catch (Exception e) {System.out.println("no - {} " +  as);}
 				
 				as = "//Want access to the BEST DEALS on worldwide cruises & travel?";
 				try {
 					driver.findElementByXPath("//*[@id=\"question-3284\"]/div[2]/ul/li["+ getNumber(7) + "]/label/span").click();
-					logger.error("yes - {} ", as);
+					System.out.println("yes - {} " +  as);
 					Thread.sleep(10000);
 					continue;
-				} catch (Exception e) {logger.error("no - {} ", as);}
+				} catch (Exception e) {System.out.println("no - {} " +  as);}
 				
 				as = "//Are you a member of Woolworths Rewards?";
 				try {
 					driver.findElementByXPath("//*[@id=\"question-1811\"]/div/div[2]/button["+ getNumber(2)+ "]");
-					logger.error("yes - {} ", as);
+					System.out.println("yes - {} " +  as);
 					Thread.sleep(10000);
 					continue;
-				} catch (Exception e) {logger.error("no - {} ", as);}
+				} catch (Exception e) {System.out.println("no - {} " +  as);}
 				
 				as = "//Join Kogan and get big discounts on electronics, appliances, homewares, fashion & more!";
 				try {
@@ -244,10 +244,10 @@ public class AuCj3Handler {
 					} else {
 						driver.findElementByXPath("//*[@id=\"question-308\"]/div[2]/div[2]/button[1]");
 					}
-					logger.error("yes - {} ", as);
+					System.out.println("yes - {} " +  as);
 					Thread.sleep(10000);
 					continue;
-				} catch (Exception e) {logger.error("no - {} ", as);}
+				} catch (Exception e) {System.out.println("no - {} " +  as);}
 				
 				
 				as = "//JOIN Woolworths Rewards today to receive 1,700 Bonus Points to kick start your savings. Select  send you the link to register via SMS & email.";
@@ -258,10 +258,10 @@ public class AuCj3Handler {
 					} else {
 						driver.findElementByXPath("//*[@id=\"question-1812\"]/div[2]/div[3]/button[1]");
 					}
-					logger.error("yes - {} ", as);
+					System.out.println("yes - {} " +  as);
 					Thread.sleep(10000);
 					continue;
-				} catch (Exception e) {logger.error("no - {} ", as);}
+				} catch (Exception e) {System.out.println("no - {} " +  as);}
 				
 				as = "//Do you love discounts?";
 				try {
@@ -271,10 +271,10 @@ public class AuCj3Handler {
 					} else {
 						driver.findElementByXPath("//*[@id=\"question-1503\"]/div/div[2]/button[1]");
 					}
-					logger.error("yes - {} ", as);
+					System.out.println("yes - {} " +  as);
 					Thread.sleep(10000);
 					continue;
-				} catch (Exception e) {logger.error("no - {} ", as);}
+				} catch (Exception e) {System.out.println("no - {} " +  as);}
 				
 				as = "//Would you like to join FreeLotto.com and start playing for your chance to win over $11,000,000.00 Tonight for FREE?";
 				try {
@@ -284,10 +284,10 @@ public class AuCj3Handler {
 					} else {
 						driver.findElementByXPath("//*[@id=\"question-2620\"]/div[2]/div[2]/button[1]");
 					}
-					logger.error("yes - {} ", as);
+					System.out.println("yes - {} " +  as);
 					Thread.sleep(10000);
 					continue;
-				} catch (Exception e) {logger.error("no - {} ", as); }
+				} catch (Exception e) {System.out.println("no - {} " +  as); }
 				
 				as = "//Complete the survey by telling us why you should WIN in 25 words or less.";
 				try {
@@ -302,10 +302,10 @@ public class AuCj3Handler {
 					} else {
 						driver.findElementByXPath("//*[@id=\"question-387\"]/div/button[2]");
 					}
-					logger.error("yes - {} ", as);
+					System.out.println("yes - {} " +  as);
 					Thread.sleep(10000);
 					continue;
-				} catch (Exception e) {logger.error("no - {} ", as);}
+				} catch (Exception e) {System.out.println("no - {} " +  as);}
 				
 				
 				as = "//Aussies who haven't reviewed their Private Health Insurance in 5 years could be paying $800 more per year, for the same cover.";
@@ -316,19 +316,19 @@ public class AuCj3Handler {
 					} else {
 						driver.findElementByXPath("//*[@id=\"question-4631\"]/div[2]/div[3]/button[1]"); //yes 弹offer
 					}
-					logger.error("yes - {} ", as);
+					System.out.println("yes - {} " +  as);
 					Thread.sleep(10000);
 					continue;
-				} catch (Exception e) {logger.error("no - {} ", as);}
+				} catch (Exception e) {System.out.println("no - {} " +  as);}
 				
 				
 				as = "//Do you want to have the chance to be one of the next millionaires?";
 				try {
 					driver.findElementByXPath("//*[@id=\"question-7462\"]/div[2]/ul/li["+getNumber(2)+"]/label/span");
-					logger.error("yes - {} ", as);
+					System.out.println("yes - {} " +  as);
 					Thread.sleep(10000);
 					continue;
-				} catch (Exception e) {logger.error("no - {} ", as);}
+				} catch (Exception e) {System.out.println("no - {} " +  as);}
 				
 				as = "//Do you feel you pay too much for Health Insurance?";
 				try {
@@ -338,10 +338,10 @@ public class AuCj3Handler {
 					} else {
 						driver.findElementByXPath("//*[@id=\"question-5232\"]/div[2]/div[2]/button[1]"); //yes 弹offer
 					}
-					logger.error("yes - {} ", as);
+					System.out.println("yes - {} " +  as);
 					Thread.sleep(10000);
 					continue;
-				} catch (Exception e) {logger.error("no - {} ", as);}
+				} catch (Exception e) {System.out.println("no - {} " +  as);}
 				
 				as = "//Let Health Deal contact you to save your money on your health cover Plus, go into the draw to Win 6 Months Free Health Cover!";
 				try {
@@ -351,10 +351,10 @@ public class AuCj3Handler {
 					} else {
 						driver.findElementByXPath("//*[@id=\"question-5235\"]/div[2]/div[3]/button[1]");
 					}
-					logger.error("yes - {} ", as);
+					System.out.println("yes - {} " +  as);
 					Thread.sleep(10000);
 					continue;
-				} catch (Exception e) {logger.error("no - {} ", as);}
+				} catch (Exception e) {System.out.println("no - {} " +  as);}
 				
 			}
 			Thread.sleep(20000); //问卷调查结束，等待跳转页面
@@ -406,7 +406,7 @@ public class AuCj3Handler {
 	
 	public static boolean answer(ChromeDriver driver,int question, int number) throws NumberFormatException, InterruptedException  {
 		try {
-			logger.error("随机数为 {}" , number);
+			System.out.println("随机数为 {}" + number);
 			driver.findElementByXPath("//*[@id='page1']/div[2]/div[1]/div/div[2]/div/div[2]/div["+ question + "]/a["+ number + "]").click();
 			
 			Random r = new Random();
