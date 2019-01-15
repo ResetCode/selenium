@@ -183,17 +183,19 @@ public class AuCjController {
 		//执行脚本1
 		int result = AuCj1Handler.handle(data, driver, auofferList.get(offerIndex));
 //		
+		//执行脚本3
+		AuWish wish1 = wishDao.findOne(1);
+		int result3 = AuCj3Handler.handle(data, driver, auofferList.get(offerIndex3), wish1);
+		//标识wish被使用
+		wishDao.update(wish1);
+		
 		//执行脚本2
 		AuWish wish0 = wishDao.findOne(0);
 		int result2 = AuCj2Handler.handle(data, driver, auofferList.get(offerIndex2), wish0);
 		//标识wish被使用
 		wishDao.update(wish0);
 		
-		//执行脚本3
-		AuWish wish1 = wishDao.findOne(1);
-		int result3 = AuCj3Handler.handle(data, driver, auofferList.get(offerIndex3), wish1);
-		//标识wish被使用
-		wishDao.update(wish1);
+		
 		
 		//再次表示资料数据
 		StringBuffer resultBuffer = new StringBuffer();
