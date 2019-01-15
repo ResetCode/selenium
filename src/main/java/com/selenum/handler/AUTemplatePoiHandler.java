@@ -31,16 +31,27 @@ public class AUTemplatePoiHandler {
 			for(Cell cell : row) {
 				cell.setCellType(CellType.STRING);
 			}
+//			String name = row.getCell(0).getStringCellValue();
+//			String firstName = row.getCell(1).getStringCellValue();
+//			String lastName = row.getCell(2).getStringCellValue();
+//			String email = row.getCell(3).getStringCellValue();
+//			String birthDay = row.getCell(4).getStringCellValue();
+//			String address = row.getCell(5).getStringCellValue(); 
+//			String city = row.getCell(6).getStringCellValue();
+//			String state = row.getCell(7).getStringCellValue();
+//			String zip_code = row.getCell(8).getStringCellValue(); //F
+//			String phone = row.getCell(9).getStringCellValue();
+//			String address2 = row.getCell(11).getStringCellValue();
 			String name = row.getCell(0).getStringCellValue();
 			String firstName = row.getCell(1).getStringCellValue();
 			String lastName = row.getCell(2).getStringCellValue();
-			String email = row.getCell(3).getStringCellValue();
-			String birthDay = row.getCell(4).getStringCellValue();
-			String address = row.getCell(5).getStringCellValue(); 
-			String city = row.getCell(6).getStringCellValue();
-			String state = row.getCell(7).getStringCellValue();
-			String zip_code = row.getCell(8).getStringCellValue(); //F
-			String phone = row.getCell(9).getStringCellValue();
+			String address = row.getCell(3).getStringCellValue(); 
+			String city = row.getCell(4).getStringCellValue();
+			String state = row.getCell(5).getStringCellValue();
+			String zip_code = row.getCell(6).getStringCellValue(); //F
+			String birthDay = row.getCell(7).getStringCellValue();
+			String phone = row.getCell(8).getStringCellValue();
+			String email = row.getCell(9).getStringCellValue();
 			String address2 = row.getCell(11).getStringCellValue();
 			
 			String[] births = birthDay.split("/");
