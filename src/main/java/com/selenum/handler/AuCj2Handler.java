@@ -140,6 +140,7 @@ public class AuCj2Handler {
 				if(answer(driver, 1127, getNumberHas0(3))) continue;
 				if(answer(driver, 1131, getNumberHas0(2))) continue;
 				if(answer(driver, 1139, getNumberHas0(2))) continue;
+				if(answer(driver, 1160, getNumberHas0(2))) continue;
 				if(answer(driver, 1181, getNumberHas0(2))) continue;
 				if(answer(driver, 1187, getNumberHas0(2))) continue;
 				if(answer(driver, 1191, getNumberHas0(2))) continue;
@@ -265,7 +266,7 @@ public class AuCj2Handler {
 			Thread.sleep(Integer.valueOf(next.toString() + "000"));
 			return true;
 		} catch (Exception e4) { }
-		
+		System.out.println("不是题：" + question + "随机数：" + number);
 		return false;
 	}
 	

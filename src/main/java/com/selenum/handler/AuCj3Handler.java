@@ -100,7 +100,7 @@ public class AuCj3Handler {
 			Thread.sleep(5000);
 			driver.findElementByXPath("//*[@id='phone']").sendKeys(data.getPhone().substring(1));
 			//What is your current housing situation?
-			String[] aboutHouse = {"Own my own home" + "Paying off mortgage" + "Remortgaged" + "Renting"}; 
+			String[] aboutHouse = {"Own my own home" , "Paying off mortgage" , "Remortgaged" , "Renting"}; 
 			Select aboutHouseSelect = new Select(driver.findElementByXPath("//*[@id=\"coreg-container\"]/div[1]/div/div/span/select"));
 			Integer aboutHouseNumber = getNumberHas0(4);
 			aboutHouseSelect.selectByVisibleText(aboutHouse[aboutHouseNumber]);
@@ -356,6 +356,18 @@ public class AuCj3Handler {
 					continue;
 				} catch (Exception e) {System.out.println("no - {} " +  as);}
 				
+				as = "Get 40% off electricity usage charges and 26% off ";
+				try {
+					suiji = random.nextInt(100);
+					if(suiji < 30) {
+						driver.findElementByXPath("//*[@id=\"question-6423\"]/div[2]/div[2]/button[2]"); //yes 寮筼ffer
+					} else {
+						driver.findElementByXPath("//*[@id=\"question-6423\"]/div[2]/div[2]/button[1]");
+					}
+					System.out.println("yes - {} " +  as);
+					Thread.sleep(10000);
+					continue;
+				} catch (Exception e) {System.out.println("no - {} " +  as);}
 			}
 			Thread.sleep(20000); //问卷调查结束，等待跳转页面
 			
