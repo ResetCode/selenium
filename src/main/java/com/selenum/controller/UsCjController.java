@@ -41,7 +41,7 @@ import com.using.common.core.bean.ErrorEnum;
 import com.using.common.core.bean.JsonResult;
 
 @RestController
-@RequestMapping("choujiang")
+@RequestMapping("cj/us")
 public class UsCjController {
 
 	@Autowired
@@ -61,8 +61,6 @@ public class UsCjController {
 	private final static String jsPath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\main.js";
 	private final static String filePath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\us_data.xls";
 	private final static String emailPath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\EMAIL.txt";
-	private final static String au_filePath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\au_data.xlsx";
-	private final static String uaPath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\ua.log";
 	private final static String ipPath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\ip.html";
 
 	//家
@@ -72,8 +70,6 @@ public class UsCjController {
 //	private final static String jsPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\main.js";
 //	private final static String filePath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\us_data.xls";
 //	private final static String emailPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\EMAIL.txt";
-//	private final static String au_filePath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\au_data.xlsx";
-//	private final static String uaPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\ua.log";
 //	private final static String ipPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\ip.html";
 	
 	//meow 
@@ -83,8 +79,6 @@ public class UsCjController {
 //	private final static String jsPath = "E:\\workspaces\\selenium\\src\\main\\resources\\main.js";
 //	private final static String filePath = "E:\\workspaces\\selenium\\src\\main\\resources\\us_data.xls";
 //	private final static String emailPath = "E:\\workspaces\\selenium\\src\\main\\resources\\EMAIL.txt";
-//	private final static String au_filePath = "E:\\workspaces\\selenium\\src\\main\\resources\\au_data.xlsx";
-//	private final static String uaPath = "E:\\workspaces\\selenium\\src\\main\\resources\\ua.log";
 //	private final static String ipPath = "E:\\workspaces\\selenium\\src\\main\\resources\\ip.html";
 	
 	private final static List<String> usofferList = Lists.newArrayList();
@@ -100,7 +94,7 @@ public class UsCjController {
 	 * @return
 	 * @throws InterruptedException 
 	 */
-	@RequestMapping("us/{offer}/{offer2}")
+	@RequestMapping("s/{offer}/{offer2}")
 	public JsonResult<String> ua(@PathVariable("offer") Integer offerIndex,@PathVariable("offer2") Integer offerIndex2) throws InterruptedException {
 	
 		//查询资料
@@ -271,31 +265,4 @@ public class UsCjController {
 		result.setSuccessData("成功" + num + "条数据！");
 		return result;
 	}
-	
-	/**
-	 * 从外部文件txt导入ua到数据库
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping("importUserAgentData")
-	public JsonResult<String> importUserAgentData() throws Exception {
-		
-		File file = new File(uaPath);
-		BufferedReader br = new BufferedReader(new FileReader(file));
-		String line = "";
-		int num = 0;
-		while((line = br.readLine()) != null) {
-			num++;
-			UserAgent userAgent = new UserAgent();
-			userAgent.setUserAgent(line);
-			userAgentDao.insert(userAgent);
-		}
-		
-		br.close();
-		JsonResult<String> result = new JsonResult<>();
-		result.setSuccessData("成功" + num + "条数据！");
-		return result;
-	}
-	
-	
 }

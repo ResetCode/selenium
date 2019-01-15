@@ -25,7 +25,7 @@ public class AUTemplatePoiHandler {
 		InputStream is = new FileInputStream(file);
 		XSSFWorkbook workbook = new XSSFWorkbook(is);
 		Sheet sheet = workbook.getSheetAt(0);
-		for(int i = 0; i < sheet.getLastRowNum(); i ++) {
+		for(int i = 0; i < 37; i ++) {
 			
 			Row row = sheet.getRow(i);
 			for(Cell cell : row) {
