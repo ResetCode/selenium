@@ -101,32 +101,55 @@ public class AuCj2Handler {
 				try {
 					driver.findElementByXPath("//*[@id=\"coreg_1163_yes\"]").click(); //yes
 				} catch (Exception e2) {
-					driver.findElementByXPath("//*[@id=\"coreg_1209_yes\"]").click(); //yes
+					try {
+						driver.findElementByXPath("//*[@id=\"coreg_1209_yes\"]").click(); //yes
+					} catch (Exception e3) {
+						driver.findElementByXPath("//*[@id=\"coreg_1014_yes\"]").click();
+					}
 				}
+				
 			}
 			Thread.sleep(3000);
 			driver.findElementByXPath("//*[@id=\"submitBtn\"]").click();
 			Thread.sleep(6000);
 			
 			Integer glabo = -1;
+			Random r = new Random();
+			Integer n = r.nextInt(100);
 			//问卷开始
-			for(int i = 0; i < 40; i++) {
+			for(int i = 0; i < 50; i++) {
 				if(answer(driver, 90, getNumberHas0(2))) continue;;
 				if(answer(driver, 526, getNumberHas0(7))) continue;
 				if(answer(driver, 526, getNumberHas0(2))) continue;
-				if(answer(driver, 563, getNumberHas0(4))) continue;
+				if(answer(driver, 563, getNumberHas0(4))) {
+					if(n <= 10) {
+						return 1;
+					}
+					continue;
+				} 
 				if(answer(driver, 686, getNumberHas0(5))) continue;
 				if(answer(driver, 696, getNumberHas0(4))) continue;
 				if(answer(driver, 764, getNumberHas0(2))) continue;
 				if(answer(driver, 796, getNumberHas0(5))) continue;
-				if(answer(driver, 846, getNumberHas0(4))) continue;
+				if(answer(driver, 846, getNumberHas0(4)))  {
+					if(n <= 20 && n > 10) {
+						return 1;
+					}
+					continue;
+				} 
 				if(answer(driver, 814, getNumberHas0(2))) continue;
 				if(answer(driver, 862, getNumberHas0(2))) continue;
 				if(answer(driver, 909, getNumberHas0(2))) continue;
 				if(answer(driver, 915, getNumberHas0(2))) continue;
 				if(answer(driver, 997, getNumberHas0(2))) continue;
 				if(answer(driver, 1005, getNumberHas0(3))) continue;
-				if(answer(driver, 1045, getNumberHas0(2))) continue;
+				if(answer(driver, 1029, getNumberHas0(2))) continue;
+				if(answer(driver, 1045, getNumberHas0(2)))  {
+					if(n <= 30 && n > 20) {
+						return 1;
+					}
+					continue;
+				} 
 				if(answer(driver, 1046, getNumberHas0(2))) continue;
 				if(answer(driver, 1049, getNumberHas0(5))) continue;
 				if(glabo == -1) {
@@ -137,36 +160,60 @@ public class AuCj2Handler {
 				if(answer(driver, 1083, getNumberHas0(4))) continue;
 				if(answer(driver, 1088, getNumberHas0(2))) continue;
 				if(answer(driver, 1125, getNumberHas0(2))) continue;
-				if(answer(driver, 1127, getNumberHas0(3))) continue;
+				if(answer(driver, 1127, getNumberHas0(3)))  {
+					if(n <= 40 && n > 30) {
+						return 1;
+					}
+					continue;
+				} 
 				if(answer(driver, 1131, getNumberHas0(2))) continue;
 				if(answer(driver, 1139, getNumberHas0(2))) continue;
-				if(answer(driver, 1160, getNumberHas0(2))) continue;
+				if(answer(driver, 1141, getNumberHas0(2))) continue;
+				//*[@id="coreg_1160_yes_0"]
+				if(answer(driver, 1160, 0)) continue;
 				if(answer(driver, 1181, getNumberHas0(2))) continue;
 				if(answer(driver, 1187, getNumberHas0(2))) continue;
 				if(answer(driver, 1191, getNumberHas0(2))) continue;
 				if(answer(driver, 1196, getNumberHas0(2))) continue;
 				if(answer(driver, 1204, getNumberHas0(2))) continue;
 				if(answer(driver, 1207, getNumberHas0(2))) continue;
+				if(answer(driver, 1210, getNumberHas0(2))) continue;
+				if(answer(driver, 1212, getNumberHas0(2))) continue;
 				if(answer(driver, 1213, getNumber(11))) {
 					driver.findElementByXPath("//*[@id=\"submit_survey_multi_1213\"]").click();
 					continue;
 				};
+				if(	answer(driver, 1218, getNumberHas0(2))) continue;
 				if(	answer(driver, 1219, getNumberHas0(2))) continue;
 				if(	answer(driver, 1223, getNumberHas0(2))) continue;
+				if(	answer(driver, 1224, getNumberHas0(2))) continue;
 				if(	answer(driver, 1230, getNumberHas0(2))) continue;
 				if(	answer(driver, 1242, getNumberHas0(2))) continue;
 				if(	answer(driver, 1243, getNumberHas0(2))) continue;
-				if(	answer(driver, 1244, getNumberHas0(2))) continue;
+				if(	answer(driver, 1244, getNumberHas0(2)))  {
+					if(n <= 50 && n > 40) {
+						return 1;
+					}
+					continue;
+				} 
 				if(	answer(driver, 1245, getNumberHas0(2))) continue;
 				if(answer(driver, 1246, getNumberHas0(2))) continue;
 				if(answer(driver, 1247, getNumberHas0(2))) continue;
 				if(answer(driver, 1250, getNumberHas0(2))) continue;
-				if(	answer(driver, 1256, getNumberHas0(2))) continue;
+				if(answer(driver, 1251, getNumberHas0(2))) continue;
+				if(	answer(driver, 1252, getNumberHas0(2))) continue;
+				if(	answer(driver, 1256, getNumberHas0(2)))  {
+					if(n <= 60 && n > 50) {
+						return 1;
+					}
+					continue;
+				} 
 				if(	answer(driver, 1268, getNumberHas0(2))) continue;
 				if(answer(driver, 1270, getNumberHas0(2))) continue;
 				if(answer(driver, 1271, getNumberHas0(2))) continue;
 				if(	answer(driver, 1272, getNumberHas0(2))) continue;
 				if(	answer(driver, 1276, getNumberHas0(2))) continue;
+				if(	answer(driver, 1278, getNumberHas0(2))) continue;
 				int number = getNumberHas0(2);
 				if(	answer(driver, 1279, number)) {
 					String[] types = {"Combined","Hospital","Extras"};
@@ -184,12 +231,24 @@ public class AuCj2Handler {
 					continue;
 				} 
 				if(answer(driver, 1279, getNumberHas0(2))) continue;
+				if(answer(driver, 1281, getNumberHas0(2)))  {
+					if(n <= 70 && n > 60) {
+						return 1;
+					}
+					continue;
+				} 
 				if(answer(driver, 1288, getNumberHas0(2))) continue;
 				if(answer(driver, 1289, getNumberHas0(2))) continue;
 				if(answer(driver, 1290, getNumberHas0(2))) continue;
 				if(answer(driver, 1291, getNumberHas0(2))) continue;
 				if(answer(driver, 1292, getNumberHas0(5))) continue;
 				if(answer(driver, 1292, getNumberHas0(2))) continue;
+				if(answer(driver, 1293, getNumberHas0(2)))  {
+					if(n <= 80 && n > 70) {
+						return 1;
+					}
+					continue;
+				} 
 
 			}
 			

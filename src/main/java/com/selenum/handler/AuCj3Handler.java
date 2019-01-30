@@ -1,6 +1,7 @@
 package com.selenum.handler;
 
 import java.util.Random;
+import java.util.Scanner;
 import java.util.Set;
 
 import org.openqa.selenium.By;
@@ -9,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriver.TargetLocator;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.ClickAction;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -45,9 +47,21 @@ public class AuCj3Handler {
 				answer(driver, 3 , getNumber(2));
 				Thread.sleep(10000); //回答完问题，等待跳转填写资料
 			} catch (Exception e) {
-				logger.info("直接跳转填写资料！");
+				logger.info("跳过三题选项直接跳转填写资料！");
 			}
 			
+			try {
+				driver.findElementByXPath("//*[@id='page1']/div[2]/div/div[2]/div/div[2]/div[1]/a["+ getNumber(4) + "]").click();
+				Thread.sleep(3000);
+				driver.findElementByXPath("//*[@id='page1']/div[2]/div/div[2]/div/div[2]/div[2]/a["+ getNumber(4) + "]").click();
+				Thread.sleep(3000);
+				driver.findElementByXPath("//*[@id='page1']/div[2]/div/div[2]/div/div[2]/div[3]/a["+ getNumber(4) + "]").click();
+				Thread.sleep(3000);
+				driver.findElementByXPath("//*[@id='page1']/div[2]/div/div[2]/div/div[2]/div[4]/a["+ getNumber(4) + "]").click();
+				Thread.sleep(10000);
+			} catch (Exception e) {
+				System.out.println("跳转四题选项直接填写资料！");
+			}
 			Integer sex = 1; 
 			if(data.getName().equals("f")) {
 				sex = 2;
@@ -68,6 +82,10 @@ public class AuCj3Handler {
 			Thread.sleep(20000);
 			
 			
+			WebDriverWait webDriverWait = new WebDriverWait(driver, 60);
+			String[] aboutHouse = {"Own my own home" , "Paying off mortgage" , "Remortgaged" , "Renting"};
+			Select aboutHouseSelect = null;
+			Integer aboutHouseNumber = 0;
 			
 			driver.findElementByXPath("//*[@id=\"postcode\"]").sendKeys(data.getZipCode());
 			Thread.sleep(2000);
@@ -82,7 +100,6 @@ public class AuCj3Handler {
 					"}");
 			Thread.sleep(8000);
 			
-			WebDriverWait webDriverWait = new WebDriverWait(driver, 60);
 			
 			String ad = data.getAddress();
 			Integer index = ad.indexOf(" ");
@@ -100,9 +117,8 @@ public class AuCj3Handler {
 			Thread.sleep(5000);
 			driver.findElementByXPath("//*[@id='phone']").sendKeys(data.getPhone().substring(1));
 			//What is your current housing situation?
-			String[] aboutHouse = {"Own my own home" , "Paying off mortgage" , "Remortgaged" , "Renting"}; 
-			Select aboutHouseSelect = new Select(driver.findElementByXPath("//*[@id=\"coreg-container\"]/div[1]/div/div/span/select"));
-			Integer aboutHouseNumber = getNumberHas0(4);
+			aboutHouseSelect = new Select(driver.findElementByXPath("//*[@id=\"coreg-container\"]/div[1]/div/div/span/select"));
+			aboutHouseNumber = getNumberHas0(4);
 			aboutHouseSelect.selectByVisibleText(aboutHouse[aboutHouseNumber]);
 			Thread.sleep(3000);
 			driver.findElementByXPath("//*[@id=\"coreg-container\"]/div[2]/label/div").click(); //确认复选框
@@ -110,29 +126,44 @@ public class AuCj3Handler {
 			driver.findElementByXPath("//*[@id=\"input2\"]/div[1]/div/div[2]/div[2]/div/div[5]/div/button").click();
 			Thread.sleep(20000); //资料填写完毕，开始回答调查问卷
 			
-			
-			//选项一是 the bus， 选项二是圣诞老人
-			String firstAnswer = webDriverWait.until(new ExpectedCondition<WebElement>() {
-				@Override
-				public WebElement apply(WebDriver driver) {
-					return driver.findElement(By.xpath("//*[@id=\"question-374\"]/div/ul/li[1]/label/span"));
+			try {
+				//选项一是 the bus， 选项二是圣诞老人
+				String firstAnswer = webDriverWait.until(new ExpectedCondition<WebElement>() {
+					@Override
+					public WebElement apply(WebDriver driver) {
+						return driver.findElement(By.xpath("//*[@id=\"question-374\"]/div/ul/li[1]/label/span"));
+					}
+				}).getText();
+				Integer firstLabel = 0;
+				if(firstAnswer.contains("The Bus") == true) {
+					firstLabel = 1;
+					System.out.println("问卷调查检测第一题为 校车问答！答案选择为 {}" +  firstLabel);
+				} else {
+					firstLabel = 2;
+					System.out.println("问卷调查检测第一题为 圣诞老人！答案选择为 {}" +  firstLabel);
 				}
-			}).getText();
-			
-			Integer firstLabel = 0;
-			if(firstAnswer.contains("The Bus") == true) {
-				firstLabel = 1;
-				System.out.println("问卷调查检测第一题为 校车问答！答案选择为 {}" +  firstLabel);
-			} else {
-				firstLabel = 2;
-				System.out.println("问卷调查检测第一题为 圣诞老人！答案选择为 {}" +  firstLabel);
+				driver.findElement(By.xpath("//*[@id='question-374']/div/ul/li["+ firstLabel +"]/label")).click();
+			} catch (Exception e) {
+				 Scanner sc = new Scanner(System.in);
+			        //利用hasNextXXX()判断是否还有下一输入项
+			        while (sc.hasNext()) {
+			            //利用nextXXX()方法输出内容
+			            String str = sc.next();
+			            if("yes".equals(str)) {
+			            	System.out.println("脚本继续进行！");
+			            	break;
+			            }
+			            else {
+			            	System.out.println("脚本继续等待！");
+			            }
+			        }
+			      sc.close();
 			}
-			driver.findElement(By.xpath("//*[@id='question-374']/div/ul/li["+ firstLabel +"]/label")).click();
 			Thread.sleep(15000);
-			
 			
 			Random random = new Random();
 			Integer suiji = random.nextInt(100);
+			Integer gloab = getNumber(2);
 			for(int i = 0; i <= 20; i++) {
 				
 				String as = "//Do you wear hearing aids?";
@@ -230,7 +261,7 @@ public class AuCj3Handler {
 				
 				as = "//Are you a member of Woolworths Rewards?";
 				try {
-					driver.findElementByXPath("//*[@id=\"question-1811\"]/div/div[2]/button["+ getNumber(2)+ "]");
+					driver.findElementByXPath("//*[@id=\"question-1811\"]/div/div[2]/button["+ gloab + "]").click();
 					System.out.println("yes - {} " +  as);
 					Thread.sleep(10000);
 					continue;
@@ -240,9 +271,9 @@ public class AuCj3Handler {
 				try {
 					suiji = random.nextInt(100);
 					if(suiji <= 30) {
-						driver.findElementByXPath("//*[@id=\"question-308\"]/div[2]/div[2]/button[2]");
+						driver.findElementByXPath("//*[@id=\"question-308\"]/div[2]/div[2]/button[2]").click();
 					} else {
-						driver.findElementByXPath("//*[@id=\"question-308\"]/div[2]/div[2]/button[1]");
+						driver.findElementByXPath("//*[@id=\"question-308\"]/div[2]/div[2]/button[1]").click();
 					}
 					System.out.println("yes - {} " +  as);
 					Thread.sleep(10000);
@@ -254,9 +285,9 @@ public class AuCj3Handler {
 				try {
 					suiji = random.nextInt(100);
 					if(suiji <= 30) {
-						driver.findElementByXPath("//*[@id=\"question-1812\"]/div[2]/div[3]/button[2]");
+						driver.findElementByXPath("//*[@id=\"question-1812\"]/div[2]/div[3]/button[2]").click();
 					} else {
-						driver.findElementByXPath("//*[@id=\"question-1812\"]/div[2]/div[3]/button[1]");
+						driver.findElementByXPath("//*[@id=\"question-1812\"]/div[2]/div[3]/button[1]").click();
 					}
 					System.out.println("yes - {} " +  as);
 					Thread.sleep(10000);
@@ -267,9 +298,9 @@ public class AuCj3Handler {
 				try {
 					suiji = random.nextInt(100);
 					if(suiji <= 10) {
-						driver.findElementByXPath("//*[@id=\"question-1503\"]/div/div[2]/button[2]");
+						driver.findElementByXPath("//*[@id=\"question-1503\"]/div/div[2]/button[2]").click();
 					} else {
-						driver.findElementByXPath("//*[@id=\"question-1503\"]/div/div[2]/button[1]");
+						driver.findElementByXPath("//*[@id=\"question-1503\"]/div/div[2]/button[1]").click();
 					}
 					System.out.println("yes - {} " +  as);
 					Thread.sleep(10000);
@@ -280,9 +311,9 @@ public class AuCj3Handler {
 				try {
 					suiji = random.nextInt(100);
 					if(suiji <= 30) {
-						driver.findElementByXPath("//*[@id=\"question-2620\"]/div[2]/div[2]/button[2]");
+						driver.findElementByXPath("//*[@id=\"question-2620\"]/div[2]/div[2]/button[2]").click();
 					} else {
-						driver.findElementByXPath("//*[@id=\"question-2620\"]/div[2]/div[2]/button[1]");
+						driver.findElementByXPath("//*[@id=\"question-2620\"]/div[2]/div[2]/button[1]").click();
 					}
 					System.out.println("yes - {} " +  as);
 					Thread.sleep(10000);
@@ -298,9 +329,9 @@ public class AuCj3Handler {
 						wish.setUseStatus("1");
 						
 						Thread.sleep(10000);
-						driver.findElementByXPath("//*[@id=\"question-387\"]/div/button[1]");
+						driver.findElementByXPath("//*[@id=\"question-387\"]/div/button[1]").click();
 					} else {
-						driver.findElementByXPath("//*[@id=\"question-387\"]/div/button[2]");
+						driver.findElementByXPath("//*[@id=\"question-387\"]/div/button[2]").click();
 					}
 					System.out.println("yes - {} " +  as);
 					Thread.sleep(10000);
@@ -312,9 +343,9 @@ public class AuCj3Handler {
 				try {
 					suiji = random.nextInt(100);
 					if(suiji < 30) {
-						driver.findElementByXPath("//*[@id=\"question-4631\"]/div[2]/div[3]/button[2]");
+						driver.findElementByXPath("//*[@id=\"question-4631\"]/div[2]/div[3]/button[2]").click();
 					} else {
-						driver.findElementByXPath("//*[@id=\"question-4631\"]/div[2]/div[3]/button[1]"); //yes 弹offer
+						driver.findElementByXPath("//*[@id=\"question-4631\"]/div[2]/div[3]/button[1]").click(); //yes 弹offer
 					}
 					System.out.println("yes - {} " +  as);
 					Thread.sleep(10000);
@@ -324,7 +355,7 @@ public class AuCj3Handler {
 				
 				as = "//Do you want to have the chance to be one of the next millionaires?";
 				try {
-					driver.findElementByXPath("//*[@id=\"question-7462\"]/div[2]/ul/li["+getNumber(2)+"]/label/span");
+					driver.findElementByXPath("//*[@id=\"question-7462\"]/div[2]/ul/li["+getNumber(2)+"]/label/span").click();
 					System.out.println("yes - {} " +  as);
 					Thread.sleep(10000);
 					continue;
@@ -334,9 +365,9 @@ public class AuCj3Handler {
 				try {
 					suiji = random.nextInt(100);
 					if(suiji < 30) {
-						driver.findElementByXPath("//*[@id=\"question-5232\"]/div[2]/div[2]/button[2]");
+						driver.findElementByXPath("//*[@id=\"question-5232\"]/div[2]/div[2]/button[2]").click();
 					} else {
-						driver.findElementByXPath("//*[@id=\"question-5232\"]/div[2]/div[2]/button[1]"); //yes 弹offer
+						driver.findElementByXPath("//*[@id=\"question-5232\"]/div[2]/div[2]/button[1]").click(); //yes 弹offer
 					}
 					System.out.println("yes - {} " +  as);
 					Thread.sleep(10000);
@@ -347,9 +378,9 @@ public class AuCj3Handler {
 				try {
 					suiji = random.nextInt(100);
 					if(suiji < 30) {
-						driver.findElementByXPath("//*[@id=\"question-5235\"]/div[2]/div[3]/button[2]"); //yes 寮筼ffer
+						driver.findElementByXPath("//*[@id=\"question-5235\"]/div[2]/div[3]/button[2]").click(); //yes 寮筼ffer
 					} else {
-						driver.findElementByXPath("//*[@id=\"question-5235\"]/div[2]/div[3]/button[1]");
+						driver.findElementByXPath("//*[@id=\"question-5235\"]/div[2]/div[3]/button[1]").click();
 					}
 					System.out.println("yes - {} " +  as);
 					Thread.sleep(10000);
@@ -360,14 +391,52 @@ public class AuCj3Handler {
 				try {
 					suiji = random.nextInt(100);
 					if(suiji < 30) {
-						driver.findElementByXPath("//*[@id=\"question-6423\"]/div[2]/div[2]/button[2]"); //yes 寮筼ffer
+						driver.findElementByXPath("//*[@id=\"question-6423\"]/div[2]/div[2]/button[2]").click(); //yes 寮筼ffer
 					} else {
-						driver.findElementByXPath("//*[@id=\"question-6423\"]/div[2]/div[2]/button[1]");
+						driver.findElementByXPath("//*[@id=\"question-6423\"]/div[2]/div[2]/button[1]").click();
 					}
 					System.out.println("yes - {} " +  as);
 					Thread.sleep(10000);
 					continue;
 				} catch (Exception e) {System.out.println("no - {} " +  as);}
+				as = "Thinking about buying a coffee machine for home?";
+				try {
+					suiji = random.nextInt(100);
+					if(suiji < 30) {
+						driver.findElementByXPath("//*[@id=\"question-7506\"]/div/div[2]/button[2]").click(); //yes 寮筼ffer
+					} else {
+						driver.findElementByXPath("//*[@id=\"question-7506\"]/div/div[2]/button[1]").click();
+					}
+					System.out.println("yes - {} " +  as);
+					Thread.sleep(10000);
+					continue;
+				} catch (Exception e) {System.out.println("no - {} " +  as);}
+				
+				as = "*****?";
+				try {
+					suiji = random.nextInt(100);
+					if(suiji < 30) {
+						driver.findElementByXPath("//*[@id=\"question-3577\"]/div[2]/div[3]/button[2]").click(); //yes 寮筼ffer
+					} else {
+						driver.findElementByXPath("//*[@id=\"question-3577\"]/div[2]/div[3]/button[1]").click();
+					}
+					System.out.println("yes - {} " +  as);
+					Thread.sleep(10000);
+					continue;
+				} catch (Exception e) {System.out.println("no - {} " +  as);}
+				as = "It’s your lucky day! You can get a FREE espresso coffee machine thanks to MyCino.";
+				try {
+					suiji = random.nextInt(100);
+					if(suiji < 30) {
+						driver.findElementByXPath("//*[@id=\"question-7507\"]/div[2]/div[3]/button[2]").click(); //yes 寮筼ffer
+					} else {
+						driver.findElementByXPath("//*[@id=\"question-7507\"]/div[2]/div[3]/button[1]").click();
+					}
+					System.out.println("yes - {} " +  as);
+					Thread.sleep(10000);
+					continue;
+				} catch (Exception e) {System.out.println("no - {} " +  as);}
+				
 			}
 			Thread.sleep(20000); //问卷调查结束，等待跳转页面
 			

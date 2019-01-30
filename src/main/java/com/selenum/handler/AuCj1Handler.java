@@ -1,6 +1,7 @@
 package com.selenum.handler;
 
 import java.util.Random;
+import java.util.Scanner;
 import java.util.Set;
 
 import org.openqa.selenium.By;
@@ -30,12 +31,19 @@ public class AuCj1Handler {
 			driver.get(offerUrl);
 			driver.manage().deleteAllCookies();
 			
-			
-			driver.findElement(By.xpath("//*[@id='page-intro']/div[2]/div/div[2]/label[" + getNumber(3) + "]")).click(); //选颜色
+			try {
+				driver.findElement(By.xpath("//*[@id='page-intro']/div[1]/div/div[2]/label[" + getNumber(4) + "]")).click(); //选颜色
+			} catch (Exception e) {
+				driver.findElement(By.xpath("//*[@id='page-intro']/div[2]/div/div[2]/label[" + getNumber(3) + "]")).click(); //选颜色
+			}
 			Thread.sleep(3000);
-			driver.findElement(By.xpath("//*[@id='page-intro']/div[3]/a")).click();
+			try {
+				
+				driver.findElement(By.xpath("//*[@id='page-intro']/div[2]/a")).click();
+			} catch (Exception e) {
+				driver.findElement(By.xpath("//*[@id='page-intro']/div[3]/a")).click();
+			}
 			Thread.sleep(5000);
-			
 			driver.findElement(By.xpath("//*[@id='page-basic']/div[2]/div[1]/div/label["+ getNumber(2) + "]/label")).click(); //性别
 			Thread.sleep(3000);
 			driver.findElement(By.xpath("//*[@id='fieldFirstname']")).sendKeys(data.getFirstName()); //名
@@ -56,7 +64,6 @@ public class AuCj1Handler {
 			Thread.sleep(3000);
 			fieldYear.selectByVisibleText(data.getBirthYear());
 			Thread.sleep(3000);
-			
 			driver.findElement(By.xpath("//*[@id='fieldAgree1']/div/label/label/label")).click(); //同意选项
 			Thread.sleep(3000);
 			driver.findElement(By.xpath("//*[@id='form-basic-button']")).click(); //下一步
@@ -86,14 +93,15 @@ public class AuCj1Handler {
 			driver.findElement(By.xpath("//*[@id='page-address']/div[2]/div[7]/div/label/span")).click();
 			Thread.sleep(3000);
 			try {
-				driver.findElementByXPath("//*[@id=\"page-address\"]/div[2]/div[9]/div/label/label").click();
+				driver.findElementByXPath("//*[@id='page-address']/div[2]/div[9]/div/label/label").click();
 			} catch (Exception e) {
-				driver.findElementByXPath("//*[@id='page-address']/div[2]/div[8]/div/label/label/label").click();
+				try {
+					driver.findElementByXPath("//*[@id='page-address']/div[2]/div[8]/div/label/label/label").click();
+				} catch (Exception e2) {}
 			}
 			Thread.sleep(3000);
 			driver.findElementByXPath("//*[@id='page-address']/a").click();
 			Thread.sleep(15000);
-			
 			if(b < 10) {
 				System.out.println("0%-10%提交完毕！");
 				return 1;
@@ -148,7 +156,9 @@ public class AuCj1Handler {
 				if(answer(driver, 14, getNumber(7)) == true) continue; //14
 				if(answer(driver, 15, getNumber(5)) == true) continue; //15 Do you gamble online?
 				if(answer(driver, 16, getNumber(18)) == true) continue; //16
+				if(answer(driver, 16, getNumber(6)) == true) continue; //16
 				if(answer(driver, 17, getNumber(9)) == true) continue; //17
+				if(answer(driver, 17, getNumber(5)) == true) continue; //17
 				if(answer(driver, 18, 5) == true) {
 					if(b >= 30 & b < 40){
 						System.out.println("30%-40%提交完毕！");
@@ -188,7 +198,6 @@ public class AuCj1Handler {
 			
 			System.out.println("完成问卷调查！点击next进行下一步！");
 			driver.findElement(By.id("next")).click();//完成进度条
-			 
 			Thread.sleep(10000);
 			//跳转新offer 做浏览操作
 			scoll(driver);
@@ -201,6 +210,7 @@ public class AuCj1Handler {
 			
 	   } catch(Exception e) {
 		   e.printStackTrace();
+		   Thread.sleep(6000);
 		   return 3;
 	   }
 	}
@@ -213,7 +223,7 @@ public class AuCj1Handler {
 		Integer next = 5;
 		next = r.nextInt(11);
 		try {
-			try {							                    //*[@id="coregs"]/div[7]/div[1]/div/div/label[1]/span
+			try {							             
 				driver.findElement(By.xpath("//*[@id='coregs']/div[" + question +"]/div/div/div/label[" + number +"]/input")).click();
 			} catch (Exception e) {
 				try {
@@ -247,7 +257,6 @@ public class AuCj1Handler {
 	}
 	
 	public static void end_answer(ChromeDriver driver) throws NumberFormatException, InterruptedException  {
-		
 		try {
 			driver.findElement(By.xpath("//*[@id='panel17']/div/div/div/div/div/div/div/div[" + getNumber(2) + "]/button")).click();
 			return;
@@ -264,7 +273,7 @@ public class AuCj1Handler {
 		} catch (Exception e) { }
 		
 		try {
-			driver.findElement(By.xpath("//*[@id='panel316']/div/div/div/div/div/div/div/div["+ getNumber(2) + "]")).click();
+			driver.findElement(By.xpath("//*[@id='panel316']/div/div/div/div/div/div/div/div["+ getNumber(2) + "]/button")).click();
 			return;
 		} catch (Exception e) { }
 		

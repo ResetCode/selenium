@@ -55,22 +55,22 @@ public class AuCjController {
 	
 	private static String prevIP = null;
 	
-	private static String defaultIP = "106.120.89.26";
-	private final static String driverPath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\chromedriver.exe";
-	private final static String proxyToolPath = "C:\\Users\\lyx-pc-0018\\Desktop\\911S5 2018-05-23\\911S5 2018-05-23 fixed\\ProxyTool\\AutoProxyTool.exe";
-	private final static String au_filePath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\au_data.xlsx";
-	private final static String ipPath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\ip.html";
-	private final static String wishPath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\au_wish.txt";
-	private final static String winPath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\au_win.txt";
+//	private static String defaultIP = "106.120.89.26";
+//	private final static String driverPath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\chromedriver.exe";
+//	private final static String proxyToolPath = "C:\\Users\\lyx-pc-0018\\Desktop\\911S5 2018-05-23\\911S5 2018-05-23 fixed\\ProxyTool\\AutoProxyTool.exe";
+//	private final static String au_filePath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\au_data.xlsx";
+//	private final static String ipPath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\ip.html";
+//	private final static String wishPath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\au_wish.txt";
+//	private final static String winPath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\au_win.txt";
 
 	//家
-//	private static String defaultIP = "111.194.47.123";
-//	private final static String driverPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\chromedriver.exe";
-//	private final static String proxyToolPath = "E:\\911S5 2018-09-10\\ProxyTool\\AutoProxyTool.exe";
-//	private final static String au_filePath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\au_data.xlsx";
-//	private final static String ipPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\ip.html";
-//	private final static String wishPath = "E:\\workspace\\Java\\selenium\\selenium\\src\\main\\resources\\au_wish.txt";
-//	private final static String winPath = "E:\\workspace\\Java\\selenium\\selenium\\src\\main\\resources\\au_win.txt";
+	private static String defaultIP = "111.194.49.144";
+	private final static String driverPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\chromedriver.exe";
+	private final static String proxyToolPath = "E:\\911S5 2018-09-10\\ProxyTool\\AutoProxyTool.exe";
+	private final static String au_filePath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\au_data.xlsx";
+	private final static String ipPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\ip.html";
+	private final static String wishPath = "E:\\workspace\\Java\\selenium\\selenium\\src\\main\\resources\\au_wish.txt";
+	private final static String winPath = "E:\\workspace\\Java\\selenium\\selenium\\src\\main\\resources\\au_win.txt";
 	
 	//meow 
 //	private static String defaultIP = "14.156.26.55";
@@ -85,9 +85,13 @@ public class AuCjController {
 	private final static Map<String, String> stateMap = Maps.newHashMap(); 
 	
 	static  {
-		auofferList.add("http://track.comgrate.com/click.php?c=14&key=jd4bc580r023re7l02w5a9qq");
-		auofferList.add("http://track.comgrate.com/click.php?c=15&key=97s1oug757shhp98g78mu7yi");
-		auofferList.add("http://track.comgrate.com/click.php?c=16&key=chqt7ald289w1gs41qq0chm4");
+//		auofferList.add("http://track.comgrate.com/click.php?c=17&key=839boky2b65dz7683774oqc9");
+//		auofferList.add("http://track.comgrate.com/click.php?c=18&key=cku7kb3q5e5v64atzc5sm58t");
+//		auofferList.add("http://track.comgrate.com/click.php?c=16&key=chqt7ald289w1gs41qq0chm4");
+		
+		auofferList.add("http://track.comgrate.com/click.php?c=43&key=3ua4lez0m6e73rwwkc2mo4jq");
+		auofferList.add("http://track.comgrate.com/click.php?c=21&key=11l4t5q0lub41z41une7jjdr");
+		auofferList.add("http://track.comgrate.com/click.php?c=42&key=44c1velq49mws5d22beq19ka");
 		
 		stateMap.put("New South Wales", "NSW");
 		stateMap.put("Victoria", "Vic");
