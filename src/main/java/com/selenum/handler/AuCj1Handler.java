@@ -148,6 +148,13 @@ public class AuCj1Handler {
 					}
 					continue;
 				} //8
+				if(answer(driver, 8, getNumber(5)) == true) {
+					if(b >= 25 & b < 30){
+						System.out.println("25%-30%提交完毕！");
+						return 1;
+					}
+					continue;
+				} //8
 				if(answer(driver, 9, getNumber(5)) == true) continue; //9
 				if(answer(driver, 10, getNumber(2)) == true) continue; //10
 				if(answer(driver, 11, getNumber(4)) == true) continue; //11
