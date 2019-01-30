@@ -138,6 +138,9 @@ public class AuCj3Handler {
 				if(firstAnswer.contains("The Bus") == true) {
 					firstLabel = 1;
 					System.out.println("问卷调查检测第一题为 校车问答！答案选择为 {}" +  firstLabel);
+				} else if(firstAnswer.contains("The School Bus") == true) {
+					firstLabel = 2;
+					System.out.println("问卷调查检测第一题为 校车问答！答案选择为 {}" +  firstLabel);
 				} else {
 					firstLabel = 2;
 					System.out.println("问卷调查检测第一题为 圣诞老人！答案选择为 {}" +  firstLabel);
