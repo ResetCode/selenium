@@ -249,6 +249,7 @@ public class AuCj2Handler {
 					}
 					continue;
 				} 
+				if(answer(driver, 1299, getNumberHas0(2))) continue;
 
 			}
 			
