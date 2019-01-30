@@ -164,8 +164,8 @@ public class AuCj1Handler {
 				if(answer(driver, 15, getNumber(5)) == true) continue; //15 Do you gamble online?
 				if(answer(driver, 16, getNumber(18)) == true) continue; //16
 				if(answer(driver, 16, getNumber(6)) == true) continue; //16
-				if(answer(driver, 17, getNumber(9)) == true) continue; //17
 				if(answer(driver, 17, 5) == true) continue; //17
+//				if(answer(driver, 17, getNumber(9)) == true) continue; //17
 				if(answer(driver, 18, 5) == true) {
 					if(b >= 30 & b < 40){
 						System.out.println("30%-40%提交完毕！");
