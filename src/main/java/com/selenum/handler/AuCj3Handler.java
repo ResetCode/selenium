@@ -134,11 +134,12 @@ public class AuCj3Handler {
 						return driver.findElement(By.xpath("//*[@id=\"question-374\"]/div/ul/li[1]/label/span"));
 					}
 				}).getText();
+				String sencodAnswer = driver.findElement(By.xpath("//*[@id=\"question-374\"]/div/ul/li[2]/label/span")).getText();
 				Integer firstLabel = 0;
 				if(firstAnswer.contains("The Bus") == true) {
 					firstLabel = 1;
 					System.out.println("问卷调查检测第一题为 校车问答！答案选择为 {}" +  firstLabel);
-				} else if(firstAnswer.contains("The School Bus") == true) {
+				} else if(sencodAnswer.contains("The School Bus") == true) {
 					firstLabel = 2;
 					System.out.println("问卷调查检测第一题为 校车问答！答案选择为 {}" +  firstLabel);
 				} else {
