@@ -10,7 +10,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriver.TargetLocator;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.ClickAction;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -121,6 +120,17 @@ public class AuCj3Handler {
 			aboutHouseNumber = getNumberHas0(4);
 			aboutHouseSelect.selectByVisibleText(aboutHouse[aboutHouseNumber]);
 			Thread.sleep(3000);
+			Integer beforeSubmitNumber = getNumberHas0(6);
+			try {
+				String[] beforeSubmit = {"Pacific Islands" , "Europe" , "Alaska" , "NZ/ Australia","Asia","Other","Not interested"};
+				
+				new Select(driver.findElementByXPath("//*[@id=\"coreg-container\"]/div[3]/div/div/span/select")).selectByVisibleText(beforeSubmit[beforeSubmitNumber]);
+				Thread.sleep(3000);
+			} catch (Exception e) {
+				System.out.println("跳过手机号后一步选项！");
+				
+			}
+			
 			driver.findElementByXPath("//*[@id=\"coreg-container\"]/div[2]/label/div").click(); //确认复选框
 			Thread.sleep(3000);
 			driver.findElementByXPath("//*[@id=\"input2\"]/div[1]/div/div[2]/div[2]/div/div[5]/div/button").click();
@@ -214,6 +224,20 @@ public class AuCj3Handler {
 					continue;
 				} catch (Exception e) {System.out.println("no - {} " +  as);}
 				
+				as = "Receive an e-mail with a 15% off voucher from Princess Polly";
+				try {
+					Select electricitySelect = new Select(driver.findElementByXPath("//*[@id=\"question-3533\"]/div[2]/div[3]/select"));
+					RangeMap<Integer, String> rangeMap = TreeRangeMap.create();
+					rangeMap.put(Range.openClosed(0, 100), "Clothes"); //100
+					rangeMap.put(Range.openClosed(100, 190), "Accessories"); //90
+					rangeMap.put(Range.openClosed(190, 270), "Beauty"); //80
+					rangeMap.put(Range.openClosed(520, 540), "No thanks"); //20
+					electricitySelect.selectByVisibleText(rangeMap.get(random.nextInt(540)));
+					System.out.println("yes - {} " +  as);
+					Thread.sleep(10000);
+					continue;
+				} catch (Exception e) {System.out.println("no - {} " +  as);}
+				
 				
 				as = "//Do you pay the electricity bills in your household?";
 				try {
@@ -223,10 +247,25 @@ public class AuCj3Handler {
 					continue;
 				} catch (Exception e) {System.out.println("no - {} " +  as);}
 				
+				as = "Want access to the BEST DEALS on worldwide cruises & travel?";
+				try {
+					driver.findElementByXPath("//*[@id=\"question-3284\"]/div[2]/ul/li["+ (beforeSubmitNumber + 1) + "]/label/span").click(); //yes
+					System.out.println("yes - {} " +  as);
+					Thread.sleep(10000);
+					continue;
+				} catch (Exception e) {System.out.println("no - {} " +  as);}
+				
 				
 				as = "//We provide free legal services to Aboriginal communities and others in need across the Kimberley.";
 				try {
 					driver.findElementByXPath("//*[@id=\"question-7083\"]/div[2]/div[3]/button[1]").click(); //yes
+					System.out.println("yes - {} " +  as);
+					Thread.sleep(10000);
+					continue;
+				} catch (Exception e) {System.out.println("no - {} " +  as);}
+				as = "In Australia today a staggering 1.1 million children and young people are living in poverty. ";
+				try {
+					driver.findElementByXPath("//*[@id=\"question-3359\"]/div[2]/div[3]/button[1]").click(); //yes
 					System.out.println("yes - {} " +  as);
 					Thread.sleep(10000);
 					continue;
@@ -244,7 +283,6 @@ public class AuCj3Handler {
 					Thread.sleep(10000);
 					continue;
 				} catch (Exception e) {System.out.println("no - {} " +  as);}
-				
 				
 				as = "//What is your current housing situation?";
 				try {
@@ -440,7 +478,18 @@ public class AuCj3Handler {
 					Thread.sleep(10000);
 					continue;
 				} catch (Exception e) {System.out.println("no - {} " +  as);}
-				
+				as = "Thinking about buying a coffee machine for home?";
+				try {
+					suiji = random.nextInt(100);
+					if(suiji < 30) {
+						driver.findElementByXPath("//*[@id=\"question-7541\"]/div[2]/div[2]/button[2]").click(); //yes 寮筼ffer
+					} else {
+						driver.findElementByXPath("//*[@id=\"question-7541\"]/div[2]/div[2]/button[1]").click();
+					}
+					System.out.println("yes - {} " +  as);
+					Thread.sleep(10000);
+					continue;
+				} catch (Exception e) {System.out.println("no - {} " +  as);}
 			}
 			Thread.sleep(20000); //问卷调查结束，等待跳转页面
 			
