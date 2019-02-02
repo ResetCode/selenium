@@ -55,43 +55,37 @@ public class AuCjController {
 	
 	private static String prevIP = null;
 	
-//	private static String defaultIP = "106.120.89.26";
-//	private final static String driverPath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\chromedriver.exe";
-//	private final static String proxyToolPath = "C:\\Users\\lyx-pc-0018\\Desktop\\911S5 2018-05-23\\911S5 2018-05-23 fixed\\ProxyTool\\AutoProxyTool.exe";
-//	private final static String au_filePath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\au_data.xlsx";
-//	private final static String ipPath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\ip.html";
-//	private final static String wishPath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\au_wish.txt";
-//	private final static String winPath = "E:\\workspace\\selenium-master\\selenium\\src\\main\\resources\\au_win.txt";
-
 	//家
-	private static String defaultIP = "111.194.49.144";
-	private final static String driverPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\chromedriver.exe";
-	private final static String proxyToolPath = "E:\\911S5 2018-09-10\\ProxyTool\\AutoProxyTool.exe";
-	private final static String au_filePath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\au_data.xlsx";
-	private final static String ipPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\ip.html";
-	private final static String wishPath = "E:\\workspace\\Java\\selenium\\selenium\\src\\main\\resources\\au_wish.txt";
-	private final static String winPath = "E:\\workspace\\Java\\selenium\\selenium\\src\\main\\resources\\au_win.txt";
+//	private static String defaultIP = "111.194.49.144";
+//	private final static String driverPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\chromedriver.exe";
+//	private final static String proxyToolPath = "E:\\911S5 2018-09-10\\ProxyTool\\AutoProxyTool.exe";
+//	private final static String au_filePath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\au_data.xlsx";
+//	private final static String ipPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\ip.html";
+//	private final static String wishPath = "E:\\workspace\\Java\\selenium\\selenium\\src\\main\\resources\\au_wish.txt";
+//	private final static String winPath = "E:\\workspace\\Java\\selenium\\selenium\\src\\main\\resources\\au_win.txt";
 	
-	//meow 
-//	private static String defaultIP = "14.156.26.55";
+//	private static String defaultIP = "113.77.45.113";
 //	private final static String driverPath = "E:\\workspaces\\selenium\\src\\main\\resources\\chromedriver.exe";
-//	private final static String proxyToolPath = "C:\\Users\\Administrator\\Desktop\\911S5 2018-05-23\\911S5 2018-05-23 fixed\\ProxyTool\\AutoProxyTool.exe";
+//	private final static String proxyToolPath = "C:\\Users\\Administrator.USER-20190127FQ\\Desktop\\911S5+2018-0910\\911S5 2018-0910\\ProxyTool\\AutoProxyTool.exe";
 //	private final static String au_filePath = "E:\\workspaces\\selenium\\src\\main\\resources\\au_data.xlsx";
 //	private final static String ipPath = "E:\\workspaces\\selenium\\src\\main\\resources\\ip.html";
 //	private final static String wishPath = "E:\\workspaces\\selenium\\src\\main\\resources\\au_wish.txt";
-//	private final static String winPath = "E:\\workspaces\\selenium\\selenium\\src\\main\\resources\\au_win.txt";
+//	private final static String winPath = "E:\\workspaces\\selenium\\src\\main\\resources\\au_win.txt";
+	
+	private static String defaultIP = "183.22.35.81";
+	private final static String driverPath = "D:\\workspaces\\workspaces\\selenium\\src\\main\\resources\\chromedriver.exe";
+	private final static String proxyToolPath = "C:\\Users\\Administrator.USER-20190131AX\\Desktop\\911S5+2018-0910\\911S5 2018-0910\\ProxyTool\\AutoProxyTool.exe";
+	private final static String au_filePath = "D:\\workspaces\\workspaces\\selenium\\src\\main\\resources\\au_data.xlsx";
+	private final static String ipPath = "D:\\workspaces\\workspaces\\selenium\\src\\main\\resources\\ip.html";
+	private final static String wishPath = "D:\\workspaces\\workspaces\\selenium\\src\\main\\resources\\au_wish.txt";
+	private final static String winPath = "D:\\workspaces\\workspaces\\selenium\\src\\main\\resources\\au_win.txt";
+	
 	
 	private final static List<String> auofferList = Lists.newArrayList();
 	private final static Map<String, String> stateMap = Maps.newHashMap(); 
 	
 	static  {
-//		auofferList.add("http://track.comgrate.com/click.php?c=17&key=839boky2b65dz7683774oqc9");
-//		auofferList.add("http://track.comgrate.com/click.php?c=18&key=cku7kb3q5e5v64atzc5sm58t");
-//		auofferList.add("http://track.comgrate.com/click.php?c=16&key=chqt7ald289w1gs41qq0chm4");
-		
 		auofferList.add("http://track.comgrate.com/click.php?c=43&key=3ua4lez0m6e73rwwkc2mo4jq");
-		auofferList.add("http://track.comgrate.com/click.php?c=21&key=11l4t5q0lub41z41une7jjdr");
-		auofferList.add("http://track.comgrate.com/click.php?c=42&key=44c1velq49mws5d22beq19ka");
 		
 		stateMap.put("New South Wales", "NSW");
 		stateMap.put("Victoria", "Vic");
@@ -207,7 +201,7 @@ public class AuCjController {
 		resultBuffer.append(",").append(result2);
 		resultBuffer.append(",").append(result3);
 		auDataMapper.updateStatusById(resultBuffer.toString(), data.getId(), new Date(), auofferList.get(offerIndex) + "," + auofferList.get(offerIndex2) + "," + auofferList.get(offerIndex3));
-
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		return JsonResult.success(null, "执行结束时间：" + sdf.format(new Date()));
 	}
