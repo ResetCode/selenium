@@ -108,13 +108,14 @@ public class AuCj1Handler {
 			}
 			
 			//开始问卷
-			for(int i=1; i < 20; i++) {
+			for(int i=1; i < 25; i++) {
 				
 				String question = "";
 				try {//*[@id="coregs"]/div[21]/p
 					question = driver.findElementByXPath("//*[@id='coregs']/div[" + i + "]/p").getText();
 				} catch (Exception e) {
 					System.err.println("调查问卷结束！");
+					break;
 				}
 				
 				String question1 = "Want access to the BEST DEALS on worldwide cruises & travel? Simply select where in the world you would like to travel and Cruise Megastore will call you back with an unbelievable offer! Plus receive a FREE $100 cruise voucher.";
