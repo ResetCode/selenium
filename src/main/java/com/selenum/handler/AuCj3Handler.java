@@ -64,7 +64,7 @@ public class AuCj3Handler {
 			Integer sex = 1; 
 			if(data.getName().equals("f")) {
 				sex = 2;
-			} 
+			} 						  
 			driver.findElementByXPath("//*[@id='input1']/div[1]/div/div[2]/div[2]/div/div[1]/div/label[" + sex + "]/label ").click();
 			driver.findElementByXPath("//*[@id='first-name']").sendKeys(data.getFirstName());
 			driver.findElementByXPath("//*[@id='last-name']").sendKeys(data.getLastName());

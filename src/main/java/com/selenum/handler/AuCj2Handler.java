@@ -23,6 +23,49 @@ public class AuCj2Handler {
 			Thread.sleep(30000);
 			
 			try {
+				driver.findElementByXPath("//*[@id=\"question0\"]/div[2]/div").click();
+				Thread.sleep(3000);
+				Integer number = getNumber(4) + 1;
+				driver.findElementByXPath("//*[@id=\"question1\"]/div[" + number + "]/div").click();
+				Thread.sleep(3000);
+				
+				number = getNumber(4) + 1;
+				driver.findElementByXPath("//*[@id=\"question2\"]/div[" + number + "]/div").click();
+				Thread.sleep(3000);
+				
+				number = getNumber(3) + 1;
+				driver.findElementByXPath("//*[@id=\"question2\"]/div[" + number + "]/div").click();
+				Thread.sleep(10000);
+				driver.findElementByXPath("//*[@id=\"checking_result\"]/div[2]/div").click();
+				Thread.sleep(20000);
+				
+			} catch (Exception e) {
+				System.out.println("跳过问卷4道题！");
+			}
+			
+			try {
+				driver.findElementByXPath("//*[@id=\"question0\"]/div[2]/div").click();
+				Thread.sleep(3000);
+				Integer number = getNumber(2) + 1;
+				driver.findElementByXPath("//*[@id=\"question1\"]/div[" + number + "]/div").click();
+				Thread.sleep(3000);
+				
+				number = getNumber(4) + 1;
+				driver.findElementByXPath("//*[@id=\"question2\"]/div[" + number + "]/div").click();
+				Thread.sleep(10000);
+				driver.findElementByXPath("//*[@id=\"checking_result\"]/div[2]/div").click();
+				Thread.sleep(20000);
+				
+				driver.findElementByXPath("//*[@id='c_pic_" + getNumber(4) +"_text']/span").click();
+				Thread.sleep(3000);
+				driver.findElementByXPath("//*[@id='prize_picker']/div[3]/div[2]/div[4]/button").click();
+				Thread.sleep(3000);
+				
+			} catch (Exception e) {
+				System.out.println("跳过问卷3道题！");
+			}
+			
+			try {
 				driver.findElementByXPath("//*[@id=\"question_1\"]/button["+ getNumber(4) +"]").click();
 				Thread.sleep(3000);
 				driver.findElementByXPath("//*[@id=\"question_2\"]/button["+ getNumber(4) +"]").click();
@@ -48,7 +91,9 @@ public class AuCj2Handler {
 			} catch (Exception e) {
 				System.out.println("跳过心愿单！");
 			}
-
+			
+			
+			////////正式开始///////
 			if(data.getName().equals("f")) {//sex
 				JavascriptExecutor js = ((JavascriptExecutor) driver);
 				String jsCode = "document.getElementById('gender_f').click();";
