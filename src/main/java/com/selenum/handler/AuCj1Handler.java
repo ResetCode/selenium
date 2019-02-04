@@ -1,7 +1,6 @@
 package com.selenum.handler;
 
 import java.util.Random;
-import java.util.Scanner;
 import java.util.Set;
 
 import org.openqa.selenium.By;
@@ -15,6 +14,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.selenum.model.AuData;
+import com.selenum.model.AuWish;
 
 /**
  * 模板一
@@ -22,7 +22,7 @@ import com.selenum.model.AuData;
  */
 public class AuCj1Handler {
 
-	public static int handle(AuData data, ChromeDriver driver, String offerUrl) throws InterruptedException {
+	public static int handle(AuData data, ChromeDriver driver, String offerUrl,AuWish wish0) throws InterruptedException {
 		Random r = new Random();
 		int b = r.nextInt(101);
 		
@@ -108,18 +108,131 @@ public class AuCj1Handler {
 			}
 			
 			//开始问卷
-			for(int i=0; i < 20; i++) {
-			
-				if(answer(driver, 1, getNumber(7)) == true) {
+			for(int i=1; i < 20; i++) {
+				
+				String question = "";
+				try {//*[@id="coregs"]/div[21]/p
+					question = driver.findElementByXPath("//*[@id='coregs']/div[" + i + "]/p").getText();
+				} catch (Exception e) {
+					System.err.println("调查问卷结束！");
+				}
+				
+				String question1 = "Want access to the BEST DEALS on worldwide cruises & travel? Simply select where in the world you would like to travel and Cruise Megastore will call you back with an unbelievable offer! Plus receive a FREE $100 cruise voucher.";
+				String question2 = "Get more of what you love in 2019 with Foxtel. Save $40* a month for 12mths on Platinum HD with no iQ4 set up costs. Click yes to receive a call, SMS & email.";
+				String question3 = "Would you consider supporting any of the following organisations?";
+				String question4 = "What is your annual income?";
+				String question5 = "Select any of the following organisations you would consider supporting";
+				String question6 = "Join Kogan.com Ltd now to receive exclusive deals on electronics, appliances, homewares, fashion & more!";
+				String question7 = "Tick YES to get your daily horoscope.";
+				String question8 = "Do you have a cat or dog at home?";
+				String question9 = "Please select your current retailer;";
+				String question10 = "Who is your current Broadband provider?";
+				String question11 = "Which of these Insurance Products do you already have?";
+				String question12 = "Are you interested in meeting new people via online dating?";
+				String question13 = "What time would work best for you to receive a call?";
+				String question14 = "Are you interested in solar energy?";
+				String question15 = "Do you own a car?";
+				String question16 = "When did you last buy a lottery ticket?";
+				String question17 = "Do you gamble online?";
+				String question18 = "Do you have an eligible life or income protection policy with any of the following:";
+				String question19 = "Choose the category you're most interested in to sign up to our newsletter and you will automatically enter for a chance to win the upcoming iPhone 7 when it’s released!";
+				String question20 = "What is the outcome of the following calculation: 2 + 3 = ?";
+				String question21 = "Complete the survey by telling us why you should win in 25 words or less:";
+				
+				Integer optionsNumber = 0;
+				if(question.contains(question1)) {
+					optionsNumber = getNumber(8);
+				}
+				if(question.contains(question2)) {
+					optionsNumber = getNumber(2);
+				}
+				if(question.contains(question3)) {
+					optionsNumber = getNumber(7);
+				}
+				if(question.contains(question4)) {
+					optionsNumber = getNumber(7);
+				}
+				if(question.contains(question5)) {
+					optionsNumber = getNumber(6);
+				}
+				if(question.contains(question6)) {
+					optionsNumber = getNumber(2);
+				}
+				if(question.contains(question7)) {
+					optionsNumber = getNumber(2);
+				}
+				if(question.contains(question8)) {
+					optionsNumber = getNumber(5);
+				}
+				if(question.contains(question9)) {
+					optionsNumber = getNumber(23);
+				}
+				if(question.contains(question10)) {
+					optionsNumber = getNumber(14);
+				}
+				if(question.contains(question11)) {
+					optionsNumber = getNumber(5);
+				}
+				if(question.contains(question12)) {
+					optionsNumber = getNumber(2);
+				}
+				if(question.contains(question13)) {
+					optionsNumber = getNumber(4);
+				}
+				if(question.contains(question14)) {
+					optionsNumber = getNumber(2);
+				}
+				if(question.contains(question15)) {
+					optionsNumber = getNumber(2);
+				}
+				if(question.contains(question16)) {
+					optionsNumber = getNumber(7);
+				}
+				if(question.contains(question17)) {
+					optionsNumber = getNumber(5);
+				}
+				if(question.contains(question18)) {
+					optionsNumber = getNumber(18);
+				}
+				if(question.contains(question19)) {
+					optionsNumber = getNumber(9);
+				}
+				if(question.contains(question20)) {
+					optionsNumber = 5;
+				}
+				if(question.contains(question21)) {
+					
+					Integer wishNumber = getNumber(2);
+					if(wishNumber == 1) {
+						driver.findElementByXPath("//*[@id=\"skill-question-send\"]").click();
+					} else {
+						driver.findElementByXPath("//*[@id=\"skill_question\"]").sendKeys(wish0.getContent());
+						wish0.setUseStatus("1");
+						Thread.sleep(3000);
+						driver.findElementByXPath("//*[@id=\"coregs\"]/div[21]/div/a[1]").click();
+						Thread.sleep(5000);
+					}
+				}
+				
+				if(answer(driver, i, optionsNumber) == true) {
 					if(b >= 10 & b < 15){
 						System.out.println("10%-15%提交完毕！");
 						return 1;
 					}
+					if(b >= 25 & b < 30){
+						System.out.println("25%-30%提交完毕！");
+						return 1;
+					}
+					if(b >= 30 & b < 40){
+						System.out.println("30%-40%提交完毕！");
+						return 1;
+					}
+					if(b >= 40 & b < 60){
+						System.out.println("40%-60%提交完毕！");
+						return 1;
+					}
 					continue;
-				} //1
-				
-				if(answer(driver, 2, getNumber(7)) == true) continue; //2
-				
+				}
 				try {
 					driver.findElementByXPath("/html/body/main/div/div[1]/div[2]/div/div[4]/div[3]/div[3]/div/div/a["+ getNumber(2) + "]").click(); //3
 					System.out.println("检测问题成功，问题是第3道题！");
@@ -130,49 +243,6 @@ public class AuCj1Handler {
 					}
 					continue;
 				} catch (Exception e) {}
-				if(answer(driver, 4, getNumber(5)) == true) continue; //4
-				if(answer(driver, 4, getNumber(2)) == true) continue; //4
-				if(answer(driver, 5, 1) == true) {
-					if(b >= 20 & b < 25){
-						System.out.println("20%-25%提交完毕！");
-						return 1;
-					}
-					continue;
-				} //5  //此选项必须为1
-				if(answer(driver, 6, getNumber(5)) == true) continue; //6  Do you have a cat or dog at home?
-				if(answer(driver, 7, getNumber(23)) == true) continue; //7
-				if(answer(driver, 8, getNumber(14)) == true) {
-					if(b >= 25 & b < 30){
-						System.out.println("25%-30%提交完毕！");
-						return 1;
-					}
-					continue;
-				} //8
-				if(answer(driver, 8, getNumber(5)) == true) {
-					if(b >= 25 & b < 30){
-						System.out.println("25%-30%提交完毕！");
-						return 1;
-					}
-					continue;
-				} //8
-				if(answer(driver, 9, getNumber(5)) == true) continue; //9
-				if(answer(driver, 10, getNumber(2)) == true) continue; //10
-				if(answer(driver, 11, getNumber(4)) == true) continue; //11
-				if(answer(driver, 12, getNumber(2)) == true) continue; //12
-				if(answer(driver, 13, getNumber(2)) == true) continue; //13 Do you own a car?
-				if(answer(driver, 14, getNumber(7)) == true) continue; //14
-				if(answer(driver, 15, getNumber(5)) == true) continue; //15 Do you gamble online?
-				if(answer(driver, 16, getNumber(18)) == true) continue; //16
-				if(answer(driver, 16, getNumber(6)) == true) continue; //16
-				if(answer(driver, 17, 5) == true) continue; //17
-//				if(answer(driver, 17, getNumber(9)) == true) continue; //17
-				if(answer(driver, 18, 5) == true) {
-					if(b >= 30 & b < 40){
-						System.out.println("30%-40%提交完毕！");
-						return 1;
-					}
-					continue;
-				} //18
 			}
 			
 			for(int j=0; j <= 15; j++) {

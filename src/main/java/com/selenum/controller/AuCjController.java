@@ -56,13 +56,13 @@ public class AuCjController {
 	private static String prevIP = null;
 	
 	//家
-//	private static String defaultIP = "111.194.49.144";
-//	private final static String driverPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\chromedriver.exe";
-//	private final static String proxyToolPath = "E:\\911S5 2018-09-10\\ProxyTool\\AutoProxyTool.exe";
-//	private final static String au_filePath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\au_data.xlsx";
-//	private final static String ipPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\ip.html";
-//	private final static String wishPath = "E:\\workspace\\Java\\selenium\\selenium\\src\\main\\resources\\au_wish.txt";
-//	private final static String winPath = "E:\\workspace\\Java\\selenium\\selenium\\src\\main\\resources\\au_win.txt";
+	private static String defaultIP = "111.194.49.144";
+	private final static String driverPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\chromedriver.exe";
+	private final static String proxyToolPath = "E:\\911S5 2018-09-10\\ProxyTool\\AutoProxyTool.exe";
+	private final static String au_filePath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\au_data.xlsx";
+	private final static String ipPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\ip.html";
+	private final static String wishPath = "E:\\workspace\\Java\\selenium\\selenium\\src\\main\\resources\\au_wish.txt";
+	private final static String winPath = "E:\\workspace\\Java\\selenium\\selenium\\src\\main\\resources\\au_win.txt";
 	
 //	private static String defaultIP = "113.77.45.113";
 //	private final static String driverPath = "E:\\workspaces\\selenium\\src\\main\\resources\\chromedriver.exe";
@@ -72,13 +72,13 @@ public class AuCjController {
 //	private final static String wishPath = "E:\\workspaces\\selenium\\src\\main\\resources\\au_wish.txt";
 //	private final static String winPath = "E:\\workspaces\\selenium\\src\\main\\resources\\au_win.txt";
 	
-	private static String defaultIP = "183.22.35.81";
-	private final static String driverPath = "D:\\workspaces\\workspaces\\selenium\\src\\main\\resources\\chromedriver.exe";
-	private final static String proxyToolPath = "C:\\Users\\Administrator.USER-20190131AX\\Desktop\\911S5+2018-0910\\911S5 2018-0910\\ProxyTool\\AutoProxyTool.exe";
-	private final static String au_filePath = "D:\\workspaces\\workspaces\\selenium\\src\\main\\resources\\au_data.xlsx";
-	private final static String ipPath = "D:\\workspaces\\workspaces\\selenium\\src\\main\\resources\\ip.html";
-	private final static String wishPath = "D:\\workspaces\\workspaces\\selenium\\src\\main\\resources\\au_wish.txt";
-	private final static String winPath = "D:\\workspaces\\workspaces\\selenium\\src\\main\\resources\\au_win.txt";
+//	private static String defaultIP = "183.22.35.81";
+//	private final static String driverPath = "D:\\workspaces\\workspaces\\selenium\\src\\main\\resources\\chromedriver.exe";
+//	private final static String proxyToolPath = "C:\\Users\\Administrator.USER-20190131AX\\Desktop\\911S5+2018-0910\\911S5 2018-0910\\ProxyTool\\AutoProxyTool.exe";
+//	private final static String au_filePath = "D:\\workspaces\\workspaces\\selenium\\src\\main\\resources\\au_data.xlsx";
+//	private final static String ipPath = "D:\\workspaces\\workspaces\\selenium\\src\\main\\resources\\ip.html";
+//	private final static String wishPath = "D:\\workspaces\\workspaces\\selenium\\src\\main\\resources\\au_wish.txt";
+//	private final static String winPath = "D:\\workspaces\\workspaces\\selenium\\src\\main\\resources\\au_win.txt";
 	
 	
 	private final static List<String> auofferList = Lists.newArrayList();
@@ -179,7 +179,8 @@ public class AuCjController {
 //		data.setState(stateMap.get(state));
 
 		//执行脚本1
-		int result = AuCj1Handler.handle(data, driver, auofferList.get(offerIndex));
+		AuWish wish0 = wishDao.findOne(0);
+		int result = AuCj1Handler.handle(data, driver, auofferList.get(offerIndex), wish0);
 //		
 		//执行脚本3
 		AuWish wish1 = wishDao.findOne(1);
@@ -188,7 +189,6 @@ public class AuCjController {
 		wishDao.update(wish1);
 		
 		//执行脚本2
-		AuWish wish0 = wishDao.findOne(0);
 		int result2 = AuCj2Handler.handle(data, driver, auofferList.get(offerIndex2), wish0);
 		//标识wish被使用
 		wishDao.update(wish0);
