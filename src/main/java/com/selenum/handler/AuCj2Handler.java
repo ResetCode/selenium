@@ -368,13 +368,12 @@ public class AuCj2Handler {
 			System.err.println("题为："+ question + "随机数为：" + number);
 			Thread.sleep(Integer.valueOf(next.toString() + "000"));
 			return true;
-		} catch (Exception e) {
-		}
-		try {//*[@id="coreg-inner-1300"]/div[2]/div/label[1]
+		} catch (Exception e) {}
+		try {
 			driver.findElementByXPath("//*[@id='coreg-inner-"+ question +"']/div[2]/div/label[" + number + "]").click();
 			System.err.println("题为："+ question + "随机数为：" + number);
-			Thread.sleep(3000);
-			driver.findElementByXPath("//*[@id='submit_survey_multi_"+ question +"']");
+			Thread.sleep(3000);		   //*[@id="submit_survey_multi_1300"]
+			driver.findElementByXPath("//*[@id='submit_survey_multi_"+ question +"']").click();
 			Thread.sleep(Integer.valueOf(next.toString() + "000"));
 			return true;
 		} catch (Exception e4) { }
