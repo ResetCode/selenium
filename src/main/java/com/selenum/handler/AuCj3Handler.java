@@ -142,18 +142,25 @@ public class AuCj3Handler {
 			aboutHouseSelect.selectByVisibleText(aboutHouse[aboutHouseNumber]);
 			Thread.sleep(3000);
 			Integer beforeSubmitNumber = getNumberHas0(6);
+			String[] beforeSubmit = {"Pacific Islands" , "Europe" , "Alaska" , "NZ/ Australia","Asia","Other","Not interested"};
 			try {
-				String[] beforeSubmit = {"Pacific Islands" , "Europe" , "Alaska" , "NZ/ Australia","Asia","Other","Not interested"};
-				
 				new Select(driver.findElementByXPath("//*[@id=\"coreg-container\"]/div[3]/div/div/span/select")).selectByVisibleText(beforeSubmit[beforeSubmitNumber]);
 				Thread.sleep(3000);
 			} catch (Exception e) {
-				System.out.println("跳过手机号后一步选项！");
+				try {
+					new Select(driver.findElementByXPath("//*[@id=\"coreg-container\"]/div[2]/div/div/span/select")).selectByVisibleText(beforeSubmit[beforeSubmitNumber]);
+					Thread.sleep(3000);
+				} catch (Exception e2) {
+					System.out.println("未检测到手机号最后一步选项！");
+				}
 				
 			}
 			
-			driver.findElementByXPath("//*[@id=\"coreg-container\"]/div[2]/label/div").click(); //确认复选框
-			Thread.sleep(3000);
+			try {
+				driver.findElementByXPath("//*[@id=\"coreg-container\"]/div[2]/label/div").click(); //确认复选框
+				Thread.sleep(3000);
+			} catch (Exception e) {}
+			
 			driver.findElementByXPath("//*[@id=\"input2\"]/div[1]/div/div[2]/div[2]/div/div[5]/div/button").click();
 			Thread.sleep(20000); //资料填写完毕，开始回答调查问卷
 			
