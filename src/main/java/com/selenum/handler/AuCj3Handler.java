@@ -35,7 +35,7 @@ public class AuCj3Handler {
 			driver.get(offerUrl);
 			Thread.sleep(30000);
 			
-			try {
+			try {					       
 				driver.findElementByXPath("//*[@id=\"page1\"]/div[1]/div[1]/div[5]/button").click(); //let's do this right now
 				Thread.sleep(3000);
 				//How many times a week do you visit the supermarket?
@@ -47,6 +47,17 @@ public class AuCj3Handler {
 				Thread.sleep(10000); //回答完问题，等待跳转填写资料
 			} catch (Exception e) {
 				logger.info("跳过三题选项直接跳转填写资料！");
+			}
+			
+			try {
+				driver.findElementByXPath("//*[@id=\"page1\"]/div[1]/div/div[2]/div[2]/div[2]/div[1]/a["+ getNumber(2) + "]").click();
+				Thread.sleep(3000);
+				driver.findElementByXPath("//*[@id=\"page1\"]/div[1]/div/div[2]/div[2]/div[2]/div[2]/a["+ getNumber(2) +"]").click();
+				Thread.sleep(3000);
+				driver.findElementByXPath("//*[@id=\"page1\"]/div[1]/div/div[2]/div[2]/div[2]/div[3]/a["+ getNumber(2) +"]").click();
+				Thread.sleep(10000);
+			} catch (Exception e) {
+				System.out.println("跳转三道题选项直接填写资料！");
 			}
 			
 			try {
@@ -65,7 +76,11 @@ public class AuCj3Handler {
 			if(data.getName().equals("f")) {
 				sex = 2;
 			} 						  
-			driver.findElementByXPath("//*[@id='input1']/div[1]/div/div[2]/div[2]/div/div[1]/div/label[" + sex + "]/label ").click();
+			try {
+				driver.findElementByXPath("//*[@id='input1']/div/div/div[3]/div[2]/div[3]/div[1]/div/label[" + sex + "]/label").click();
+			} catch (Exception e) {
+				driver.findElementByXPath("//*[@id='input1']/div[1]/div/div[2]/div[2]/div/div[1]/div/label[" + sex + "]/label").click();
+			}
 			driver.findElementByXPath("//*[@id='first-name']").sendKeys(data.getFirstName());
 			driver.findElementByXPath("//*[@id='last-name']").sendKeys(data.getLastName());
 			driver.findElementByXPath("//*[@id='email']").sendKeys(data.getEmail());
@@ -76,8 +91,14 @@ public class AuCj3Handler {
 			Select selectYear = new Select(driver.findElementByXPath("//*[@id=\"bdate-year\"]"));
 			selectYear.selectByVisibleText(data.getBirthYear());
 			Thread.sleep(20000);
-			driver.findElementByXPath("//*[@id=\"input1\"]/div[1]/div/div[2]/div[2]/div/div[6]/div/button").click();
-			driver.findElementByXPath("//*[@id=\"input1\"]/div[1]/div/div[2]/div[2]/div/div[6]/div/button").click();
+									    
+			try {
+				driver.findElementByXPath("//*[@id=\"input1\"]/div/div/div[3]/div[2]/div[3]/div[6]/div/button").click();
+				driver.findElementByXPath("//*[@id=\"input1\"]/div/div/div[3]/div[2]/div[3]/div[6]/div/button").click();
+			} catch (Exception e) {
+				driver.findElementByXPath("//*[@id=\"input1\"]/div[1]/div/div[2]/div[2]/div/div[6]/div/button").click();
+				driver.findElementByXPath("//*[@id=\"input1\"]/div[1]/div/div[2]/div[2]/div/div[6]/div/button").click();
+			}
 			Thread.sleep(20000);
 			
 			
