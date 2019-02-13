@@ -98,6 +98,9 @@ public class AuCj1Handler {
 				try {
 					driver.findElementByXPath("//*[@id='page-address']/div[2]/div[8]/div/label/label/label").click();
 				} catch (Exception e2) {}
+				try {
+					driver.findElementByXPath("//*[@id=\"page-address\"]/div[2]/div[10]/div/label/label/label").click();
+				} catch (Exception e2) {}
 			}
 			Thread.sleep(3000);
 			driver.findElementByXPath("//*[@id='page-address']/a").click();
