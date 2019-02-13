@@ -245,6 +245,19 @@ public class AuCj3Handler {
 					continue;
 				} catch (Exception e) {System.out.println("no - {} " +  as);}
 				
+				as = "Do you enjoy a glass of wine occasionally?";
+				try {
+					if(suiji <= 30) {
+						driver.findElement(By.xpath("//*[@id=\"question-6494\"]/div[2]/div[2]/button[2]")).click();
+					} else {
+						driver.findElementByXPath("//*[@id=\"question-6494\"]/div[2]/div[2]/button[1]").click();
+					}
+					System.out.println("yes - {}" +  as );
+					Thread.sleep(10000);
+					continue;
+				} catch (Exception e) {System.out.println("no - {} " +  as);}
+						
+						
 				as = "Receive an e-mail with a 15% off voucher from Princess Polly";
 				try {
 					Select electricitySelect = new Select(driver.findElementByXPath("//*[@id=\"question-3533\"]/div[2]/div[3]/select"));

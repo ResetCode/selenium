@@ -30,18 +30,40 @@ public class AuCj1Handler {
 		try{
 			driver.get(offerUrl);
 			driver.manage().deleteAllCookies();
-			
 			try {
 				driver.findElement(By.xpath("//*[@id='page-intro']/div[1]/div/div[2]/label[" + getNumber(4) + "]")).click(); //选颜色
 			} catch (Exception e) {
-				driver.findElement(By.xpath("//*[@id='page-intro']/div[2]/div/div[2]/label[" + getNumber(3) + "]")).click(); //选颜色
+				try {
+					driver.findElement(By.xpath("//*[@id='page-intro']/div[2]/div/div[2]/label[" + getNumber(3) + "]")).click(); //选颜色
+				} catch (Exception e2) {
+					
+					//*[@id="page-intro"]/div/div/div[2]/ul/li[1]/label
+					//*[@id="page-intro"]/div/div/div[2]/ul/li[2]/label
+					
+					//*[@id="page-intro"]/div/div/div[3]/div/ul/li[1]/label
+					//*[@id="page-intro"]/div/div/div[3]/div/ul/li[14]/label
+					
+					//*[@id="page-intro"]/div/div/div[3]/div/ul/li[15]/label
+					//*[@id="page-intro"]/div/div/div[3]/div/ul/li[19]/label
+					Integer color = getNumber(19);
+					Integer tab = 1;
+					if(color > 14) {
+						tab = 2;
+					}
+					driver.findElementByXPath("//*[@id='page-intro']/div/div/div[2]/ul/li[" + getNumber(tab) + "]/label").click();
+					Thread.sleep(3000);
+					driver.findElementByXPath("//*[@id='page-intro']/div/div/div[3]/div/ul/li["+ color + "]/label").click();
+				}
 			}
 			Thread.sleep(3000);
 			try {
-				
 				driver.findElement(By.xpath("//*[@id='page-intro']/div[2]/a")).click();
 			} catch (Exception e) {
-				driver.findElement(By.xpath("//*[@id='page-intro']/div[3]/a")).click();
+				try {
+					driver.findElement(By.xpath("//*[@id='page-intro']/div[3]/a")).click();
+				} catch (Exception e2) {
+					driver.findElementByXPath("//*[@id='page-intro']/a").click();
+				}
 			}
 			Thread.sleep(5000);
 			driver.findElement(By.xpath("//*[@id='page-basic']/div[2]/div[1]/div/label["+ getNumber(2) + "]/label")).click(); //性别

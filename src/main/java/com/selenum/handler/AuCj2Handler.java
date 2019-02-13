@@ -34,7 +34,7 @@ public class AuCj2Handler {
 				Thread.sleep(3000);
 				
 				number = getNumber(3) + 1;
-				driver.findElementByXPath("//*[@id=\"question2\"]/div[" + number + "]/div").click();
+				driver.findElementByXPath("//*[@id=\"question3\"]/div[" + number + "]/div").click();
 				Thread.sleep(10000);
 				driver.findElementByXPath("//*[@id=\"checking_result\"]/div[2]/div").click();
 				Thread.sleep(20000);
@@ -297,6 +297,8 @@ public class AuCj2Handler {
 				if(answer(driver, 1295, getNumberHas0(2))) continue;
 				if(answer(driver, 1297, getNumberHas0(2))) continue;
 				if(answer(driver, 1299, getNumberHas0(2))) continue;
+				if(answer(driver, 1300, getNumberHas0(8))) continue;
+				if(answer(driver, 1307, getNumberHas0(2))) continue;
 
 			}
 			
@@ -365,7 +367,7 @@ public class AuCj2Handler {
 			return true;
 		} catch (Exception e) {
 		}
-		try {
+		try {//*[@id="coreg-inner-1300"]/div[2]/div/label[1]
 			driver.findElementByXPath("//*[@id='coreg-inner-"+ question +"']/div[2]/div/label[" + number + "]").click();
 			System.err.println("题为："+ question + "随机数为：" + number);
 			Thread.sleep(3000);
