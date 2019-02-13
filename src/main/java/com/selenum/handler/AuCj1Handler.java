@@ -147,12 +147,15 @@ public class AuCj1Handler {
 					break;
 				}
 				
-				String question1 = "Want access to the BEST DEALS on worldwide cruises & travel? Simply select where in the world you would like to travel and Cruise Megastore will call you back with an unbelievable offer! Plus receive a FREE $100 cruise voucher.";
-				String question2 = "Get more of what you love in 2019 with Foxtel. Save $40* a month for 12mths on Platinum HD with no iQ4 set up costs. Click yes to receive a call, SMS & email.";
+//				String question1 = "Want access to the BEST DEALS on worldwide cruises & travel? Simply select where in the world you would like to travel and Cruise Megastore will call you back with an unbelievable offer! Plus receive a FREE $100 cruise voucher.";
+				String question1 = "Want access to the BEST DEALS on worldwide cruises";
+//				String question2 = "Get more of what you love in 2019 with Foxtel. Save $40* a month for 12mths on Platinum HD with no iQ4 set up costs. Click yes to receive a call, SMS & email.";
+				String question2 = "Save $40* a month";
 				String question3 = "Would you consider supporting any of the following organisations?";
 				String question4 = "What is your annual income?";
 				String question5 = "Select any of the following organisations you would consider supporting";
-				String question6 = "Join Kogan.com Ltd now to receive exclusive deals on electronics, appliances, homewares, fashion & more!";
+				String question6 = "Join Kogan.com Ltd now to receive exclusive deals on electronics";
+//				String question6 = "Join Kogan.com Ltd now to receive exclusive deals on electronics, appliances, homewares, fashion & more!";
 				String question7 = "Tick YES to get your daily horoscope.";
 				String question8 = "Do you have a cat or dog at home?";
 				String question9 = "Please select your current retailer;";
@@ -164,10 +167,14 @@ public class AuCj1Handler {
 				String question15 = "Do you own a car?";
 				String question16 = "When did you last buy a lottery ticket?";
 				String question17 = "Do you gamble online?";
-				String question18 = "Do you have an eligible life or income protection policy with any of the following:";
-				String question19 = "Choose the category you're most interested in to sign up to our newsletter and you will automatically enter for a chance to win the upcoming iPhone 7 when it’s released!";
-				String question20 = "What is the outcome of the following calculation: 2 + 3 = ?";
-				String question21 = "Complete the survey by telling us why you should win in 25 words or less:";
+//				String question18 = "Do you have an eligible life or income protection policy with any of the following:";
+				String question18 = "Do you have an eligible life or income";
+				String question19 = "Choose the category you're most interested";
+//				String question19 = "Choose the category you're most interested in to sign up to our newsletter and you will automatically enter for a chance to win the upcoming iPhone 7 when it’s released!";
+//				String question20 = "What is the outcome of the following calculation: 2 + 3 = ?";
+				String question20 = "2 + 3";
+//				String question21 = "Complete the survey by telling us why you should win in 25 words or less:";
+				String question21 = "25 words or less:";
 				
 				Integer optionsNumber = 0;
 				if(question.contains(question1)) {
