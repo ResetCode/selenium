@@ -114,15 +114,19 @@ public class AuCj1Handler {
 			Thread.sleep(3000);
 			driver.findElement(By.xpath("//*[@id='page-address']/div[2]/div[7]/div/label/span")).click();
 			Thread.sleep(3000);
-			try {
+			try {						  
 				driver.findElementByXPath("//*[@id='page-address']/div[2]/div[9]/div/label/label").click();
 			} catch (Exception e) {
 				try {
 					driver.findElementByXPath("//*[@id='page-address']/div[2]/div[8]/div/label/label/label").click();
 				} catch (Exception e2) {}
-				try {
-					driver.findElementByXPath("//*[@id=\"page-address\"]/div[2]/div[10]/div/label/label/label").click();
-				} catch (Exception e2) {}
+				try {						     
+					driver.findElementByXPath("//*[@id=\"page-address\"]/div[2]/div[10]/div/label/label").click();
+				} catch (Exception e2) {
+					try {
+						driver.findElementByXPath("//*[@id=\"page-address\"]/div[2]/div[7]/div/label/label").click();
+					} catch (Exception e3) {}
+				}
 			}
 			Thread.sleep(3000);
 			driver.findElementByXPath("//*[@id='page-address']/a").click();
@@ -326,7 +330,7 @@ public class AuCj1Handler {
 		Integer next = 5;
 		next = r.nextInt(11);
 		try {
-			try {							             
+			try {							    
 				driver.findElement(By.xpath("//*[@id='coregs']/div[" + question +"]/div/div/div/label[" + number +"]/input")).click();
 			} catch (Exception e) {
 				try {
@@ -335,7 +339,11 @@ public class AuCj1Handler {
 					try {
 						driver.findElement(By.xpath("//*[@id='coregs']/div[" + question +"]/div[1]/div/div/label["+ number +"]/span")).click();
 					} catch (Exception e2) {
-						driver.findElement(By.xpath("//*[@id='coregs']/div[" + question +"]/div/div/a[" + number + "]")).click();
+						try {
+							driver.findElementByXPath("//*[@id=\"coregs\"]/div["+ question + "]/div[1]/div/a[" + number + "]").click();
+						} catch (Exception e3) {
+							driver.findElement(By.xpath("//*[@id='coregs']/div[" + question +"]/div/div/a[" + number + "]")).click();
+						}
 					}
 				}
 			}
