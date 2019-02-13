@@ -334,6 +334,16 @@ public class AuCj3Handler {
 					continue;
 				} catch (Exception e) {System.out.println("no - {} " +  as);}
 				
+				
+				as = "What is your annual income? ";
+				try {
+					Select select = new Select(driver.findElementByXPath("//*[@id=\"question-7497\"]/div/div[2]/select"));
+					select.selectByIndex(getNumberHas0(select.getAllSelectedOptions().size()));
+					System.out.println("yes - {} " +  as);
+					Thread.sleep(10000);
+					continue;
+				} catch (Exception e) {System.out.println("no - {} " +  as);}
+				
 				as = "Win a year’s supply of premium wine from Wine Selectors valued at over $1000. Simply tell us who’s wine advice would you value the most?";
 				try {
 					Select select = new Select(driver.findElementByXPath("//*[@id=\"question-6495\"]/div[2]/div[2]/select"));
