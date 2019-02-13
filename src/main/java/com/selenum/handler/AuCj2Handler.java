@@ -183,6 +183,7 @@ public class AuCj2Handler {
 					continue;
 				} 
 				if(answer(driver, 814, getNumberHas0(2))) continue;
+				if(answer(driver, 824, getNumberHas0(5))) continue;
 				if(answer(driver, 862, getNumberHas0(2))) continue;
 				if(answer(driver, 909, getNumberHas0(2))) continue;
 				if(answer(driver, 915, getNumberHas0(2))) continue;
