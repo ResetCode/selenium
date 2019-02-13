@@ -119,14 +119,18 @@ public class AuCj1Handler {
 			} catch (Exception e) {
 				try {
 					driver.findElementByXPath("//*[@id='page-address']/div[2]/div[8]/div/label/label/label").click();
-				} catch (Exception e2) {}
-				try {						     
-					driver.findElementByXPath("//*[@id=\"page-address\"]/div[2]/div[10]/div/label/label").click();
 				} catch (Exception e2) {
-					try {
-						driver.findElementByXPath("//*[@id=\"page-address\"]/div[2]/div[7]/div/label/label").click();
-					} catch (Exception e3) {}
+					try {						     
+						driver.findElementByXPath("//*[@id=\"page-address\"]/div[2]/div[10]/div/label/label").click();
+					} catch (Exception e3) {
+						try {
+							driver.findElementByXPath("//*[@id=\"page-address\"]/div[2]/div[7]/div/label/label").click();
+						} catch (Exception e4) {
+							System.out.println("未检测到第三个复选确认框！");
+						}
+					}
 				}
+				
 			}
 			Thread.sleep(3000);
 			driver.findElementByXPath("//*[@id='page-address']/a").click();
@@ -140,7 +144,7 @@ public class AuCj1Handler {
 			for(int i=1; i < 25; i++) {
 				
 				String question = "";
-				try {//*[@id="coregs"]/div[21]/p
+				try {
 					question = driver.findElementByXPath("//*[@id='coregs']/div[" + i + "]/p").getText();
 				} catch (Exception e) {
 					System.err.println("调查问卷结束！");
@@ -154,8 +158,8 @@ public class AuCj1Handler {
 				String question3 = "Would you consider supporting any of the following organisations?";
 				String question4 = "What is your annual income?";
 				String question5 = "Select any of the following organisations you would consider supporting";
-				String question6 = "Join Kogan.com Ltd now to receive exclusive deals on electronics";
 //				String question6 = "Join Kogan.com Ltd now to receive exclusive deals on electronics, appliances, homewares, fashion & more!";
+				String question6 = "fashion & more!";
 				String question7 = "Tick YES to get your daily horoscope.";
 				String question8 = "Do you have a cat or dog at home?";
 				String question9 = "Please select your current retailer;";
