@@ -123,7 +123,7 @@ public class AuCj1Handler {
 					try {						     
 						driver.findElementByXPath("//*[@id=\"page-address\"]/div[2]/div[10]/div/label/label").click();
 					} catch (Exception e3) {
-						try {
+						try {//*[@id="coreg_1464"] //*[@id="page-address"]/div[2]/div[10]/div/label/label/label
 							driver.findElementByXPath("//*[@id=\"page-address\"]/div[2]/div[7]/div/label/label").click();
 						} catch (Exception e4) {
 							System.out.println("未检测到第三个复选确认框！");
@@ -162,7 +162,8 @@ public class AuCj1Handler {
 				String question6 = "fashion & more!";
 				String question7 = "Tick YES to get your daily horoscope.";
 				String question8 = "Do you have a cat or dog at home?";
-				String question9 = "Please select your current retailer;";
+//				String question9 = "Please select your current retailer;";
+				String question9 = "retailer;";
 				String question10 = "Who is your current Broadband provider?";
 				String question11 = "Which of these Insurance Products do you already have?";
 				String question12 = "Are you interested in meeting new people via online dating?";
