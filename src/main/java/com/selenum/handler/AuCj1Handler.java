@@ -169,8 +169,10 @@ public class AuCj1Handler {
 				String question12 = "Are you interested in meeting new people via online dating?";
 				String question13 = "What time would work best for you to receive a call?";
 				String question14 = "Are you interested in solar energy?";
-				String question15 = "Do you own a car?";
-				String question16 = "When did you last buy a lottery ticket?";
+//				String question15 = "Do you own a car?";
+				String question15 = "car?";
+//				String question16 = "When did you last buy a lottery ticket?";
+				String question16 = "ticket?";
 				String question17 = "Do you gamble online?";
 //				String question18 = "Do you have an eligible life or income protection policy with any of the following:";
 				String question18 = "Do you have an eligible life or income";
