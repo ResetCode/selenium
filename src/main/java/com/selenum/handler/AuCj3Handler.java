@@ -35,7 +35,7 @@ public class AuCj3Handler {
 			driver.get(offerUrl);
 			Thread.sleep(30000);
 			
-			try {					       
+			try {					       //*[@id="question_2"]/button[2]
 				driver.findElementByXPath("//*[@id=\"page1\"]/div[1]/div[1]/div[5]/button").click(); //let's do this right now
 				Thread.sleep(3000);
 				//How many times a week do you visit the supermarket?
@@ -161,7 +161,12 @@ public class AuCj3Handler {
 				Thread.sleep(3000);
 			} catch (Exception e) {}
 			
-			driver.findElementByXPath("//*[@id=\"input2\"]/div[1]/div/div[2]/div[2]/div/div[5]/div/button").click();
+			try {
+				
+				driver.findElementByXPath("//*[@id=\"input2\"]/div[1]/div/div[2]/div[2]/div/div[5]/div/button").click();
+			} catch (Exception e) {
+				driver.findElementByXPath("//*[@id=\"input2\"]/div/div/div[3]/div[2]/div[3]/div[5]/div/button").click();
+			}
 			Thread.sleep(20000); //资料填写完毕，开始回答调查问卷
 			
 			try {
