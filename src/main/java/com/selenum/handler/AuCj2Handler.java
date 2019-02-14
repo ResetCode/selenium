@@ -65,11 +65,11 @@ public class AuCj2Handler {
 				System.out.println("跳过问卷3道题！");
 			}
 			
-			try {
+			try {						     //*[@id="question_2"]/button[1]
 				driver.findElementByXPath("//*[@id=\"question_1\"]/button["+ getNumber(4) +"]").click();
-				Thread.sleep(3000);
+				Thread.sleep(5000);
 				driver.findElementByXPath("//*[@id=\"question_2\"]/button["+ getNumber(4) +"]").click();
-				Thread.sleep(3000);
+				Thread.sleep(5000);//*[@id="question_3"]/button[2]
 				driver.findElementByXPath("//*[@id=\"question_3\"]/button["+ getNumber(4) +"]").click();
 				Thread.sleep(20000);
 			} catch (Exception e) {
