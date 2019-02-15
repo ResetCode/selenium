@@ -21,6 +21,22 @@ public class AuCj2Handler {
 		try {
 			driver.get(offerUrl);
 			Thread.sleep(30000);
+			try {
+				driver.findElementByXPath("//*[@id=\"question0\"]/div[2]/div").click();
+				Thread.sleep(3000);
+				Integer number = getNumber(2) + 1;
+				driver.findElementByXPath("//*[@id=\"question1\"]/div[" + number + "]/div").click();
+				Thread.sleep(3000);
+				
+				number = getNumber(3) + 1;
+				driver.findElementByXPath("//*[@id=\"question2\"]/div[" + number + "]/div").click();
+				Thread.sleep(10000);
+				driver.findElementByXPath("//*[@id=\"checking_result\"]/div[2]/div").click();
+				Thread.sleep(20000);
+				
+			} catch (Exception e) {
+				System.out.println("跳过问卷2道题！");
+			}
 			
 			try {
 				driver.findElementByXPath("//*[@id=\"question0\"]/div[2]/div").click();
@@ -65,7 +81,7 @@ public class AuCj2Handler {
 				System.out.println("跳过问卷3道题！");
 			}
 			
-			try {						     //*[@id="question_2"]/button[1]
+			try {						     
 				driver.findElementByXPath("//*[@id=\"question_1\"]/button["+ getNumber(4) +"]").click();
 				Thread.sleep(5000);
 				driver.findElementByXPath("//*[@id=\"question_2\"]/button["+ getNumber(4) +"]").click();
