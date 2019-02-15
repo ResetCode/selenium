@@ -211,7 +211,7 @@ public class AuCj3Handler {
 			Random random = new Random();
 			Integer suiji = random.nextInt(100);
 			Integer gloab = getNumber(2);
-			for(int i = 0; i <= 20; i++) {
+			for(int i = 0; i <= 29; i++) {
 				
 				String as = "//Do you wear hearing aids?";
 				try {
