@@ -123,7 +123,7 @@ public class AuCj1Handler {
 					try {						     
 						driver.findElementByXPath("//*[@id=\"page-address\"]/div[2]/div[10]/div/label/label").click();
 					} catch (Exception e3) {
-						try {//*[@id="coreg_1464"] //*[@id="page-address"]/div[2]/div[10]/div/label/label/label
+						try {
 							driver.findElementByXPath("//*[@id=\"page-address\"]/div[2]/div[7]/div/label/label").click();
 						} catch (Exception e4) {
 							System.out.println("未检测到第三个复选确认框！");

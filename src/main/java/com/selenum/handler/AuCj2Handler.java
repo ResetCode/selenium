@@ -85,7 +85,7 @@ public class AuCj2Handler {
 				driver.findElementByXPath("//*[@id=\"question_1\"]/button["+ getNumber(4) +"]").click();
 				Thread.sleep(5000);
 				driver.findElementByXPath("//*[@id=\"question_2\"]/button["+ getNumber(4) +"]").click();
-				Thread.sleep(5000);//*[@id="question_3"]/button[2]
+				Thread.sleep(5000);
 				driver.findElementByXPath("//*[@id=\"question_3\"]/button["+ getNumber(4) +"]").click();
 				Thread.sleep(30000);
 			} catch (Exception e) {
