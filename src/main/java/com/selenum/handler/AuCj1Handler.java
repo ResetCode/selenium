@@ -112,26 +112,16 @@ public class AuCj1Handler {
 			
 			driver.findElement(By.id("fieldMobileNumber")).sendKeys(data.getPhone().substring(1));
 			Thread.sleep(3000);
-			driver.findElement(By.xpath("//*[@id='page-address']/div[2]/div[7]/div/label/span")).click();
-			Thread.sleep(3000);
-			try {						  
-				driver.findElementByXPath("//*[@id='page-address']/div[2]/div[9]/div/label/label").click();
-			} catch (Exception e) {
+			
+			//*[@id="page-address"]/div[2]/div[7]/div/label/label/label  512 
+			//*[@id="page-address"]/div[2]/div[8]/div/label/label/label 1464
+			//*[@id="page-address"]/div[2]/div[9]/div/label/label/label 853 //*[@id="coreg_853"] //*[@id="page-address"]/div[2]/div[9]/div/label
+			for(int i = 1; i <= 12; i++) {
 				try {
-					driver.findElementByXPath("//*[@id='page-address']/div[2]/div[8]/div/label/label/label").click();
-				} catch (Exception e2) {
-					try {						     
-						driver.findElementByXPath("//*[@id=\"page-address\"]/div[2]/div[10]/div/label/label").click();
-					} catch (Exception e3) {
-						try {
-							driver.findElementByXPath("//*[@id=\"page-address\"]/div[2]/div[7]/div/label/label").click();
-						} catch (Exception e4) {
-							System.out.println("未检测到第三个复选确认框！");
-						}
-					}
-				}
-				
+					driver.findElementByXPath("//*[@id='page-address']/div[2]/div["+ i + "]/div/label").click(); //循环检查复选框
+				} catch (Exception e4) {}
 			}
+			
 			Thread.sleep(3000);
 			driver.findElementByXPath("//*[@id='page-address']/a").click();
 			Thread.sleep(15000);
@@ -154,34 +144,45 @@ public class AuCj1Handler {
 //				String question1 = "Want access to the BEST DEALS on worldwide cruises & travel? Simply select where in the world you would like to travel and Cruise Megastore will call you back with an unbelievable offer! Plus receive a FREE $100 cruise voucher.";
 				String question1 = "Want access to the BEST DEALS on worldwide cruises";
 //				String question2 = "Get more of what you love in 2019 with Foxtel. Save $40* a month for 12mths on Platinum HD with no iQ4 set up costs. Click yes to receive a call, SMS & email.";
-				String question2 = "Save $40* a month";
+				String question2 = "Email.";
 				String question3 = "Would you consider supporting any of the following organisations?";
-				String question4 = "What is your annual income?";
-				String question5 = "Select any of the following organisations you would consider supporting";
+//				String question4 = "What is your annual income?";
+				String question4 = "income?";
+//				String question5 = "Select any of the following organisations you would consider supporting";
+				String question5 = "supporting";
 //				String question6 = "Join Kogan.com Ltd now to receive exclusive deals on electronics, appliances, homewares, fashion & more!";
-				String question6 = "fashion & more!";
-				String question7 = "Tick YES to get your daily horoscope.";
-				String question8 = "Do you have a cat or dog at home?";
+//				String question6 = "fashion & more!";
+				String question6 = "more";
+//				String question7 = "Tick YES to get your daily horoscope.";
+				String question7 = "horoscope";
+//				String question8 = "Do you have a cat or dog at home?";
+				String question8 = "cat";
 //				String question9 = "Please select your current retailer;";
 				String question9 = "retailer;";
-				String question10 = "Who is your current Broadband provider?";
-				String question11 = "Which of these Insurance Products do you already have?";
-				String question12 = "Are you interested in meeting new people via online dating?";
-				String question13 = "What time would work best for you to receive a call?";
-				String question14 = "Are you interested in solar energy?";
+//				String question10 = "Who is your current Broadband provider?";
+				String question10 = "Broadband";
+//				String question11 = "Which of these Insurance Products do you already have?";
+				String question11 = "Insurance";
+//				String question12 = "Are you interested in meeting new people via online dating?";
+				String question12 = "dating";
+//				String question13 = "What time would work best for you to receive a call?";
+				String question13 = "call?";
+//				String question14 = "Are you interested in solar energy?";
+				String question14 = "energy";
 //				String question15 = "Do you own a car?";
 				String question15 = "car?";
 //				String question16 = "When did you last buy a lottery ticket?";
 				String question16 = "ticket?";
-				String question17 = "Do you gamble online?";
+//				String question17 = "Do you gamble online?";
+				String question17 = "online?";
 //				String question18 = "Do you have an eligible life or income protection policy with any of the following:";
-				String question18 = "Do you have an eligible life or income";
-				String question19 = "Choose the category you're most interested";
+				String question18 = "income";
+				String question19 = "interested";
 //				String question19 = "Choose the category you're most interested in to sign up to our newsletter and you will automatically enter for a chance to win the upcoming iPhone 7 when it’s released!";
 //				String question20 = "What is the outcome of the following calculation: 2 + 3 = ?";
-				String question20 = "2 + 3";
+				String question20 = "3";
 //				String question21 = "Complete the survey by telling us why you should win in 25 words or less:";
-				String question21 = "25 words or less:";
+				String question21 = "less:";
 				
 				Integer optionsNumber = 0;
 				if(question.contains(question1)) {
