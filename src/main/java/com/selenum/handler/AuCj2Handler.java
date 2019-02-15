@@ -71,7 +71,7 @@ public class AuCj2Handler {
 				driver.findElementByXPath("//*[@id=\"question_2\"]/button["+ getNumber(4) +"]").click();
 				Thread.sleep(5000);//*[@id="question_3"]/button[2]
 				driver.findElementByXPath("//*[@id=\"question_3\"]/button["+ getNumber(4) +"]").click();
-				Thread.sleep(20000);
+				Thread.sleep(30000);
 			} catch (Exception e) {
 				System.out.println("跳过问卷调查三道题！");
 			}
