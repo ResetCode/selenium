@@ -135,7 +135,7 @@ public class AuCj2Handler {
 			Select selectYear = new Select(driver.findElementByXPath("//*[@id=\"yob\"]"));
 			selectYear.selectByVisibleText(data.getBirthYear());
 			Thread.sleep(3000);
-			driver.findElementByXPath("//*[@id=\"submitBtn\"]").click(); //continue
+			driver.findElementByXPath("//*[@id=\"submitBtn\"]").click(); //continue //*[@id="submitBtn"]
 			Thread.sleep(6000);
 			
 			driver.findElementByXPath("//*[@id=\"phone\"]").sendKeys("0" + data.getPhone());
@@ -161,7 +161,7 @@ public class AuCj2Handler {
 				
 			}
 			Thread.sleep(3000);
-			driver.findElementByXPath("//*[@id=\"submitBtn\"]").click();
+			driver.findElementByXPath("//*[@id=\"submitBtn\"]").click(); 
 			Thread.sleep(6000);
 			
 			Integer glabo = -1;
