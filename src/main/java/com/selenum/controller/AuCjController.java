@@ -141,6 +141,7 @@ public class AuCjController {
 			} catch (IOException e) {
 				driver.quit();
 				System.err.println("调用代理失败：插件路径错误！");
+				
 			}
 			Thread.sleep(5000);
 			
@@ -162,14 +163,16 @@ public class AuCjController {
 				
 			} catch (Exception e) {
 				driver.quit();
-				return JsonResult.error(ErrorEnum.ERROR_SYSTEM, "调用代理失败，测试页面ip读取不到！");
+//				return JsonResult.error(ErrorEnum.ERROR_SYSTEM, "调用代理失败，测试页面ip读取不到！");
+				continue;
 			}
 			
 			String nowIP = ip.getText();
 			if(defaultIP.equals(nowIP) || (prevIP != null && prevIP.equals(nowIP))) {
 				System.out.println("调用代理失败：");
 				driver.quit();
-				return JsonResult.error(ErrorEnum.ERROR_SYSTEM, "调用代理失败！");
+//				return JsonResult.error(ErrorEnum.ERROR_SYSTEM, "调用代理失败！");
+				continue;
 			}
 			prevIP = nowIP;
 			System.err.println("调用代理成功！");
