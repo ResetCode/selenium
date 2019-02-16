@@ -59,9 +59,9 @@ public class AuCj2Handler {
 				driver.findElementByXPath("//*[@id=\"checking_result\"]/div[2]/div").click();
 				Thread.sleep(20000);
 				
-				try {
-					driver.findElementByXPath("//*[@id='c_pic_" + getNumber(4) +"_text']/span").click();
-					Thread.sleep(20000);
+				try {						    //*[@id="c_pic_4_text"]/span
+					driver.findElementByXPath("//*[@id=\"c_pic_" + getNumber(4) +"_text\"]/span").click();
+					Thread.sleep(3000);	   
 					driver.findElementByXPath("//*[@id='prize_picker']/div[3]/div[2]/div[4]/button").click();
 					Thread.sleep(20000);
 				} catch (Exception e) {

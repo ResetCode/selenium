@@ -343,7 +343,7 @@ public class AuCj3Handler {
 				as = "What is your annual income? ";
 				try {
 					Select select = new Select(driver.findElementByXPath("//*[@id=\"question-7497\"]/div/div[2]/select"));
-					select.selectByIndex(getNumber(select.getAllSelectedOptions().size()-1));
+					select.selectByIndex(getNumber(2));
 					System.out.println("yes - {} " +  as);
 					Thread.sleep(10000);
 					continue;
@@ -352,7 +352,7 @@ public class AuCj3Handler {
 				as = "Win a year’s supply of premium wine from Wine Selectors valued at over $1000. Simply tell us who’s wine advice would you value the most?";
 				try {
 					Select select = new Select(driver.findElementByXPath("//*[@id=\"question-6495\"]/div[2]/div[2]/select"));
-					select.selectByIndex(getNumber(select.getAllSelectedOptions().size() - 1 ));
+					select.selectByIndex(getNumber(4));
 					System.out.println("yes - {} " +  as);
 					Thread.sleep(10000);
 					continue;
