@@ -56,7 +56,7 @@ public class AuCjController {
 	private static String prevIP = null;
 	
 	//家
-	private static String defaultIP = "111.194.49.144";
+	private static String defaultIP = "111.194.50.41";
 	private final static String driverPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\chromedriver.exe";
 	private final static String proxyToolPath = "E:\\911S5 2018-09-10\\ProxyTool\\AutoProxyTool.exe";
 	private final static String au_filePath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\au_data.xlsx";
@@ -85,7 +85,9 @@ public class AuCjController {
 	private final static Map<String, String> stateMap = Maps.newHashMap(); 
 	
 	static  {
-		auofferList.add("http://track.comgrate.com/click.php?c=43&key=3ua4lez0m6e73rwwkc2mo4jq");
+		auofferList.add("http://track.comgrate.com/click.php?c=44&key=knaqv147fu4cfyuf7z444uad");
+		auofferList.add("http://track.comgrate.com/click.php?c=45&key=ca0meq3qudwad8z6w00f5dgj");
+		auofferList.add("http://track.comgrate.com/click.php?c=46&key=47l5fgj8w4g8e75rz0zn10jt");
 		
 		stateMap.put("New South Wales", "NSW");
 		stateMap.put("Victoria", "Vic");
@@ -106,101 +108,102 @@ public class AuCjController {
 	@RequestMapping("s/{offer}/{offer2}/{offer3}")
 	public JsonResult<String> au(@PathVariable("offer") Integer offerIndex,@PathVariable("offer2") Integer offerIndex2,@PathVariable("offer3") Integer offerIndex3) throws InterruptedException {
 	
-		AuData data = auDataMapper.findByUseStatus(0);
-		if(data == null || data.getEmail()== null || data.getFirstName() == null) {
-			return JsonResult.error(ErrorEnum.ERROR_DATA_NOT_EXISTS, "数据库没有可用数据！");
-		}
-		
-		//随机ua
-		Integer count = userAgentDao.findCount();
-		Random random = new Random();
-		UserAgent ua = userAgentDao.findOneByLimit(random.nextInt(count));
-		
-		Integer scount = screenDao.findCount();
-		Screen screen = screenDao.findOneByLimit(random.nextInt(scount));
-		
-		System.setProperty("webdriver.chrome.driver", driverPath);
-		ChromeOptions chromeOptions = new ChromeOptions();
-		chromeOptions.addArguments("--user-agent=" + ua.getUserAgent());
-		chromeOptions.addArguments("--window-size=" + screen.getScreen());
-		chromeOptions.addArguments("--incognito");
-		chromeOptions.addArguments("-lang=en-au");
-		chromeOptions.addArguments("--disable-infobars");
-		ChromeDriver driver = new ChromeDriver(chromeOptions);
-		
-		Random r = new Random();
-		int step = r.nextInt(101);
-		System.err.println("步骤随机数为:" + step);
-		
-		Runtime rt = Runtime.getRuntime();
-		try {
-			rt.exec(proxyToolPath + " -changeproxy/AU/" + data.getState());
-		} catch (IOException e) {
-			driver.quit();
-			System.err.println("调用代理失败：插件路径错误！");
-		}
-		Thread.sleep(5000);
-		
-		//检测ip
-		WebElement ip = null;
-		WebDriverWait webDriverWait = new WebDriverWait(driver, 60);
-		try {
-			driver.get(ipPath); 
-			driver.navigate().to(driver.getCurrentUrl());
-			Thread.sleep(5000);
-			driver.get(ipPath);
-			Thread.sleep(5000);
-			ip = webDriverWait.until(new ExpectedCondition<WebElement>() {
-				@Override
-				public WebElement apply(WebDriver d) {
-					return d.findElement(By.id("ip"));
-				}
-			});
+		for(int i = 0; i< 10;i++) {
+			AuData data = auDataMapper.findByUseStatus(0);
+			if(data == null || data.getEmail()== null || data.getFirstName() == null) {
+				return JsonResult.error(ErrorEnum.ERROR_DATA_NOT_EXISTS, "数据库没有可用数据！");
+			}
 			
-		} catch (Exception e) {
-			driver.quit();
-			return JsonResult.error(ErrorEnum.ERROR_SYSTEM, "调用代理失败，测试页面ip读取不到！");
-		}
-		
-		String nowIP = ip.getText();
-		if(defaultIP.equals(nowIP) || (prevIP != null && prevIP.equals(nowIP))) {
-			System.out.println("调用代理失败：");
-			driver.quit();
-			return JsonResult.error(ErrorEnum.ERROR_SYSTEM, "调用代理失败！");
-		}
-		prevIP = nowIP;
-		System.err.println("调用代理成功！");
-		
-		//标识资料数据被使用
-		auDataMapper.updateStatusById(99 + "," + 99 + "," + 99, data.getId(), new Date(), "");
-		
-		//处理州名
-//		String state = data.getState();
-//		data.setState(stateMap.get(state));
+			//随机ua
+			Integer count = userAgentDao.findCount();
+			Random random = new Random();
+			UserAgent ua = userAgentDao.findOneByLimit(random.nextInt(count));
+			
+			Integer scount = screenDao.findCount();
+			Screen screen = screenDao.findOneByLimit(random.nextInt(scount));
+			
+			System.setProperty("webdriver.chrome.driver", driverPath);
+			ChromeOptions chromeOptions = new ChromeOptions();
+			chromeOptions.addArguments("--user-agent=" + ua.getUserAgent());
+			chromeOptions.addArguments("--window-size=" + screen.getScreen());
+			chromeOptions.addArguments("--incognito");
+			chromeOptions.addArguments("-lang=en-au");
+			chromeOptions.addArguments("--disable-infobars");
+			ChromeDriver driver = new ChromeDriver(chromeOptions);
+			
+			Random r = new Random();
+			int step = r.nextInt(101);
+			System.err.println("步骤随机数为:" + step);
+			
+			Runtime rt = Runtime.getRuntime();
+			try {
+				rt.exec(proxyToolPath + " -changeproxy/AU/" + data.getState());
+			} catch (IOException e) {
+				driver.quit();
+				System.err.println("调用代理失败：插件路径错误！");
+			}
+			Thread.sleep(5000);
+			
+			//检测ip
+			WebElement ip = null;
+			WebDriverWait webDriverWait = new WebDriverWait(driver, 60);
+			try {
+				driver.get(ipPath); 
+				driver.navigate().to(driver.getCurrentUrl());
+				Thread.sleep(5000);
+				driver.get(ipPath);
+				Thread.sleep(5000);
+				ip = webDriverWait.until(new ExpectedCondition<WebElement>() {
+					@Override
+					public WebElement apply(WebDriver d) {
+						return d.findElement(By.id("ip"));
+					}
+				});
+				
+			} catch (Exception e) {
+				driver.quit();
+				return JsonResult.error(ErrorEnum.ERROR_SYSTEM, "调用代理失败，测试页面ip读取不到！");
+			}
+			
+			String nowIP = ip.getText();
+			if(defaultIP.equals(nowIP) || (prevIP != null && prevIP.equals(nowIP))) {
+				System.out.println("调用代理失败：");
+				driver.quit();
+				return JsonResult.error(ErrorEnum.ERROR_SYSTEM, "调用代理失败！");
+			}
+			prevIP = nowIP;
+			System.err.println("调用代理成功！");
+			
+			//标识资料数据被使用
+			auDataMapper.updateStatusById(99 + "," + 99 + "," + 99, data.getId(), new Date(), "");
+			
+			//处理州名
+//			String state = data.getState();
+//			data.setState(stateMap.get(state));
 
-		//执行脚本1
-		AuWish wish0 = wishDao.findOne(0);
-		int result = AuCj1Handler.handle(data, driver, auofferList.get(offerIndex), wish0);
-//		
-		//执行脚本3
-		AuWish wish1 = wishDao.findOne(1);
-		int result3 = AuCj3Handler.handle(data, driver, auofferList.get(offerIndex3), wish1);
-		//标识wish被使用
-		wishDao.update(wish1);
-		
-		//执行脚本2
-		int result2 = AuCj2Handler.handle(data, driver, auofferList.get(offerIndex2), wish0);
-		//标识wish被使用
-		wishDao.update(wish0);
-		
-		
-		
-		//再次表示资料数据
-		StringBuffer resultBuffer = new StringBuffer();
-		resultBuffer.append(result);
-		resultBuffer.append(",").append(result2);
-		resultBuffer.append(",").append(result3);
-		auDataMapper.updateStatusById(resultBuffer.toString(), data.getId(), new Date(), auofferList.get(offerIndex) + "," + auofferList.get(offerIndex2) + "," + auofferList.get(offerIndex3));
+			//执行脚本1
+			AuWish wish0 = wishDao.findOne(0);
+			int result = AuCj1Handler.handle(data, driver, auofferList.get(offerIndex), wish0);
+//			
+			//执行脚本3
+			AuWish wish1 = wishDao.findOne(1);
+			int result3 = AuCj3Handler.handle(data, driver, auofferList.get(offerIndex3), wish1);
+			//标识wish被使用
+			wishDao.update(wish1);
+			
+			//执行脚本2
+			int result2 = AuCj2Handler.handle(data, driver, auofferList.get(offerIndex2), wish0);
+			//标识wish被使用
+			wishDao.update(wish0);
+			
+			
+			//再次表示资料数据
+			StringBuffer resultBuffer = new StringBuffer();
+			resultBuffer.append(result);
+			resultBuffer.append(",").append(result2);
+			resultBuffer.append(",").append(result3);
+			auDataMapper.updateStatusById(resultBuffer.toString(), data.getId(), new Date(), auofferList.get(offerIndex) + "," + auofferList.get(offerIndex2) + "," + auofferList.get(offerIndex3));
+		}
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		return JsonResult.success(null, "执行结束时间：" + sdf.format(new Date()));
