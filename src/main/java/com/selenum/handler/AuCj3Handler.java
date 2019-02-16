@@ -343,7 +343,7 @@ public class AuCj3Handler {
 				as = "What is your annual income? ";
 				try {
 					Select select = new Select(driver.findElementByXPath("//*[@id=\"question-7497\"]/div/div[2]/select"));
-					select.selectByIndex(getNumberHas0(select.getAllSelectedOptions().size()));
+					select.selectByIndex(getNumber(select.getAllSelectedOptions().size()-1));
 					System.out.println("yes - {} " +  as);
 					Thread.sleep(10000);
 					continue;
