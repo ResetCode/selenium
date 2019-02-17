@@ -35,7 +35,7 @@ public class AuCj3Handler {
 			driver.get(offerUrl);
 			Thread.sleep(30000);
 			
-			try {					       //*[@id="question_2"]/button[2]
+			try {					       
 				driver.findElementByXPath("//*[@id=\"page1\"]/div[1]/div[1]/div[5]/button").click(); //let's do this right now
 				Thread.sleep(3000);
 				//How many times a week do you visit the supermarket?
@@ -46,7 +46,7 @@ public class AuCj3Handler {
 				answer(driver, 3 , getNumber(2));
 				Thread.sleep(10000); //回答完问题，等待跳转填写资料
 			} catch (Exception e) {
-				logger.info("跳过三题选项直接跳转填写资料！");
+				logger.info("跳过prelander类型1直接跳转填写资料！");
 			}
 			
 			try {
@@ -57,7 +57,7 @@ public class AuCj3Handler {
 				driver.findElementByXPath("//*[@id=\"page1\"]/div[1]/div/div[2]/div[2]/div[2]/div[3]/a["+ getNumber(2) +"]").click();
 				Thread.sleep(10000);
 			} catch (Exception e) {
-				System.out.println("跳转三道题选项直接填写资料！");
+				System.out.println("跳过prelander类型2直接填写资料！");
 			}
 			
 			try {
@@ -65,13 +65,22 @@ public class AuCj3Handler {
 				Thread.sleep(3000);
 				driver.findElementByXPath("//*[@id='page1']/div[2]/div/div[2]/div/div[2]/div[2]/a["+ getNumber(4) + "]").click();
 				Thread.sleep(3000);
-				driver.findElementByXPath("//*[@id='page1']/div[2]/div/div[2]/div/div[2]/div[3]/a["+ getNumber(4) + "]").click();
-				Thread.sleep(3000);
-				driver.findElementByXPath("//*[@id='page1']/div[2]/div/div[2]/div/div[2]/div[4]/a["+ getNumber(4) + "]").click();
+				try {
+					driver.findElementByXPath("//*[@id='page1']/div[2]/div/div[2]/div/div[2]/div[3]/a["+ getNumber(4) + "]").click();
+					Thread.sleep(3000);
+				} catch (Exception e) {
+					System.out.println("跳过prelander类型3第三题！");
+				}
+				try {
+					driver.findElementByXPath("//*[@id='page1']/div[2]/div/div[2]/div/div[2]/div[4]/a["+ getNumber(4) + "]").click();
+				} catch (Exception e) {
+					System.out.println("跳过prelander类型3第四题！");
+				}
 				Thread.sleep(10000);
 			} catch (Exception e) {
-				System.out.println("跳转四题选项直接填写资料！");
+				System.out.println("跳过prelander类型3直接填写资料！");
 			}
+			
 			Integer sex = 1; 
 			if(data.getName().equals("f")) {
 				sex = 2;
