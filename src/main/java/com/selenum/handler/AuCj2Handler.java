@@ -21,6 +21,7 @@ public class AuCj2Handler {
 			Thread.sleep(30000);
 			int number0 = 0;
 			try {
+				
 				driver.findElementByXPath("//*[@id=\"question0\"]/div[2]/div").click();
 				Thread.sleep(3000);
 				try {
@@ -45,8 +46,13 @@ public class AuCj2Handler {
 					System.out.println("跳过prelander第3道题！");
 					Thread.sleep(20000);
 				}
-				driver.findElementByXPath("//*[@id=\"checking_result\"]/div[2]/div").click();
-				Thread.sleep(20000);
+				try {
+					driver.findElementByXPath("//*[@id=\"checking_result\"]/div[2]/div").click();
+					Thread.sleep(20000);
+				} catch (Exception e) {
+					driver.findElementByXPath("//*[@id=\"question4\"]/div[2]/div").click();
+					Thread.sleep(20000);
+				}
 				
 				try {						    
 //					driver.findElementByXPath("//*[@id=\"c_pic_" + getNumber(4) +"_text\"]/span").click();
