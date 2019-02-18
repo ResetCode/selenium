@@ -260,19 +260,19 @@ public class AuCj1Handler {
 				}
 				
 				if(answer(driver, i, optionsNumber) == true) {
-					if(b >= 10 & b < 15){
+					if(i== 3 && b >= 10 && b < 15){
 						System.out.println("10%-15%提交完毕！");
 						return 1;
 					}
-					if(b >= 25 & b < 30){
+					if(i== 10 && b >= 25 && b < 30){
 						System.out.println("25%-30%提交完毕！");
 						return 1;
 					}
-					if(b >= 30 & b < 40){
+					if(i== 13 && b >= 30 && b < 40){
 						System.out.println("30%-40%提交完毕！");
 						return 1;
 					}
-					if(b >= 40 & b < 60){
+					if(i== 20 && b >= 40 && b < 60){
 						System.out.println("40%-60%提交完毕！");
 						return 1;
 					}
