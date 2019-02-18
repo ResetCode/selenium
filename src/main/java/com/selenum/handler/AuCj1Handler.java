@@ -146,7 +146,7 @@ public class AuCj1Handler {
 				String question3 = "Would you consider supporting any of the following organisations?";
 				String question4 = "What is your annual income?";
 				String question5 = "Select any of the following organisations you would consider supporting";
-				String question6 = "Join Kogan.com Ltd now to receive exclusive deals on electronics, appliances, homewares, fashion & more!";
+				String question6 = "Love big discounts?";
 				String question7 = "Tick YES to get your daily horoscope.";
 				String question8 = "Do you have a cat or dog at home?";
 				String question9 = "Please select your current retailer;";

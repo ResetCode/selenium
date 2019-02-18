@@ -305,6 +305,7 @@ public class AuCj2Handler {
 				if(answer(driver, 1307, getNumberHas0(2))) continue;
 				if(answer(driver, 1311, getNumberHas0(5))) continue;
 				if(answer(driver, 1311, getNumberHas0(2))) continue;
+				if(answer(driver, 1311, getNumberHas0(5))) continue;
 
 			}
 			
