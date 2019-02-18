@@ -60,10 +60,18 @@ public class AuCj3Handler {
 				System.out.println("跳过prelander类型2直接填写资料！");
 			}
 			
-			try {
-				driver.findElementByXPath("//*[@id='page1']/div[2]/div/div[2]/div/div[2]/div[1]/a["+ getNumber(4) + "]").click();
+			try {//*[@id="page1"]/div[2]/div/div[2]/div/div[2]/div[1]/a[1]
+				try {
+					driver.findElementByXPath("//*[@id='page1']/div[2]/div/div[2]/div/div[2]/div[1]/a["+ getNumber(4) + "]").click();
+				} catch (Exception e) {
+					driver.findElementByXPath("//*[@id='page1']/div[2]/div/div[2]/div/div[2]/div[1]/a["+ getNumber(2) + "]").click();
+				}
 				Thread.sleep(3000);
-				driver.findElementByXPath("//*[@id='page1']/div[2]/div/div[2]/div/div[2]/div[2]/a["+ getNumber(4) + "]").click();
+				try {
+					driver.findElementByXPath("//*[@id='page1']/div[2]/div/div[2]/div/div[2]/div[2]/a["+ getNumber(4) + "]").click();
+				} catch (Exception e) {
+					driver.findElementByXPath("//*[@id='page1']/div[2]/div/div[2]/div/div[2]/div[2]/a["+ getNumber(2) + "]").click();
+				}
 				Thread.sleep(3000);
 				try {
 					driver.findElementByXPath("//*[@id='page1']/div[2]/div/div[2]/div/div[2]/div[3]/a["+ getNumber(4) + "]").click();
