@@ -56,7 +56,7 @@ public class AuCjController {
 	private static String prevIP = null;
 	
 	//家
-	private static String defaultIP = "111.194.50.41";
+	private static String defaultIP = "111.194.44.70";
 	private final static String driverPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\chromedriver.exe";
 	private final static String proxyToolPath = "E:\\911S5 2018-09-10\\ProxyTool\\AutoProxyTool.exe";
 	private final static String au_filePath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\au_data.xlsx";
@@ -85,9 +85,34 @@ public class AuCjController {
 	private final static Map<String, String> stateMap = Maps.newHashMap(); 
 	
 	static  {
+		//A
 		auofferList.add("http://track.comgrate.com/click.php?c=44&key=knaqv147fu4cfyuf7z444uad");
 		auofferList.add("http://track.comgrate.com/click.php?c=45&key=ca0meq3qudwad8z6w00f5dgj");
 		auofferList.add("http://track.comgrate.com/click.php?c=46&key=47l5fgj8w4g8e75rz0zn10jt");
+		
+//		//B
+//		auofferList.add("http://track.comgrate.com/click.php?c=17&key=839boky2b65dz7683774oqc9");
+//		auofferList.add("http://track.comgrate.com/click.php?c=21&key=11l4t5q0lub41z41une7jjdr");
+//		auofferList.add("http://www.braverymobtracking.com/tl?a=1372&o=14904");
+//		//C
+//		auofferList.add("http://track.comgrate.com/click.php?c=43&key=3ua4lez0m6e73rwwkc2mo4jq");
+//		auofferList.add("http://track.comgrate.com/click.php?c=62&key=8tw590hijf33yvue74zreo30");
+//		auofferList.add("http://track.comgrate.com/click.php?c=28&key=7820k83452m97kaz1wepyq50");
+//		
+//		//D
+//		auofferList.add("http://track.comgrate.com/click.php?c=14&key=jd4bc580r023re7l02w5a9qq");
+//		auofferList.add("http://track.comgrate.com/click.php?c=50&key=drkiow55j5ei9c9yd7icg4kw");
+//		auofferList.add("http://track.comgrate.com/click.php?c=41&key=3v2k48603ufhsf4yuf8dz32q");
+//		
+//		//E
+//		auofferList.add("http://track.comgrate.com/click.php?c=20&key=snavjz90v9sylbs14690j0h8");
+//		auofferList.add("http://track.comgrate.com/click.php?c=40&key=q6sbnlj2f4s8kvgq5s55f965");
+//		auofferList.add("http://www.braverymobtracking.com/tl?a=1372&o=14944");
+//		
+//		//F
+//		auofferList.add("http://track.comgrate.com/click.php?c=49&key=c5rajcic7krq4hz533hj804a");
+//		auofferList.add("http://track.comgrate.com/click.php?c=54&key=2bngqz5nb0847adv4r129863");
+//		auofferList.add("http://track.comgrate.com/click.php?c=61&key=6t950e9sdvh0b0u9ahulb9m9");
 		
 		stateMap.put("New South Wales", "NSW");
 		stateMap.put("Victoria", "Vic");
@@ -108,7 +133,7 @@ public class AuCjController {
 	@RequestMapping("s/{offer}/{offer2}/{offer3}")
 	public JsonResult<String> au(@PathVariable("offer") Integer offerIndex,@PathVariable("offer2") Integer offerIndex2,@PathVariable("offer3") Integer offerIndex3) throws InterruptedException {
 	
-		for(int i = 0; i< 10;i++) {
+		for(int i = 0; i< 20;i++) {
 			AuData data = auDataMapper.findByUseStatus(0);
 			if(data == null || data.getEmail()== null || data.getFirstName() == null) {
 				return JsonResult.error(ErrorEnum.ERROR_DATA_NOT_EXISTS, "数据库没有可用数据！");
@@ -206,6 +231,8 @@ public class AuCjController {
 			resultBuffer.append(",").append(result2);
 			resultBuffer.append(",").append(result3);
 			auDataMapper.updateStatusById(resultBuffer.toString(), data.getId(), new Date(), auofferList.get(offerIndex) + "," + auofferList.get(offerIndex2) + "," + auofferList.get(offerIndex3));
+			Thread.sleep(20000);
+			driver.quit();
 		}
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
