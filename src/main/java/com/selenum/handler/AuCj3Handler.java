@@ -243,7 +243,7 @@ public class AuCj3Handler {
 				} catch (Exception e) {System.out.println("no - {}" +  as);}
 				
 				
-				as = "//***";
+				as = "//Only Foxtel brings you the best choice of live sport, blockbuster movies, new shows and complete series.";
 				try {
 					if(suiji <= 30) {
 						driver.findElement(By.xpath("//*[@id=\"question-6204\"]/div[2]/div[2]/button[2]")).click();
@@ -296,6 +296,19 @@ public class AuCj3Handler {
 					rangeMap.put(Range.openClosed(190, 270), "Beauty"); //80
 					rangeMap.put(Range.openClosed(520, 540), "No thanks"); //20
 					electricitySelect.selectByVisibleText(rangeMap.get(random.nextInt(540)));
+					System.out.println("yes - {} " +  as);
+					Thread.sleep(10000);
+					continue;
+				} catch (Exception e) {System.out.println("no - {} " +  as);}
+				
+				as = "Compare & Connect helps thousands of Australians save hundreds of dollars per year by comparing and switching energy providers.";
+				try {
+					suiji = random.nextInt(100);
+					if(suiji <= 30) {
+						driver.findElementByXPath("//*[@id=\"question-5991\"]/div[2]/div[2]/button[2]").click();
+					} else {
+						driver.findElementByXPath("//*[@id=\"question-5991\"]/div[2]/div[2]/button[1]").click();
+					}
 					System.out.println("yes - {} " +  as);
 					Thread.sleep(10000);
 					continue;
