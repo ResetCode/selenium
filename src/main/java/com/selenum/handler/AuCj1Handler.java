@@ -164,7 +164,7 @@ public class AuCj1Handler {
 				String question21 = "Complete the survey by telling us why you should win in 25 words or less:";
 				String question22 = "Do you have Superannuation and have had an INJURY in the last 2 years that is NOT HEALING?";
 				String question23 = "Only Foxtel brings you the best choice of live sport, blockbuster movies, new shows and complete series. Tick to get a call, SMS & Email.";
-				Integer optionsNumber = 0;
+				Integer optionsNumber = getNumber(2);
 				if(question.contains(question1)) {
 					optionsNumber = getNumber(8);
 				}
