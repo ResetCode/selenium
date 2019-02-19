@@ -242,6 +242,18 @@ public class AuCj3Handler {
 					continue;
 				} catch (Exception e) {System.out.println("no - {}" +  as);}
 				
+				as = "In 2016 alone, warming oceans killed almost a quarter of the Great Barrier Reef's coral, yet the government has approved the world's biggest coal mine right on its doorstep.";
+				try {
+					if(suiji <= 30) {
+						driver.findElement(By.xpath("//*[@id=\"question-981\"]/div/div[2]/button[1]")).click();
+					} else {
+						driver.findElementByXPath("//*[@id=\"question-981\"]/div/div[2]/button[2]").click();
+					}
+					System.out.println("yes - {} " +  as);
+					Thread.sleep(10000);
+					continue;
+				} catch (Exception e) {System.out.println("no - {}" +  as);}
+				
 				
 				as = "//Only Foxtel brings you the best choice of live sport, blockbuster movies, new shows and complete series.";
 				try {
