@@ -154,7 +154,11 @@ public class AuCj3Handler {
 			Thread.sleep(5000);
 			driver.findElementByXPath("//*[@id='phone']").sendKeys(data.getPhone().substring(1));
 			//What is your current housing situation?
-			aboutHouseSelect = new Select(driver.findElementByXPath("//*[@id=\"coreg-container\"]/div[1]/div/div/span/select"));
+			try {
+				aboutHouseSelect = new Select(driver.findElementByXPath("//*[@id=\"coreg-container\"]/div[1]/div/div/span/select"));
+			} catch (Exception e) {
+				aboutHouseSelect = new Select(driver.findElementByXPath("//*[@id=\"coreg-container\"]/div/div/div/span/select"));
+			}
 			aboutHouseNumber = getNumberHas0(4);
 			aboutHouseSelect.selectByVisibleText(aboutHouse[aboutHouseNumber]);
 			Thread.sleep(3000);
