@@ -203,7 +203,7 @@ public class AuCj1Handler {
 					optionsNumber = getNumber(2);
 				}
 				if(question.contains(question13)) {
-					optionsNumber = getNumber(4);
+					optionsNumber = 4;
 				}
 				if(question.contains(question14)) {
 					optionsNumber = getNumber(2);
