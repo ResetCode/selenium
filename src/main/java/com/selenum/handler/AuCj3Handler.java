@@ -124,7 +124,11 @@ public class AuCj3Handler {
 			Select aboutHouseSelect = null;
 			Integer aboutHouseNumber = 0;
 			
-			driver.findElementByXPath("//*[@id=\"postcode\"]").sendKeys(data.getZipCode());
+			try {
+				driver.findElementByXPath("//*[@id=\"postcode\"]").sendKeys(data.getZipCode());
+			} catch (Exception e) {
+				return 6;
+			}
 			Thread.sleep(2000);
 			((JavascriptExecutor) driver).executeScript("document.getElementById('postcode').blur();");
 			Thread.sleep(10000);
@@ -212,20 +216,7 @@ public class AuCj3Handler {
 				}
 				driver.findElement(By.xpath("//*[@id='question-374']/div/ul/li["+ firstLabel +"]/label")).click();
 			} catch (Exception e) {
-//				 Scanner sc = new Scanner(System.in);
-//			        //利用hasNextXXX()判断是否还有下一输入项
-//			        while (sc.hasNext()) {
-//			            //利用nextXXX()方法输出内容
-//			            String str = sc.next();
-//			            if("yes".equals(str)) {
-//			            	System.out.println("脚本继续进行！");
-//			            	break;
-//			            }
-//			            else {
-//			            	System.out.println("脚本继续等待！");
-//			            }
-//			        }
-//			      sc.close();
+				return 5;
 			}
 			Thread.sleep(15000);
 			
