@@ -173,7 +173,7 @@ public class AuCj3Handler {
 				Thread.sleep(3000);
 			} catch (Exception e) {
 				try {
-					new Select(driver.findElementByXPath("//*[@id=\"coreg-container\"]/div[2]/div/div/span/select")).selectByVisibleText(beforeSubmit[beforeSubmitNumber]);
+					new Select(driver.findElementByXPath("//*[@id=\"coreg-container\"]/div[2]/div/div/span/select")).selectByVisibleText(beforeSubmit[3]);
 					Thread.sleep(3000);
 				} catch (Exception e2) {
 					System.out.println("未检测到手机号最后一步选项！");
