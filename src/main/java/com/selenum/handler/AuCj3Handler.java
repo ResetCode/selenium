@@ -169,7 +169,7 @@ public class AuCj3Handler {
 			Integer beforeSubmitNumber = getNumberHas0(6);
 			String[] beforeSubmit = {"Pacific Islands" , "Europe" , "Alaska" , "NZ/ Australia","Asia","Other","Not interested"};
 			try {
-				new Select(driver.findElementByXPath("//*[@id=\"coreg-container\"]/div[3]/div/div/span/select")).selectByVisibleText(beforeSubmit[beforeSubmitNumber]);
+				new Select(driver.findElementByXPath("//*[@id=\"coreg-container\"]/div[3]/div/div/span/select")).selectByVisibleText(beforeSubmit[3]);
 				Thread.sleep(3000);
 			} catch (Exception e) {
 				try {
