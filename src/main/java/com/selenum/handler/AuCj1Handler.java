@@ -340,47 +340,57 @@ public class AuCj1Handler {
 	
 	
 	
-	public static boolean answer(ChromeDriver driver,int question, int number)  {
+	public static boolean answer(ChromeDriver driver,int question, int number) throws NumberFormatException, InterruptedException  {
 		
 		Random r = new Random();
 		Integer next = 5;
-		next = r.nextInt(11);
-		try {
-			try {							    
-				driver.findElement(By.xpath("//*[@id='coregs']/div[" + question +"]/div/div/div/label[" + number +"]/input")).click();
-			} catch (Exception e) {
-				try {
-					driver.findElement(By.xpath("//*[@id='coregs']/div[" + question +"]/div[1]/div/div/label["+ number +"]/input")).click();
-				} catch (Exception e1) {
-					try {
-						driver.findElement(By.xpath("//*[@id='coregs']/div[" + question +"]/div[1]/div/div/label["+ number +"]/span")).click();
-					} catch (Exception e2) {
-						try {
-							driver.findElementByXPath("//*[@id=\"coregs\"]/div["+ question + "]/div[1]/div/a[" + number + "]").click();
-						} catch (Exception e3) {
-							driver.findElement(By.xpath("//*[@id='coregs']/div[" + question +"]/div/div/a[" + number + "]")).click();
-						}
-					}
-				}
-			}
+		try {							    
+			next = r.nextInt(11);
+			driver.findElement(By.xpath("//*[@id='coregs']/div[" + question +"]/div/div/div/label[" + number +"]/input")).click();
 			System.out.println("检测问题成功，问题是第 " + question + " 道题！随机数  " +  number);
-			try {												  
-				WebElement noThanks = driver.findElement(By.xpath("//*[@id='coregs']/div[" + question + "]/div/div/a"));  //no thanks
-				int bfb = r.nextInt(101);
-				//检测
-				if(bfb < 30) {
-					noThanks.click();
-					System.out.println("no thanks!");
-				} else {
-					driver.findElement(By.xpath("//*[@id='coregs']/div[" + question + "]/div/div/button")).click();
-				}
-			} catch (Exception e) {}
-			Thread.sleep(Integer.valueOf(next.toString() + "000"));
 			return true;
-		} catch (Exception e) {
-			System.out.println("不是第 "+ question + " 道题，number " + number);
-			return false;
-		}
+		} catch (Exception e) {}
+		
+		try {
+			driver.findElement(By.xpath("//*[@id='coregs']/div[" + question +"]/div[1]/div/div/label["+ number +"]/input")).click();
+			System.out.println("检测问题成功，问题是第 " + question + " 道题！随机数  " +  number);
+			return true;
+		} catch (Exception e1) {}
+		
+		try {
+			driver.findElement(By.xpath("//*[@id='coregs']/div[" + question +"]/div[1]/div/div/label["+ number +"]/span")).click();
+			System.out.println("检测问题成功，问题是第 " + question + " 道题！随机数  " +  number);
+			return true;
+		} catch (Exception e2) {}
+		try {							               //*[@id="coregs"]/div[2]/div[1]/div/a[1]  
+			driver.findElement(By.xpath("//*[@id='coregs']/div["+ question + "]/div[1]/div/a[" + number + "]")).click();
+			System.out.println("检测问题成功，问题是第 " + question + " 道题！随机数  " +  number);
+			return true;
+		} catch (Exception e3) {}
+		
+		try {
+			driver.findElement(By.xpath("//*[@id='coregs']/div[" + question +"]/div/div/a[" + number + "]")).click();
+			System.out.println("检测问题成功，问题是第 " + question + " 道题！随机数  " +  number);
+			return true;
+		} catch (Exception e) {}
+		
+		try {												  
+			WebElement noThanks = driver.findElement(By.xpath("//*[@id='coregs']/div[" + question + "]/div/div/a"));  //no thanks
+			int bfb = r.nextInt(101);
+			//检测
+			if(bfb < 30) {
+				noThanks.click();
+				System.out.println("no thanks!");
+			} else {
+				driver.findElement(By.xpath("//*[@id='coregs']/div[" + question + "]/div/div/button")).click();
+				System.out.println("检测问题成功，问题是第 " + question + " 道题！ ");
+			}
+			return true;
+		} catch (Exception e) {}
+		
+		Thread.sleep(Integer.valueOf(next.toString() + "000"));
+		System.out.println("不是第" + question + "道题，随机数为 " + number);
+		return false;
 	}
 	
 	public static void end_answer(ChromeDriver driver) throws NumberFormatException, InterruptedException  {
