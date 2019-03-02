@@ -411,6 +411,11 @@ public class AuCj1Handler {
 		} catch (Exception e) { }
 		
 		try {
+			driver.findElement(By.xpath("//*[@id='panel130']/div/div/div/div/div/div/div/div["+ getNumber(2) + "]/button")).click();
+			return;
+		} catch (Exception e) { }
+		
+		try {
 			driver.findElement(By.xpath("//*[@id='panel398']/div/div/div/div/div/div/div/div["+ getNumber(2) + "]/button")).click();
 			return;
 		} catch (Exception e) { }
