@@ -95,12 +95,17 @@ public class AuCj1Handler {
 			} catch (Exception e) {}
 			Thread.sleep(3000);
 			
-			webDriverWait.until(new ExpectedCondition<WebElement>() {
-	            @Override
-	            public WebElement apply(WebDriver d) {
-	                return d.findElement(By.xpath("//*[@id='fieldAddress']"));
-	            }
-	        }).sendKeys(data.getAddress2()); 
+			try {
+				webDriverWait.until(new ExpectedCondition<WebElement>() {
+		            @Override
+		            public WebElement apply(WebDriver d) {
+		                return d.findElement(By.xpath("//*[@id='fieldAddress']"));
+		            }
+		        }).sendKeys(data.getAddress2()); 
+			} catch (Exception e) {
+				return 6;
+			}
+			
 			
 			driver.findElement(By.xpath("//*[@id='fieldSuburb']")).sendKeys(data.getCity());
 			Thread.sleep(3000);
@@ -125,6 +130,12 @@ public class AuCj1Handler {
 			Thread.sleep(3000);
 			driver.findElementByXPath("//*[@id='page-address']/a").click();
 			Thread.sleep(15000);
+			
+			try {
+				driver.findElementByXPath("//*[@id='coregs']/div[1]/p").getText();
+			} catch (Exception e) {
+				return 5;
+			}
 			if(b < 10) {
 				System.out.println("0%-10%提交完毕！");
 				return 1;

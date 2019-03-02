@@ -56,7 +56,7 @@ public class AuCjController {
 	private static String prevIP = null;
 	
 	//家
-	private static String defaultIP = "111.194.44.141";
+	private static String defaultIP = "111.194.45.162";
 	private final static String driverPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\chromedriver.exe";
 	private final static String proxyToolPath = "E:\\911S5 2018-09-10\\ProxyTool\\AutoProxyTool.exe";
 	private final static String au_filePath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\au_data.xlsx";
@@ -133,7 +133,7 @@ public class AuCjController {
 	@RequestMapping("s/{offer}/{offer2}/{offer3}")
 	public JsonResult<String> au(@PathVariable("offer") Integer offerIndex,@PathVariable("offer2") Integer offerIndex2,@PathVariable("offer3") Integer offerIndex3) throws InterruptedException {
 	
-		for(int i = 0; i< 20;i++) {
+		for(int i = 0; i< Integer.MAX_VALUE;i++) {
 			AuData data = auDataMapper.findByUseStatus(0);
 			if(data == null || data.getEmail()== null || data.getFirstName() == null) {
 				return JsonResult.error(ErrorEnum.ERROR_DATA_NOT_EXISTS, "数据库没有可用数据！");
@@ -210,23 +210,25 @@ public class AuCjController {
 //			data.setState(stateMap.get(state));
 
 			//执行脚本3
-			AuWish wish1 = wishDao.findOne(1);
-			int result3 = AuCj3Handler.handle(data, driver, auofferList.get(offerIndex3), wish1);
-			if(result3 == 5) {
-				auDataMapper.updateStatusById(result3 + "", data.getId(), new Date(), "电话不通过！");
+			AuWish wish0 = wishDao.findOne(0);
+			int result = AuCj1Handler.handle(data, driver, auofferList.get(offerIndex), wish0);
+			if(result == 5) {
+				auDataMapper.updateStatusById(result + "", data.getId(), new Date(), "phone no pass！");
 				driver.quit();
 				continue;
-			} else if(result3 == 6){
-				auDataMapper.updateStatusById(result3 + "", data.getId(), new Date(), "邮箱不通过！");
+			} else if(result == 6){
+				auDataMapper.updateStatusById(result + "", data.getId(), new Date(), "email no pass！");
 				driver.quit();
 				continue;
 			}
+
+			AuWish wish1 = wishDao.findOne(1);
+			int result3 = AuCj3Handler.handle(data, driver, auofferList.get(offerIndex3), wish1);
 			//标识wish被使用
 			wishDao.update(wish1);
 			
 			//执行脚本1
-			AuWish wish0 = wishDao.findOne(0);
-			int result = AuCj1Handler.handle(data, driver, auofferList.get(offerIndex), wish0);
+			
 
 			//执行脚本2
 			int result2 = AuCj2Handler.handle(data, driver, auofferList.get(offerIndex2), wish0);
