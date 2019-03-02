@@ -3,6 +3,7 @@ package com.selenum.handler;
 import java.util.Random;
 import java.util.Set;
 
+import org.mockito.asm.util.CheckAnnotationAdapter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -141,42 +142,44 @@ public class AuCj1Handler {
 				return 1;
 			}
 			
+			String question1 = "Want access to the BEST DEALS on worldwide cruises & travel? Simply select where in the world you would like to travel and Cruise Megastore will call you back with an unbelievable offer! Plus receive a FREE $100 cruise voucher.".trim();
+			String question2 = "Get more of what you love in 2019 with Foxtel. Save $40* a month for 12mths on Platinum HD with no iQ4 set up costs. Click yes to receive a call, SMS & email.".trim();
+			String question3 = "Would you consider supporting any of the following organisations?".trim();
+			String question4 = "What is your annual income?".trim();
+			String question5 = "Select any of the following organisations you would consider supporting".trim();
+			String question6 = "Love big discounts?".trim();
+			String question7 = "Tick YES to get your daily horoscope.".trim();
+			String question8 = "Do you have a cat or dog at home?".trim();
+			String question9 = "Please select your current retailer;".trim();
+			String question10 = "Who is your current Broadband provider?".trim();
+			String question11 = "Which of these Insurance Products do you already have?".trim();
+			String question12 = "Are you interested in meeting new people via online dating?".trim();
+			String question13 = "What time would work best for you to receive a call?".trim();
+			String question14 = "Are you interested in solar energy?".trim();
+			String question15 = "Do you own a car?".trim();
+			String question16 = "When did you last buy a lottery ticket?".trim();
+			String question17 = "Do you gamble online?".trim();
+			String question18 = "Do you have an eligible life or income protection policy with any of the following:".trim();
+			String question19 = "Choose the category you're most interested in to sign up to our newsletter and you will automatically enter for a chance to win the upcoming iPhone 7 when it’s released!".trim();
+			String question20 = "What is the outcome of the following calculation: 2 + 3 = ?".trim();
+			String question21 = "Complete the survey by telling us why you should win in 25 words or less:".trim();
+			String question22 = "Do you have Superannuation and have had an INJURY in the last 2 years that is NOT HEALING?".trim();
+			String question23 = "Only Foxtel brings you the best choice of live sport, blockbuster movies, new shows and complete series. Tick to get a call, SMS & Email.".trim();
+			String question24 = "Choose the category you're most interested in to sign up to our newsletter and you will automatically enter for a chance to win the upcoming iPhone 7 when it’s released!".trim();
+			
 			//开始问卷
 			for(int i=1; i < 25; i++) {
 				
 				String question = "";
-				try {
-					question = driver.findElementByXPath("//*[@id='coregs']/div[" + i + "]/p").getText();
+				try {//*[@id="coregs"]/div[2]/p
+					question = driver.findElementByXPath("//*[@id='coregs']/div[" + i + "]/p").getText().trim();
+					System.out.println(question);
 				} catch (Exception e) {
 					System.err.println("调查问卷结束！");
 					break;
 				}
 				
-				String question1 = "Want access to the BEST DEALS on worldwide cruises & travel? Simply select where in the world you would like to travel and Cruise Megastore will call you back with an unbelievable offer! Plus receive a FREE $100 cruise voucher.";
-				String question2 = "Get more of what you love in 2019 with Foxtel. Save $40* a month for 12mths on Platinum HD with no iQ4 set up costs. Click yes to receive a call, SMS & email.";
-				String question3 = "Would you consider supporting any of the following organisations?";
-				String question4 = "What is your annual income?";
-				String question5 = "Select any of the following organisations you would consider supporting";
-				String question6 = "Love big discounts?";
-				String question7 = "Tick YES to get your daily horoscope.";
-				String question8 = "Do you have a cat or dog at home?";
-				String question9 = "Please select your current retailer;";
-				String question10 = "Who is your current Broadband provider?";
-				String question11 = "Which of these Insurance Products do you already have?";
-				String question12 = "Are you interested in meeting new people via online dating?";
-				String question13 = "What time would work best for you to receive a call?";
-				String question14 = "Are you interested in solar energy?";
-				String question15 = "Do you own a car?";
-				String question16 = "When did you last buy a lottery ticket?";
-				String question17 = "Do you gamble online?";
-				String question18 = "Do you have an eligible life or income protection policy with any of the following:";
-				String question19 = "Choose the category you're most interested in to sign up to our newsletter and you will automatically enter for a chance to win the upcoming iPhone 7 when it’s released!";
-				String question20 = "What is the outcome of the following calculation: 2 + 3 = ?";
-				String question21 = "Complete the survey by telling us why you should win in 25 words or less:";
-				String question22 = "Do you have Superannuation and have had an INJURY in the last 2 years that is NOT HEALING?";
-				String question23 = "Only Foxtel brings you the best choice of live sport, blockbuster movies, new shows and complete series. Tick to get a call, SMS & Email.";
-				String question24 = "Choose the category you're most interested in to sign up to our newsletter and you will automatically enter for a chance to win the upcoming iPhone 7 when it’s released!";
-				Integer optionsNumber = getNumber(2);
+				Integer optionsNumber = 0;
 				if(question.contains(question1)) {
 					optionsNumber = getNumber(8);
 				}
@@ -261,6 +264,7 @@ public class AuCj1Handler {
 				}
 				
 				if(answer(driver, i, optionsNumber) == true) {
+					Thread.sleep(5000);
 					if(i== 3 && b >= 10 && b < 15){
 						System.out.println("10%-15%提交完毕！");
 						return 1;
@@ -348,32 +352,43 @@ public class AuCj1Handler {
 			next = r.nextInt(11);
 			driver.findElement(By.xpath("//*[@id='coregs']/div[" + question +"]/div/div/div/label[" + number +"]/input")).click();
 			System.out.println("检测问题成功，问题是第 " + question + " 道题！随机数  " +  number);
+			check(driver, question, number);
 			return true;
 		} catch (Exception e) {}
 		
 		try {
 			driver.findElement(By.xpath("//*[@id='coregs']/div[" + question +"]/div[1]/div/div/label["+ number +"]/input")).click();
 			System.out.println("检测问题成功，问题是第 " + question + " 道题！随机数  " +  number);
+			check(driver, question, number);
 			return true;
 		} catch (Exception e1) {}
 		
 		try {
 			driver.findElement(By.xpath("//*[@id='coregs']/div[" + question +"]/div[1]/div/div/label["+ number +"]/span")).click();
 			System.out.println("检测问题成功，问题是第 " + question + " 道题！随机数  " +  number);
+			check(driver, question, number);
 			return true;
 		} catch (Exception e2) {}
 		try {							               //*[@id="coregs"]/div[2]/div[1]/div/a[1]  
 			driver.findElement(By.xpath("//*[@id='coregs']/div["+ question + "]/div[1]/div/a[" + number + "]")).click();
 			System.out.println("检测问题成功，问题是第 " + question + " 道题！随机数  " +  number);
+			check(driver, question, number);
 			return true;
 		} catch (Exception e3) {}
 		
 		try {
 			driver.findElement(By.xpath("//*[@id='coregs']/div[" + question +"]/div/div/a[" + number + "]")).click();
 			System.out.println("检测问题成功，问题是第 " + question + " 道题！随机数  " +  number);
+			check(driver, question, number);
 			return true;
 		} catch (Exception e) {}
-		
+		Thread.sleep(Integer.valueOf(next.toString() + "000"));
+		System.out.println("不是第" + question + "道题，随机数为 " + number);
+		return false;
+	}
+	
+	public static void check(ChromeDriver driver, Integer question, Integer number) {
+		Random r = new Random();
 		try {												  
 			WebElement noThanks = driver.findElement(By.xpath("//*[@id='coregs']/div[" + question + "]/div/div/a"));  //no thanks
 			int bfb = r.nextInt(101);
@@ -383,14 +398,9 @@ public class AuCj1Handler {
 				System.out.println("no thanks!");
 			} else {
 				driver.findElement(By.xpath("//*[@id='coregs']/div[" + question + "]/div/div/button")).click();
-				System.out.println("检测问题成功，问题是第 " + question + " 道题！ ");
+				System.out.println("continue!");
 			}
-			return true;
 		} catch (Exception e) {}
-		
-		Thread.sleep(Integer.valueOf(next.toString() + "000"));
-		System.out.println("不是第" + question + "道题，随机数为 " + number);
-		return false;
 	}
 	
 	public static void end_answer(ChromeDriver driver) throws NumberFormatException, InterruptedException  {
@@ -446,6 +456,10 @@ public class AuCj1Handler {
 		} catch (Exception e) { }
 		try {
 			driver.findElement(By.xpath("//*[@id='panel432']/div/div/div/div/div/div[1]/div/div[" + getNumber(2) + "]/button")).click();
+			return;
+		} catch (Exception e) { }
+		try {
+			driver.findElement(By.xpath("//*[@id='panel448']/div/div/div/div/div/div[1]/div/div[" + getNumber(2) + "]/button")).click();
 			return;
 		} catch (Exception e) { }
 		System.out.println("现有题库未检测到当前问题！");

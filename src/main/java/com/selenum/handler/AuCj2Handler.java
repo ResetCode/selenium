@@ -190,6 +190,7 @@ public class AuCj2Handler {
 				if(answer(driver, 862, getNumberHas0(2))) continue;
 				if(answer(driver, 909, getNumberHas0(2))) continue;
 				if(answer(driver, 915, getNumberHas0(2))) continue;
+				if(answer(driver, 985, getNumberHas0(2))) continue;
 				if(answer(driver, 997, getNumberHas0(2))) continue;
 				if(answer(driver, 1005, getNumberHas0(3))) continue;
 				if(answer(driver, 1029, getNumberHas0(2))) continue;
@@ -302,6 +303,7 @@ public class AuCj2Handler {
 				if(answer(driver, 1297, getNumberHas0(2))) continue;
 				if(answer(driver, 1299, getNumberHas0(2))) continue;
 				if(answer(driver, 1300, getNumberHas0(8))) continue;
+				if(answer(driver, 1302, getNumberHas0(2))) continue;
 				if(answer(driver, 1307, getNumberHas0(2))) continue;
 				if(answer(driver, 1311, getNumberHas0(5))) continue;
 				if(answer(driver, 1311, getNumberHas0(2))) continue;

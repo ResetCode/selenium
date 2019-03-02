@@ -53,7 +53,11 @@ public class AuCj3Handler {
 				Thread.sleep(3000);
 				driver.findElementByXPath("//*[@id=\"page1\"]/div[1]/div/div[2]/div[2]/div[2]/div[2]/a["+ getNumber(2) +"]").click();
 				Thread.sleep(3000);
-				driver.findElementByXPath("//*[@id=\"page1\"]/div[1]/div/div[2]/div[2]/div[2]/div[3]/a["+ getNumber(2) +"]").click();
+				try {
+					driver.findElementByXPath("//*[@id=\"page1\"]/div[1]/div/div[2]/div[2]/div[2]/div[3]/a["+ getNumber(2) +"]").click();
+				} catch (Exception e) {
+					System.out.println("跳过prelander类型2第三道题直接填写资料！");
+				}
 				Thread.sleep(10000);
 			} catch (Exception e) {
 				System.out.println("跳过prelander类型2直接填写资料！");
@@ -389,6 +393,16 @@ public class AuCj3Handler {
 				as = "//Want access to the BEST DEALS on worldwide cruises & travel?";
 				try {
 					driver.findElementByXPath("//*[@id=\"question-3284\"]/div[2]/ul/li["+ getNumber(7) + "]/label/span").click();
+					System.out.println("yes - {} " +  as);
+					Thread.sleep(10000);
+					continue;
+				} catch (Exception e) {System.out.println("no - {} " +  as);}
+				
+				as = "Would you consider supporting any of the following organisations?";
+				try {
+					driver.findElementByXPath("//*[@id=\"question-197\"]/div/ul/li["+ getNumber(3) + "]/label").click();
+					Thread.sleep(3000);
+					driver.findElementByXPath("//*[@id=\"question-197\"]/div/button").click();
 					System.out.println("yes - {} " +  as);
 					Thread.sleep(10000);
 					continue;
