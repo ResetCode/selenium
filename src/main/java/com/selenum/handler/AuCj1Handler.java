@@ -123,7 +123,7 @@ public class AuCj1Handler {
 			//*[@id="page-address"]/div[2]/div[8]/div/label/label/label 1464
 			//*[@id="page-address"]/div[2]/div[9]/div/label/label/label 853 //*[@id="coreg_853"] //*[@id="page-address"]/div[2]/div[9]/div/label
 			for(int i = 1; i <= 12; i++) {
-				try {
+				try {						   //*[@id="page-address"]/div[2]/div[9]/div/label/span
 					driver.findElementByXPath("//*[@id='page-address']/div[2]/div["+ i + "]/div/label").click(); //循环检查复选框
 				} catch (Exception e4) {}
 			}
@@ -133,10 +133,11 @@ public class AuCj1Handler {
 			Thread.sleep(15000);
 			
 			try {
-				driver.findElementByXPath("//*[@id='coregs']/div[1]/p").getText();
-			} catch (Exception e) {
-				return 5;
-			}
+				String check = driver.findElementByXPath("//*[@id='coregs']/div[1]/p").getText();
+				if("".equals(check.trim())) {
+					return 5;
+				}
+			} catch (Exception e) {}
 			if(b < 10) {
 				System.out.println("0%-10%提交完毕！");
 				return 1;
