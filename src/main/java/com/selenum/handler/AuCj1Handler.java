@@ -182,7 +182,7 @@ public class AuCj1Handler {
 				
 				Integer optionsNumber = 0;
 				if(question.contains(question1)) {
-					optionsNumber = getNumber(8);
+					optionsNumber = 4;
 				}
 				if(question.contains(question2)) {
 					optionsNumber = getNumber(2);
