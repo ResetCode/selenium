@@ -264,7 +264,7 @@ public class AuCj1_2Handler {
 			}
 			
 			for(int j=0; j <= 15; j++) {
-				end_answer(driver);
+				end_answer(driver,data);
 				Integer next = 5;
 				while(true) {
 					next = r.nextInt(11);
@@ -371,7 +371,7 @@ public class AuCj1_2Handler {
 		} catch (Exception e) {}
 	}
 	
-	public static void end_answer(ChromeDriver driver) throws NumberFormatException, InterruptedException  {
+	public static void end_answer(ChromeDriver driver, AuData data) throws NumberFormatException, InterruptedException  {
 		try {
 			driver.findElement(By.xpath("//*[@id='panel17']/div/div/div/div/div/div/div/div[" + getNumber(2) + "]/button")).click();
 			return;
@@ -435,6 +435,23 @@ public class AuCj1_2Handler {
 			driver.findElement(By.xpath("//*[@id='panel448']/div/div/div/div/div/div[1]/div/div[" + getNumber(2) + "]/button")).click();
 			return;
 		} catch (Exception e) { }
+		try {
+			//*[@id="mid_continue_pyvrossy7d"]  use
+			//*[@id="mid_pyvrossy7d"]/div/div[2]/button  no thanks
+			//*[@id="mid_phone_pyvrossy7d"] sendKey
+			Random r = new Random();
+			int next = r.nextInt(100);
+			if(next <= 33) {
+				driver.findElementByXPath("//*[@id=\"mid_continue_pyvrossy7d\"]").click();
+				return;
+			} else if(next > 33 && next <= 66) {
+				driver.findElementByXPath("//*[@id=\"mid_pyvrossy7d\"]/div/div[2]/button").click();
+				return;
+			} else {
+				driver.findElementByXPath("//*[@id=\"mid_phone_pyvrossy7d\"]").sendKeys(data.getPhone().substring(1));
+				return;
+			}
+		} catch (Exception e) {}
 		System.out.println("现有题库未检测到当前问题！");
 	}
 	

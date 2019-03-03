@@ -256,6 +256,17 @@ public class AuCj3Handler {
 					Thread.sleep(10000);
 					continue;
 				} catch (Exception e) {System.out.println("no - {} " +  as);}
+				as = "In 2016 alone, warming oceans killed almost a quarter of the Great Barrier Reef's coral, yet the government has approved the world's biggest coal mine right on its doorstep.";
+				try {
+					if(suiji <= 30) {
+						driver.findElement(By.xpath("//*[@id=\"question-981\"]/div[2]/div[3]/button[2]")).click();
+					} else {
+						driver.findElementByXPath("//*[@id=\"question-981\"]/div[2]/div[3]/button[1]").click();
+					}
+					System.out.println("yes - {}" +  as );
+					Thread.sleep(10000);
+					continue;
+				} catch (Exception e) {System.out.println("no - {} " +  as);}
 				
 				as = "//Who is your current electricity supplier?";
 				try {

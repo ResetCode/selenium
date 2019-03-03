@@ -60,11 +60,9 @@ public class AuCj2Handler {
 					driver.findElementByXPath("//*[@id=\"prize_picker\"]/div[3]/div[2]/div[4]/button").click();
 					Thread.sleep(20000);
 				} catch (Exception e) {
-					e.printStackTrace();
 					System.out.println("跳过prelander选择颜色步骤！");
 				}
 			} catch (Exception e) {
-				e.printStackTrace();
 				System.out.println("跳过prelander类型1问答！");
 			}
 			
@@ -145,18 +143,20 @@ public class AuCj2Handler {
 			Thread.sleep(3000);
 			try {
 				driver.findElementByXPath("//*[@id=\"coreg_1006_yes\"]").click(); //yes
-			} catch (Exception e) {
-				try {
-					driver.findElementByXPath("//*[@id=\"coreg_1163_yes\"]").click(); //yes
-				} catch (Exception e2) {
-					try {
-						driver.findElementByXPath("//*[@id=\"coreg_1209_yes\"]").click(); //yes
-					} catch (Exception e3) {
-						driver.findElementByXPath("//*[@id=\"coreg_1014_yes\"]").click();
-					}
-				}
-				
-			}
+			} catch (Exception e) {}
+			try {
+				driver.findElementByXPath("//*[@id=\"coreg_1163_yes\"]").click(); //yes
+			} catch (Exception e2) {}
+			try {
+				driver.findElementByXPath("//*[@id=\"coreg_1209_yes\"]").click(); //yes
+			} catch (Exception e3) {}
+			try {
+				driver.findElementByXPath("//*[@id=\"coreg_1014_yes\"]").click(); //yes
+			} catch (Exception e) {}
+			try {
+				driver.findElementByXPath("//*[@id=\"coreg_1227_yes\"]").click(); //yes
+			} catch (Exception e) {}
+			
 			Thread.sleep(3000);
 			driver.findElementByXPath("//*[@id=\"submitBtn\"]").click(); 
 			Thread.sleep(6000);
