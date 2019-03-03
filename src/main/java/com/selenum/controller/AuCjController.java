@@ -114,6 +114,27 @@ public class AuCjController {
 		auofferList.add("http://www.kolosia.com/t/fuc-7hm-gq7?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
 		auofferList.add("http://track.comgrate.com/click.php?c=41&key=3v2k48603ufhsf4yuf8dz32q");
 		
+		//A2 18/19/20
+		auofferList.add("http://www.kolosia.com/t/52v-vse-a4f?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList.add("http://www.911game.xyz/click.php?c=13&key=1og3l9730qtwhqz7694a21g0");
+		auofferList.add("http://www.kolosia.com/t/4sd-9hc-rq5?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		
+		//B2 21/22/23
+		auofferList.add("http://www.kolosia.com/t/q57-cfq-ktf?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList.add("http://www.911game.xyz/click.php?c=14&key=93johqkm7dic1g2apdcro0uh");
+		auofferList.add("http://www.kolosia.com/t/1d3-v2r-gv9?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		
+		//C2 24/25/26
+		auofferList.add("http://www.kolosia.com/t/n4d-e0m-c7s?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList.add("http://www.911game.xyz/click.php?c=15&key=h32q51m95jlwq88sayqepvy6");
+		auofferList.add("http://www.kolosia.com/t/4sg-qcu-ang?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		
+		//D2 27/28/29
+		auofferList.add("http://www.kolosia.com/t/tag-6uc-uh2?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList.add("http://www.kolosia.com/t/o6t-kgg-86o?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList.add("http://www.kolosia.com/t/i1n-urp-0h2?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		
+		
 		stateMap.put("New South Wales", "NSW");
 		stateMap.put("Victoria", "Vic");
 		stateMap.put("Queensland", "QLD");
