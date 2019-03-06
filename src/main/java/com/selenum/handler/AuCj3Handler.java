@@ -130,7 +130,7 @@ public class AuCj3Handler {
 			driver.findElementByXPath("//*[@id=\"postcode\"]").sendKeys(data.getZipCode());
 			Thread.sleep(2000);
 			((JavascriptExecutor) driver).executeScript("document.getElementById('postcode').blur();");
-			Thread.sleep(10000);
+			Thread.sleep(20000);
 			((JavascriptExecutor) driver).executeScript("var city = document.getElementById('city');" + 
 					"for(var i = 0; i < city.options.length; i++){" + 
 					"    if(city.options[i].value == '" + data.getCity() + "') {" + 
@@ -186,11 +186,15 @@ public class AuCj3Handler {
 			} catch (Exception e) {}
 			
 			try {
-				
 				driver.findElementByXPath("//*[@id=\"input2\"]/div[1]/div/div[2]/div[2]/div/div[5]/div/button").click();
 			} catch (Exception e) {
-				driver.findElementByXPath("//*[@id=\"input2\"]/div/div/div[3]/div[2]/div[3]/div[5]/div/button").click();
+				try {
+					driver.findElementByXPath("//*[@id=\"input2\"]/div/div/div[3]/div[2]/div[3]/div[5]/div/button").click();
+				} catch (Exception e2) {
+					driver.findElementByXPath("//*[@id=\"input2\"]/div[1]/div/div[2]/div[3]/div/div[5]/div/button").click();
+				}
 			}
+			
 			Thread.sleep(20000); //资料填写完毕，开始回答调查问卷
 			
 			//选项一是 the bus， 选项二是圣诞老人
