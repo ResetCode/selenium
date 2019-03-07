@@ -28,6 +28,7 @@ public class AuCj3Handler {
 
 	private final static Logger logger = LoggerFactory.getLogger(AuCj3Handler.class);
 	
+	@SuppressWarnings("null")
 	public static int handle(AuData data, ChromeDriver driver, String offerUrl, AuWish wish) throws InterruptedException {
 		
 		try {
@@ -158,12 +159,17 @@ public class AuCj3Handler {
 			driver.findElementByXPath("//*[@id='phone']").sendKeys(data.getPhone().substring(1));
 			//What is your current housing situation?
 			try {
+				aboutHouseNumber = getNumberHas0(4);
 				aboutHouseSelect = new Select(driver.findElementByXPath("//*[@id=\"coreg-container\"]/div[1]/div/div/span/select"));
-			} catch (Exception e) {
+				aboutHouseSelect.selectByVisibleText(aboutHouse[aboutHouseNumber]);
+			} catch (Exception e) {}
+			try {
 				aboutHouseSelect = new Select(driver.findElementByXPath("//*[@id=\"coreg-container\"]/div/div/div/span/select"));
-			}
-			aboutHouseNumber = getNumberHas0(4);
-			aboutHouseSelect.selectByVisibleText(aboutHouse[aboutHouseNumber]);
+				aboutHouseNumber = getNumberHas0(4);
+				aboutHouseSelect.selectByVisibleText(aboutHouse[aboutHouseNumber]);
+			} catch (Exception e) {}
+			
+			
 			Thread.sleep(3000);
 			Integer beforeSubmitNumber = getNumberHas0(6);
 			String[] beforeSubmit = {"Pacific Islands" , "Europe" , "Alaska" , "NZ/ Australia","Asia","Other","Not interested"};
