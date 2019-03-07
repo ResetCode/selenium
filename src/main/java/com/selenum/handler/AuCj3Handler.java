@@ -177,14 +177,22 @@ public class AuCj3Handler {
 				new Select(driver.findElementByXPath("//*[@id=\"coreg-container\"]/div[3]/div/div/span/select")).selectByVisibleText(beforeSubmit[3]);
 				Thread.sleep(3000);
 			} catch (Exception e) {
-				try {
-					new Select(driver.findElementByXPath("//*[@id=\"coreg-container\"]/div[2]/div/div/span/select")).selectByVisibleText(beforeSubmit[3]);
-					Thread.sleep(3000);
-				} catch (Exception e2) {
-					System.out.println("未检测到手机号最后一步选项！");
-				}
-				
+				System.out.println("未检测到手机号最后一步选项！");
 			}
+			try {
+				new Select(driver.findElementByXPath("//*[@id=\"coreg-container\"]/div[2]/div/div/span/select")).selectByVisibleText(beforeSubmit[3]);
+				Thread.sleep(3000);
+			} catch (Exception e2) {
+				System.out.println("未检测到手机号最后一步选项！");
+			}
+			try {
+				new Select(driver.findElementByXPath("//*[@id=\"coreg-container\"]/div/div/div/span/select")).selectByVisibleText(beforeSubmit[3]);
+				Thread.sleep(3000);
+			} catch (Exception e) {
+				System.out.println("未检测到手机号最后一步选项！");
+			}
+			
+			
 			
 			try {
 				driver.findElementByXPath("//*[@id=\"coreg-container\"]/div[2]/label/div").click(); //确认复选框
