@@ -25,7 +25,7 @@ public class AUTemplatePoiHandler {
 		InputStream is = new FileInputStream(file);
 		XSSFWorkbook workbook = new XSSFWorkbook(is);
 		Sheet sheet = workbook.getSheetAt(0);
-		for(int i = 0; i < 37; i ++) {
+		for(int i = 0; i < 39; i ++) {
 			
 			Row row = sheet.getRow(i);
 			for(Cell cell : row) {
@@ -54,7 +54,13 @@ public class AUTemplatePoiHandler {
 			String email = row.getCell(9).getStringCellValue();
 			String address2 = row.getCell(11).getStringCellValue();
 			
-			String[] births = birthDay.split("/");
+			String pattern = "";
+			if(birthDay.contains("/")) {
+				pattern = "/";
+			} else {
+				pattern = "-";
+			}
+			String[] births = birthDay.split(pattern);
 			AuData data = new AuData();
 			data.setEmail(email);
 			data.setName(name);
