@@ -132,7 +132,7 @@ public class AuCj3Handler {
 			Thread.sleep(2000);
 			((JavascriptExecutor) driver).executeScript("document.getElementById('postcode').blur();");
 			Thread.sleep(20000);
-			((JavascriptExecutor) driver).executeScript("var city = document.getElementById('city');city.options[0].selected = true") ; 
+			((JavascriptExecutor) driver).executeScript("var city = document.getElementById('city');city.options[1].selected = true") ; 
 //					"for(var i = 0; i < city.options.length; i++){" + 
 //					"    if(city.options[i].value == '" + data.getCity() + "') {" + 
 //					"       city.options[i].selected = true;" + 
