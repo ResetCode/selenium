@@ -131,7 +131,7 @@ public class AuCj3Handler {
 			driver.findElementByXPath("//*[@id=\"postcode\"]").sendKeys(data.getZipCode());
 			Thread.sleep(2000);
 			((JavascriptExecutor) driver).executeScript("document.getElementById('postcode').blur();");
-			Thread.sleep(20000);
+			Thread.sleep(10000);
 			((JavascriptExecutor) driver).executeScript("var city = document.getElementById('city');city.options[1].selected = true") ; 
 //					"for(var i = 0; i < city.options.length; i++){" + 
 //					"    if(city.options[i].value == '" + data.getCity() + "') {" + 
@@ -141,13 +141,8 @@ public class AuCj3Handler {
 //					"}");
 			Thread.sleep(8000);
 			
-			
-			String ad = data.getAddress();
-			Integer index = ad.indexOf(" ");
-			String streetNumber = ad.substring(0, index);
-			String street = ad.substring(index + 1, ad.length());
-			
-			driver.findElementById("street").sendKeys(street);
+			String address = data.getAddress();
+			driver.findElementById("street").sendKeys(address);
 			Thread.sleep(10000);
 			((JavascriptExecutor) driver).executeScript("document.getElementById('ui-id-2').getElementsByTagName('li')[0].click();");
 			Thread.sleep(5000);
