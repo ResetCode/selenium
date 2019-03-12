@@ -382,6 +382,13 @@ public class AuCj1Handler {
 			check(driver, question, number);
 			return true;
 		} catch (Exception e3) {}
+		try {							               
+			driver.findElement(By.xpath("//*[@id='coregs']/div["+ question + "]/div[1]/div[1]/a[" + number + "]")).click();
+			System.out.println("检测问题成功，问题是第 " + question + " 道题！随机数  " +  number);
+			check(driver, question, number);
+			return true;
+		} catch (Exception e3) {}
+		//*[@id="coregs"]/div[6]/div[1]/div[1]/a[1]
 		
 		try {
 			driver.findElement(By.xpath("//*[@id='coregs']/div[" + question +"]/div/div/a[" + number + "]")).click();
