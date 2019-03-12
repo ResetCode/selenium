@@ -166,7 +166,7 @@ public class AuCj1Handler {
 			String question22 = "Do you have Superannuation and have had an INJURY in the last 2 years that is NOT HEALING?".trim();
 			String question23 = "Only Foxtel brings you the best choice of live sport, blockbuster movies, new shows and complete series. Tick to get a call, SMS & Email.".trim();
 			String question24 = "Choose the category you're most interested in to sign up to our newsletter and you will automatically enter for a chance to win the upcoming iPhone 7 when it’s released!".trim();
-			
+			String question25 = "Are you looking for the best care for your child? Speak to a Goodstart professional to find out why more Australians choose a Goodstart early education for their children.";
 			//开始问卷
 			for(int i=1; i < 25; i++) {
 				
@@ -261,6 +261,9 @@ public class AuCj1Handler {
 				}
 				if(question.contains(question24)) {
 					optionsNumber = getNumber(2);
+				}
+				if(question.contains(question25)) {
+					optionsNumber = getNumber(4);
 				}
 				
 				if(answer(driver, i, optionsNumber) == true) {
