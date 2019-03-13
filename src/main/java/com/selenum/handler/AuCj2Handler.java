@@ -210,7 +210,7 @@ public class AuCj2Handler {
 				if(answer(driver, 1083, getNumberHas0(4))) continue;
 				if(answer(driver, 1088, getNumberHas0(2))) continue;
 				if(answer(driver, 1125, getNumberHas0(2))) continue;
-				if(answer(driver, 1127, getNumberHas0(3)))  {
+				if(answer(driver, 1127, 4))  {//*[@id="coreg_1127no4"]
 					if(n <= 40 && n > 30) {
 						return 1;
 					}
