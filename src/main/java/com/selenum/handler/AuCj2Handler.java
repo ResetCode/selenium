@@ -28,35 +28,45 @@ public class AuCj2Handler {
 					number0 = getNumber(4) + 1;
 					driver.findElementByXPath("//*[@id=\"question1\"]/div[" + number0 + "]/div").click();
 					Thread.sleep(3000);
-				} catch (Exception e) {
+				} catch (Exception e) {}
+				
+				try {
 					number0 = getNumber(2) + 1;
 					driver.findElementByXPath("//*[@id=\"question1\"]/div[" + number0 + "]/div").click();
 					Thread.sleep(3000);
-				}
+				} catch (Exception e) {}
 				
-				number0 = getNumber(2) + 1;
-				driver.findElementByXPath("//*[@id=\"question2\"]/div[" + number0 + "]/div").click();
-				Thread.sleep(3000);
+				try {
+					number0 = getNumber(2) + 1;
+					driver.findElementByXPath("//*[@id=\"question2\"]/div[" + number0 + "]/div").click();
+					Thread.sleep(3000);
+				} catch (Exception e) {}
+				
 				
 				try {
 					number0 = getNumber(3) + 1;
 					driver.findElementByXPath("//*[@id=\"question3\"]/div[" + number0 + "]/div").click();
 					Thread.sleep(20000);
-				} catch (Exception e) {
-					System.out.println("跳过prelander第3道题！");
+				} catch (Exception e) {}
+				
+				try {
+					driver.findElementByXPath("//*[@id=\"question3\"]/div[2]/div").click();
 					Thread.sleep(20000);
-				}
+				} catch (Exception e) {}
+				Thread.sleep(20000);
+				
+				
 				try {
 					driver.findElementByXPath("//*[@id=\"checking_result\"]/div[2]/div").click();
 					Thread.sleep(20000);
-				} catch (Exception e) {
+				} catch (Exception e) {}
+				
+				try {
 					driver.findElementByXPath("//*[@id=\"question4\"]/div[2]/div").click();
 					Thread.sleep(20000);
-				}
+				} catch (Exception e) {}
 				
 				try {						    
-//					driver.findElementByXPath("//*[@id=\"c_pic_" + getNumber(4) +"_text\"]/span").click();
-//					Thread.sleep(3000);
 					driver.findElementByXPath("//*[@id=\"prize_picker\"]/div[3]/div[2]/div[4]/button").click();
 					Thread.sleep(20000);
 				} catch (Exception e) {
