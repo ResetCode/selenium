@@ -95,7 +95,7 @@ public class AuCj1_2Handler {
 				} catch (Exception e4) {}
 			}
 			
-			Thread.sleep(3000);
+			Thread.sleep(10000);
 			driver.findElementByXPath("//*[@id='page-address']/div/div/div[2]/div/a").click();
 			Thread.sleep(15000);
 			
