@@ -186,7 +186,7 @@ public class AuCjController {
 			chromeOptions.addArguments("--user-agent=" + ua.getUserAgent());
 			chromeOptions.addArguments("--window-size=" + screen.getScreen());
 			chromeOptions.addArguments("--incognito");
-			chromeOptions.addArguments("-lang=en-au");
+			chromeOptions.addArguments("--lang=en-au");
 			chromeOptions.addArguments("--disable-infobars");
 			ChromeDriver driver = new ChromeDriver(chromeOptions);
 			
