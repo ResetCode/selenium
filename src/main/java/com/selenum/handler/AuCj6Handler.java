@@ -35,22 +35,40 @@ public class AuCj6Handler {
 			driver.manage().deleteAllCookies();
 			Thread.sleep(10000);
 
-			//postcode
-			driver.findElementByXPath("//*[@id=\"main-wrapper\"]/flow-step/teaser/div[2]/div/div[2]/div/teaser-interest-questions/div/div[1]/div[3]/div/div/div/input").sendKeys(data.getZipCode());
-			Thread.sleep(5000);
+			//postcode					 
+			try {
+				driver.findElementByXPath("//*[@id=\"main-wrapper\"]/flow-step/teaser/div/div/div[2]/div/teaser-interest-questions/div/div[1]/div[2]/input").sendKeys(data.getZipCode());
+				Thread.sleep(5000);
+				
+			} catch (Exception e) {
+				driver.findElementByXPath("//*[@id=\"main-wrapper\"]/flow-step/teaser/div[2]/div/div[2]/div/teaser-interest-questions/div/div[1]/div[3]/div/div/div/input").sendKeys(data.getZipCode());
+				Thread.sleep(5000);
+			}
 			
-			//next
-			driver.findElementByXPath("//*[@id=\"main-wrapper\"]/flow-step/teaser/div[2]/div/div[2]/div/teaser-interest-questions/div/div[1]/div[3]/div/div/div/span/button").click();
-			Thread.sleep(5000);
+			//next					     
+			try {
+				
+				driver.findElementByXPath("//*[@id=\"main-wrapper\"]/flow-step/teaser/div[2]/div/div[2]/div/teaser-interest-questions/div/div[1]/div[3]/div/div/div/span/button").click();
+				Thread.sleep(5000);
+			} catch (Exception e) {
+				driver.findElementByXPath("//*[@id=\"main-wrapper\"]/flow-step/teaser/div/div/div[2]/div/teaser-interest-questions/div/div[1]/button").click();
+				Thread.sleep(5000);
+			}
 			
 			Integer sex = 1;
 			if(data.getName().equals("f")) {
 				sex = 2;
-			} 
-			driver.findElementByXPath("//*[@id=\"main-wrapper\"]/flow-step/teaser/div[2]/div/div[2]/div/teaser-interest-questions/div/div[1]/div[3]/div[" + sex + "]/button");
-			Thread.sleep(20000);
+			} 						   
 			
-			//day
+			try {
+				driver.findElementByXPath("//*[@id=\"main-wrapper\"]/flow-step/teaser/div[2]/div/div[2]/div/teaser-interest-questions/div/div[1]/div[3]/div[" + sex + "]/button");
+				Thread.sleep(20000);
+			} catch (Exception e) {
+				driver.findElementByXPath("//*[@id=\"main-wrapper\"]/flow-step/teaser/div/div/div[2]/div/teaser-interest-questions/div/div/div[2]/div[" + sex + "]/button");
+				Thread.sleep(20000);
+			}
+			
+			//day											          
 			Select selectDay = new Select(driver.findElementByXPath("//*[@id=\"form\"]/div[2]/div/date-selector/div/div[2]/div[1]/select")); //birthday
 			String day = data.getBirthDay();
 			if(Integer.valueOf(day) < 10) {
