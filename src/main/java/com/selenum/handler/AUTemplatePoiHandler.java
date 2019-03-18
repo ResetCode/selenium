@@ -25,7 +25,7 @@ public class AUTemplatePoiHandler {
 		InputStream is = new FileInputStream(file);
 		XSSFWorkbook workbook = new XSSFWorkbook(is);
 		Sheet sheet = workbook.getSheetAt(0);
-		for(int i = 0; i < 39; i ++) {
+		for(int i = 0; i < 50; i ++) {
 			
 			Row row = sheet.getRow(i);
 			for(Cell cell : row) {
@@ -84,7 +84,7 @@ public class AUTemplatePoiHandler {
 				}
 			}
 			data.setCity(sb.toString());
-			data.setAddress(address.split(" ")[0] + " " + address.split(" ")[1]);
+			data.setAddress(address);
 			data.setZipCode(zip_code);
 			data.setCreateTime(new Date());
 			data.setUseStatus("0");
