@@ -76,12 +76,20 @@ public class AuCj2Handler {
 				System.out.println("跳过prelander类型1问答！");
 			}
 			
-			try {						     
-				driver.findElementByXPath("//*[@id=\"question_1\"]/button["+ getNumber(4) +"]").click();
+			try {
+				try {
+					driver.findElementByXPath("//*[@id=\"question_1\"]/button["+ getNumber(4) +"]").click();
+				} catch (Exception e) {
+					driver.findElementByXPath("//*[@id=\"question_1\"]/button["+ getNumber(2) +"]").click();
+				}
 				Thread.sleep(5000);
 				driver.findElementByXPath("//*[@id=\"question_2\"]/button["+ getNumber(4) +"]").click();
 				Thread.sleep(5000);
-				driver.findElementByXPath("//*[@id=\"question_3\"]/button["+ getNumber(4) +"]").click();
+				try {
+					driver.findElementByXPath("//*[@id=\"question_3\"]/button["+ getNumber(2) +"]").click();
+				} catch (Exception e) {
+					driver.findElementByXPath("//*[@id=\"question_3\"]/button["+ getNumber(4) +"]").click();
+				}
 				Thread.sleep(30000);
 			} catch (Exception e) {
 				System.out.println("跳过prelander类型2问答！");
