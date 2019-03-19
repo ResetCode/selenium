@@ -165,7 +165,7 @@ public class AuCj3Handler {
 			} catch (Exception e) {}
 			
 			
-			Thread.sleep(3000);
+			Thread.sleep(60000);
 			Integer beforeSubmitNumber = getNumberHas0(6);
 			String[] beforeSubmit = {"Pacific Islands" , "Europe" , "Alaska" , "NZ/ Australia","Asia","Other","Not interested"};
 			try {
