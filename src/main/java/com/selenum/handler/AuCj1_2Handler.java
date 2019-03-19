@@ -136,6 +136,7 @@ public class AuCj1_2Handler {
 			String question24 = "Choose the category you're most interested in to sign up to our newsletter and you will automatically enter for a chance to win the upcoming iPhone 7 when it’s released!".trim();
 			String question25 = "Are you looking for the best care for your child? Speak to a Goodstart professional to find out why more Australians choose a Goodstart early education for their children.";
 			String question26 = "Have you shopped at Woolworths Online in the last 3 months?";
+			String question27 = "It makes great odds even better, every day. Click BET NOW if you would like to receive this offer via SMS and email.";
 			//开始问卷
 			for(int i=1; i < 25; i++) {
 				
@@ -235,6 +236,9 @@ public class AuCj1_2Handler {
 					optionsNumber = getNumber(4);
 				}
 				if(question.contains(question26)) {
+					optionsNumber = getNumber(2);
+				}
+				if(question.contains(question27)) {
 					optionsNumber = getNumber(2);
 				}
 				
