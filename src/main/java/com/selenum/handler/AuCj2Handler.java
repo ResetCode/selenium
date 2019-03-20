@@ -22,7 +22,10 @@ public class AuCj2Handler {
 			int number0 = 0;
 			try {
 				
-				driver.findElementByXPath("//*[@id=\"question0\"]/div[2]/div").click();
+				try {
+					driver.findElementByXPath("//*[@id=\"question0\"]/div[2]/div").click();
+				} catch (Exception e) {}
+				
 				Thread.sleep(3000);
 				try {
 					number0 = getNumber(4) + 1;
@@ -37,11 +40,36 @@ public class AuCj2Handler {
 				} catch (Exception e) {}
 				
 				try {
+					driver.findElementByXPath("//*[@id=\"question_1\"]/button["+ getNumber(4) +"]").click();
+					Thread.sleep(5000);
+				} catch (Exception e) {}
+				
+				try {
+					driver.findElementByXPath("//*[@id=\"question_1\"]/button["+ getNumber(2) +"]").click();
+					Thread.sleep(5000);
+				} catch (Exception e) {}
+
+				try {
+					driver.findElementByXPath("//*[@id=\"question_1\"]/button["+ getNumber(2) +"]").click();
+					Thread.sleep(5000);
+				} catch (Exception e) {}
+				
+				try {
 					number0 = getNumber(2) + 1;
 					driver.findElementByXPath("//*[@id=\"question2\"]/div[" + number0 + "]/div").click();
 					Thread.sleep(3000);
 				} catch (Exception e) {}
 				
+				try {
+					number0 = getNumber(2) + 1;
+					driver.findElementByXPath("//*[@id=\"question2\"]/div[" + number0 + "]/div").click();
+					Thread.sleep(3000);
+				} catch (Exception e) {}
+				
+				try {
+					driver.findElementByXPath("//*[@id=\"question_2\"]/button["+ getNumber(4) +"]").click();
+					Thread.sleep(5000);
+				} catch (Exception e) {}
 				
 				try {
 					number0 = getNumber(3) + 1;
@@ -53,8 +81,17 @@ public class AuCj2Handler {
 					driver.findElementByXPath("//*[@id=\"question3\"]/div[2]/div").click();
 					Thread.sleep(20000);
 				} catch (Exception e) {}
-				Thread.sleep(20000);
 				
+				try {
+					driver.findElementByXPath("//*[@id=\"question_3\"]/button["+ getNumber(2) +"]").click();
+					Thread.sleep(20000);
+				} catch (Exception e) {}
+				
+				try {
+					driver.findElementByXPath("//*[@id=\"question_3\"]/button["+ getNumber(4) +"]").click();
+					Thread.sleep(20000);
+				} catch (Exception e) {}
+				Thread.sleep(20000);
 				
 				try {
 					driver.findElementByXPath("//*[@id=\"checking_result\"]/div[2]/div").click();
@@ -76,40 +113,22 @@ public class AuCj2Handler {
 				System.out.println("跳过prelander类型1问答！");
 			}
 			
-			try {
-				try {
-					driver.findElementByXPath("//*[@id=\"question_1\"]/button["+ getNumber(4) +"]").click();
-				} catch (Exception e) {
-					driver.findElementByXPath("//*[@id=\"question_1\"]/button["+ getNumber(2) +"]").click();
-				}
-				Thread.sleep(5000);
-				driver.findElementByXPath("//*[@id=\"question_2\"]/button["+ getNumber(4) +"]").click();
-				Thread.sleep(5000);
-				try {
-					driver.findElementByXPath("//*[@id=\"question_3\"]/button["+ getNumber(2) +"]").click();
-				} catch (Exception e) {
-					driver.findElementByXPath("//*[@id=\"question_3\"]/button["+ getNumber(4) +"]").click();
-				}
-				Thread.sleep(30000);
-			} catch (Exception e) {
-				System.out.println("跳过prelander类型2问答！");
-			}
 			
-			try {
-				driver.findElement(By.xpath("//*[@id=\"fname\"]")).sendKeys(wish0.getContent()); //wish
-				//标记被使用
-				wish0.setUseStatus("1");
-				Thread.sleep(3000);
-				driver.findElement(By.xpath("//*[@id=\"question0\"]/div[2]/div")).click(); //enter now
-				Thread.sleep(10000);
-				
-				driver.findElement(By.xpath("//*[@id=\"c_pic_"+ getNumber(4) +"_text\"]/input")); //q1
-				Thread.sleep(3000);
-				driver.findElement(By.xpath("//*[@id=\"prize_picker\"]/div[3]/div[2]/div[4]/button")).click();
-				Thread.sleep(3000);
-			} catch (Exception e) {
-				System.out.println("跳过prelander心愿单！");
-			}
+//			try {
+//				driver.findElement(By.xpath("//*[@id=\"fname\"]")).sendKeys(wish0.getContent()); //wish
+//				//标记被使用
+//				wish0.setUseStatus("1");
+//				Thread.sleep(3000);
+//				driver.findElement(By.xpath("//*[@id=\"question0\"]/div[2]/div")).click(); //enter now
+//				Thread.sleep(10000);
+//				
+//				driver.findElement(By.xpath("//*[@id=\"c_pic_"+ getNumber(4) +"_text\"]/input")); //q1
+//				Thread.sleep(3000);
+//				driver.findElement(By.xpath("//*[@id=\"prize_picker\"]/div[3]/div[2]/div[4]/button")).click();
+//				Thread.sleep(3000);
+//			} catch (Exception e) {
+//				System.out.println("跳过prelander心愿单！");
+//			}
 			
 			
 			////////正式开始///////
