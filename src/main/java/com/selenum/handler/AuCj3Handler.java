@@ -660,7 +660,7 @@ public class AuCj3Handler {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			Thread.sleep(60000);
+			Thread.sleep(180000);
 			return 3;
 		} finally {
 //			driver.quit();
