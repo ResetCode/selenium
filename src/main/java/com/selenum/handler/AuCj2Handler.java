@@ -5,6 +5,7 @@ import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
@@ -27,6 +28,13 @@ public class AuCj2Handler {
 				} catch (Exception e) {}
 				
 				Thread.sleep(3000);
+				
+				try {
+					number0 = getNumber(5) + 1;
+					driver.findElementByXPath("//*[@id=\"question1\"]/div[" + number0 + "]/div").click();
+					Thread.sleep(3000);
+				} catch (Exception e) {}
+				
 				try {
 					number0 = getNumber(4) + 1;
 					driver.findElementByXPath("//*[@id=\"question1\"]/div[" + number0 + "]/div").click();
@@ -35,6 +43,15 @@ public class AuCj2Handler {
 				
 				try {
 					number0 = getNumber(2) + 1;
+					WebElement check = driver.findElementByXPath("//*[@id=\"question1\"]/div[2]/div");
+					String text = check.getText();
+					String male = "Male";
+					String female = "Female";
+					if(male.equals(text.trim()) && data.getName().equals("m")) {
+						number0 = 2;
+					} else if(female.equals(text.trim()) && data.getName().equals("f")){
+						number0 = 3;
+					}
 					driver.findElementByXPath("//*[@id=\"question1\"]/div[" + number0 + "]/div").click();
 					Thread.sleep(3000);
 				} catch (Exception e) {}
@@ -49,13 +66,21 @@ public class AuCj2Handler {
 					Thread.sleep(5000);
 				} catch (Exception e) {}
 
+				
 				try {
-					driver.findElementByXPath("//*[@id=\"question_1\"]/button["+ getNumber(2) +"]").click();
-					Thread.sleep(5000);
+					number0 = getNumber(5) + 1;
+					driver.findElementByXPath("//*[@id=\"question2\"]/div[" + number0 + "]/div").click();
+					Thread.sleep(3000);
 				} catch (Exception e) {}
 				
 				try {
-					number0 = getNumber(2) + 1;
+					number0 = getNumber(4) + 1;
+					driver.findElementByXPath("//*[@id=\"question2\"]/div[" + number0 + "]/div").click();
+					Thread.sleep(3000);
+				} catch (Exception e) {}
+				
+				try {
+					number0 = getNumber(3) + 1;
 					driver.findElementByXPath("//*[@id=\"question2\"]/div[" + number0 + "]/div").click();
 					Thread.sleep(3000);
 				} catch (Exception e) {}
@@ -83,14 +108,15 @@ public class AuCj2Handler {
 				} catch (Exception e) {}
 				
 				try {
+					driver.findElementByXPath("//*[@id=\"question_3\"]/button["+ getNumber(4) +"]").click();
+					Thread.sleep(20000);
+				} catch (Exception e) {}
+
+				try {
 					driver.findElementByXPath("//*[@id=\"question_3\"]/button["+ getNumber(2) +"]").click();
 					Thread.sleep(20000);
 				} catch (Exception e) {}
 				
-				try {
-					driver.findElementByXPath("//*[@id=\"question_3\"]/button["+ getNumber(4) +"]").click();
-					Thread.sleep(20000);
-				} catch (Exception e) {}
 				Thread.sleep(20000);
 				
 				try {
@@ -110,7 +136,7 @@ public class AuCj2Handler {
 					System.out.println("跳过prelander选择颜色步骤！");
 				}
 			} catch (Exception e) {
-				System.out.println("跳过prelander类型1问答！");
+				System.out.println("跳过prelander问答！");
 			}
 			
 			
