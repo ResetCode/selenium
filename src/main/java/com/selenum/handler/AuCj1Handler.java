@@ -169,6 +169,9 @@ public class AuCj1Handler {
 			String question25 = "Are you looking for the best care for your child? Speak to a Goodstart professional to find out why more Australians choose a Goodstart early education for their children.";
 			String question26 = "Have you shopped at Woolworths Online in the last 3 months?";
 			String question27 = "It makes great odds even better, every day. Click BET NOW if you would like to receive this offer via SMS and email.";
+			String question28 = "If you have been injured in the last 2 years and it wasn’t your fault you could be eligible for a compensation payout! If you have sought medical advice but not previously made a claim, select YES to open a new page where you can request to receive FREE legal advice.";
+			
+					
 			//开始问卷
 			for(int i=1; i < 25; i++) {
 				
@@ -273,37 +276,43 @@ public class AuCj1Handler {
 				if(question.contains(question27)) {
 					optionsNumber = getNumber(2);
 				}
+				if(question.contains(question28)) {
+					driver.findElementByXPath("//*[@id=\"coregs\"]/div[3]/div[1]/div/div/label").click();
+					Thread.sleep(5000);
+					continue;
+				}
 				
 				if(answer(driver, i, optionsNumber) == true) {
 					Thread.sleep(5000);
-					if(i== 3 && b >= 10 && b < 15){
-						System.out.println("10%-15%提交完毕！");
-						return 1;
-					}
-					if(i== 10 && b >= 25 && b < 30){
-						System.out.println("25%-30%提交完毕！");
-						return 1;
-					}
-					if(i== 13 && b >= 30 && b < 40){
-						System.out.println("30%-40%提交完毕！");
-						return 1;
-					}
-					if(i== 20 && b >= 40 && b < 60){
-						System.out.println("40%-60%提交完毕！");
-						return 1;
-					}
+//					if(i== 3 && b >= 10 && b < 15){
+//						System.out.println("10%-15%提交完毕！");
+//						return 1;
+//					}
+//					if(i== 10 && b >= 25 && b < 30){
+//						System.out.println("25%-30%提交完毕！");
+//						return 1;
+//					}
+//					if(i== 13 && b >= 30 && b < 40){
+//						System.out.println("30%-40%提交完毕！");
+//						return 1;
+//					}
+//					if(i== 20 && b >= 40 && b < 60){
+//						System.out.println("40%-60%提交完毕！");
+//						return 1;
+//					}
 					continue;
 				}
 				try {
 					driver.findElementByXPath("/html/body/main/div/div[1]/div[2]/div/div[4]/div[3]/div[3]/div/div/a["+ getNumber(2) + "]").click(); //3
 					System.out.println("检测问题成功，问题是第3道题！");
 					Thread.sleep(3000);
-					if(b >= 15 & b < 20){
-						System.out.println("15%-20%提交完毕！");
-						return 1;
-					}
+//					if(b >= 15 & b < 20){
+//						System.out.println("15%-20%提交完毕！");
+//						return 1;
+//					}
 					continue;
 				} catch (Exception e) {}
+				
 			}
 			
 			for(int j=0; j <= 15; j++) {
@@ -317,20 +326,20 @@ public class AuCj1Handler {
 				}
 				Thread.sleep(Integer.valueOf(next.toString() + "000"));
 				
-				if(b >= 40 & b < 50 && j == 2){
-					System.out.println("40%-50%提交完毕！");
-					return 1;
-				}
-				
-				if(b >= 50 & b < 60 && j == 4){
-					System.out.println("50%-60%提交完毕！");
-					return 1;
-				}
-				
-				if(b >= 60 & b < 70 && j == 6){
-					System.out.println("60%-70%提交完毕！");
-					return 1;
-				}
+//				if(b >= 40 & b < 50 && j == 2){
+//					System.out.println("40%-50%提交完毕！");
+//					return 1;
+//				}
+//				
+//				if(b >= 50 & b < 60 && j == 4){
+//					System.out.println("50%-60%提交完毕！");
+//					return 1;
+//				}
+//				
+//				if(b >= 60 & b < 70 && j == 6){
+//					System.out.println("60%-70%提交完毕！");
+//					return 1;
+//				}
 				continue;
 			}
 			
