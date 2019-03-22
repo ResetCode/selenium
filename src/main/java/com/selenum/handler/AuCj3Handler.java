@@ -269,6 +269,14 @@ public class AuCj3Handler {
 					Thread.sleep(10000);
 					continue;
 				} catch (Exception e) {System.out.println("no - {} " +  as);}
+				
+				as = "Are you prepared to donate to a Charity?";
+				try {
+					driver.findElement(By.xpath("//*[@id=\"question-7809\"]/div/div[2]/button[2]")).click();
+					System.out.println("yes - {}" +  as );
+					Thread.sleep(10000);
+					continue;
+				} catch (Exception e) {System.out.println("no - {} " +  as);}
 				as = "In 2016 alone, warming oceans killed almost a quarter of the Great Barrier Reef's coral, yet the government has approved the world's biggest coal mine right on its doorstep.";
 				try {
 					if(suiji <= 30) {
