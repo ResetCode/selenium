@@ -124,12 +124,13 @@ public class AuCj6Handler {
 				
 				if(answer(driver, 3290, getNumber(2))) continue;
 				if(answer(driver, 5434, 4)) continue;
-				if(answer(driver, 9646, getNumber(2))) continue;
+				if(answer(driver, 5434, 2)) continue;
+				if(answer(driver, 7484, getNumber(2))) continue;
 				if(answer(driver, 12037, getNumber(2))) continue;
 				if(answer(driver, 13302, getNumber(2))) continue;
 				if(answer(driver, 12043, getNumber(2))) continue;
 				if(answer(driver, 12340, getNumber(14))) continue;
-				if(answer(driver, 12484, getNumber(2))) continue;//*[@id="questionnaire-question-13971"]/div/div[2]/div/div/button[1]
+				if(answer(driver, 12484, getNumber(2))) continue;//*[@id="questionnaire-question-7484"]/div/div[2]/div/div/button[1]
 				if(answer(driver, 12692, getNumber(2))) continue;
 				if(answer(driver, 12695, getNumber(4))) continue;
 				if(answer(driver, 13028, getNumber(2))) continue;
