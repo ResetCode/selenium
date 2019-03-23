@@ -43,15 +43,15 @@ public class AUTemplatePoiHandler {
 //			String phone = row.getCell(9).getStringCellValue();
 //			String address2 = row.getCell(11).getStringCellValue();
 			String name = row.getCell(0).getStringCellValue();
-			String firstName = row.getCell(1).getStringCellValue();
-			String lastName = row.getCell(2).getStringCellValue();
+			String firstName = row.getCell(1).getStringCellValue().trim();
+			String lastName = row.getCell(2).getStringCellValue().trim();
 			String address = row.getCell(3).getStringCellValue(); 
-			String city = row.getCell(4).getStringCellValue();
+			String city = row.getCell(4).getStringCellValue().trim();
 			String state = row.getCell(5).getStringCellValue();
-			String zip_code = row.getCell(6).getStringCellValue(); //F
+			String zip_code = row.getCell(6).getStringCellValue().trim(); //F
 			String birthDay = row.getCell(7).getStringCellValue();
 			String phone = row.getCell(8).getStringCellValue();
-			String email = row.getCell(9).getStringCellValue();
+			String email = row.getCell(9).getStringCellValue().trim();
 			String address2 = row.getCell(11).getStringCellValue();
 			
 			String pattern = "";
