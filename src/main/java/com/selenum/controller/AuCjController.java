@@ -33,6 +33,7 @@ import com.selenum.handler.AuCj1Handler;
 import com.selenum.handler.AuCj1_2Handler;
 import com.selenum.handler.AuCj2Handler;
 import com.selenum.handler.AuCj3Handler;
+import com.selenum.handler.AuCj6Handler;
 import com.selenum.handler.AuGetDataFromUrlHandler;
 import com.selenum.model.AuData;
 import com.selenum.model.AuWish;
@@ -86,6 +87,8 @@ public class AuCjController {
 	private final static Map<String, String> stateMap = Maps.newHashMap(); 
 	
 	static  {
+		
+		auofferList.add("https://trck.addiliate.com/redirect.html?ad=253F654X&add1=");
 		//A 0/1/2
 		auofferList.add("http://www.kolosia.com/t/u82-mu9-oro?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
 		auofferList.add("http://www.kolosia.com/t/h5g-v0o-r69?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
@@ -164,8 +167,9 @@ public class AuCjController {
 	 * @return
 	 * @throws InterruptedException 
 	 */
-	@RequestMapping("s/{offer}/{offer2}/{offer3}")
-	public JsonResult<String> au(@PathVariable("offer") Integer offerIndex,@PathVariable("offer2") Integer offerIndex2,@PathVariable("offer3") Integer offerIndex3) throws InterruptedException {
+	@RequestMapping("s/{offer}/{offer2}/{offer3}/{offer4}")
+	public JsonResult<String> au(@PathVariable("offer") Integer offerIndex,@PathVariable("offer2") Integer offerIndex2,
+			@PathVariable("offer3") Integer offerIndex3,@PathVariable("offer4") Integer offerIndex4) throws InterruptedException {
 	
 		for(int i = 0; i< Integer.MAX_VALUE;i++) {
 			AuData data = auDataMapper.findByUseStatus(0);
@@ -237,13 +241,13 @@ public class AuCjController {
 			System.err.println("调用代理成功！");
 			
 			//标识资料数据被使用
-			auDataMapper.updateStatusById(99 + "," + 99 + "," + 99, data.getId(), new Date(), "");
+			auDataMapper.updateStatusById("99,99,99", data.getId(), new Date(), "");
 			
 			//处理州名
 //			String state = data.getState();
 //			data.setState(stateMap.get(state));
-
-			//执行脚本3
+			
+			//执行脚本1
 			AuWish wish0 = wishDao.findOne(0);
 			int result = -1;
 			if(offerIndex.intValue() == 24) {
@@ -261,14 +265,15 @@ public class AuCjController {
 				continue;
 			}
 
+			//执行脚本3
 			AuWish wish1 = wishDao.findOne(1);
 			int result3 = AuCj3Handler.handle(data, driver, auofferList.get(offerIndex3), wish1);
 			//标识wish被使用
 			wishDao.update(wish1);
 			
-			//执行脚本1
+			//执行脚本6
+			int result4 = AuCj6Handler.handle(data, driver, auofferList.get(offerIndex4), null);
 			
-
 			//执行脚本2
 			int result2 = AuCj2Handler.handle(data, driver, auofferList.get(offerIndex2), wish0);
 			//标识wish被使用
@@ -280,6 +285,7 @@ public class AuCjController {
 			resultBuffer.append(result);
 			resultBuffer.append(",").append(result2);
 			resultBuffer.append(",").append(result3);
+			resultBuffer.append(",").append(result4);
 			auDataMapper.updateStatusById(resultBuffer.toString(), data.getId(), new Date(), auofferList.get(offerIndex) + "," + auofferList.get(offerIndex2) + "," + auofferList.get(offerIndex3));
 			Thread.sleep(20000);
 			driver.quit();
