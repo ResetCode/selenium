@@ -120,17 +120,18 @@ public class AuCj6Handler {
 			driver.findElementByXPath("//*[@id=\"form\"]/div[2]/div/div/button").click();
 			Thread.sleep(20000);
 			
-			for(int i=0; i< 20; i++) {
+			for(int i=0; i< 30; i++) {
 				
 				if(answer(driver, 3290, getNumber(2))) continue;
 				if(answer(driver, 5434, 4)) continue;
 				if(answer(driver, 5434, 2)) continue;
 				if(answer(driver, 7484, getNumber(2))) continue;
+				if(answer(driver, 9646, getNumber(2))) continue;
 				if(answer(driver, 12037, getNumber(2))) continue;
 				if(answer(driver, 13302, getNumber(2))) continue;
 				if(answer(driver, 12043, getNumber(2))) continue;
 				if(answer(driver, 12340, getNumber(14))) continue;
-				if(answer(driver, 12484, getNumber(2))) continue;//*[@id="questionnaire-question-7484"]/div/div[2]/div/div/button[1]
+				if(answer(driver, 12484, getNumber(2))) continue;//*[@id="questionnaire-question-9646"]/div[1]/div[2]/div/div/div[1]/label
 				if(answer(driver, 12692, getNumber(2))) continue;
 				if(answer(driver, 12695, getNumber(4))) continue;
 				if(answer(driver, 13028, getNumber(2))) continue;
