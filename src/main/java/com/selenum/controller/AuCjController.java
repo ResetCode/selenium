@@ -58,7 +58,7 @@ public class AuCjController {
 	private static String prevIP = null;
 	
 	//家
-	private static String defaultIP = "111.194.49.85";
+	private static String defaultIP = "111.194.47.192";
 	private final static String driverPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\chromedriver.exe";
 	private final static String proxyToolPath = "E:\\911S5 2018-09-10\\ProxyTool\\AutoProxyTool.exe";
 	private final static String au_filePath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\au_data.xlsx";
@@ -88,7 +88,6 @@ public class AuCjController {
 	
 	static  {
 		
-		auofferList.add("https://track.cpa.cooins.mobi/?aff_id=563042&offer_id=524");
 		//A 0/1/2/3
 		auofferList.add("http://www.kolosia.com/t/u82-mu9-oro?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
 		auofferList.add("http://www.kolosia.com/t/h5g-v0o-r69?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
@@ -262,6 +261,8 @@ public class AuCjController {
 			int result = -1;
 			if(offerIndex.intValue() == 24) {
 				result = AuCj1_2Handler.handle(data, driver, auofferList.get(offerIndex), wish0);
+			} else if(offerIndex.intValue() == -1) {
+				
 			} else {
 				result = AuCj1Handler.handle(data, driver, auofferList.get(offerIndex), wish0);
 			}
