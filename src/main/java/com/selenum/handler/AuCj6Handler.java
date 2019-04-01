@@ -121,7 +121,6 @@ public class AuCj6Handler {
 			Thread.sleep(20000);
 			
 			for(int i=0; i< 30; i++) {
-				
 				if(answer(driver, 3290, getNumber(2))) continue;
 				if(answer(driver, 5434, 4)) continue;
 				if(answer(driver, 5434, 2)) continue;
@@ -175,7 +174,7 @@ public class AuCj6Handler {
 			return 1;
 	   } catch(Exception e) {
 		   e.printStackTrace();
-		   Thread.sleep(60000);
+		   Thread.sleep(120000);
 		   return 3;
 	   }
 	}
