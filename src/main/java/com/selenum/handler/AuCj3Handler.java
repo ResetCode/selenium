@@ -88,6 +88,12 @@ public class AuCj3Handler {
 				} catch (Exception e) {
 					System.out.println("跳过prelander类型3第四题！");
 				}
+				try {
+					driver.findElementByXPath("//*[@id='page1']/div[2]/div/div[2]/div/div[2]/div[5]/a["+ getNumber(4) + "]").click();
+					
+				} catch (Exception e) {
+					System.out.println("跳过prelander类型3第五题！");
+				}
 				Thread.sleep(10000);
 			} catch (Exception e) {
 				System.out.println("跳过prelander类型3直接填写资料！");
