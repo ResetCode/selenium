@@ -61,8 +61,14 @@ public class AuCj6Handler {
 				driver.findElementByXPath("//*[@id=\"main-wrapper\"]/flow-step/teaser/div[2]/div/div[2]/div/teaser-interest-questions/div/div[1]/div[3]/div[" + sex + "]/button").click();
 				Thread.sleep(20000);
 			} catch (Exception e) {
-				driver.findElementByXPath("//*[@id=\"main-wrapper\"]/flow-step/teaser/div/div/div[2]/div/teaser-interest-questions/div/div/div[2]/div[" + sex + "]/button").click();
-				Thread.sleep(20000);
+				try {
+					driver.findElementByXPath("//*[@id=\"main-wrapper\"]/flow-step/teaser/div/div/div[2]/div/teaser-interest-questions/div/div/div[2]/div[" + sex + "]/button").click();
+					Thread.sleep(20000);
+				} catch (Exception e2) {
+					driver.findElementByXPath("//*[@id=\"form\"]/div[1]/div/div/div[" + sex + "]/div[1]").click();
+					Thread.sleep(20000);
+				}
+				
 			}
 			
 			//day											          
