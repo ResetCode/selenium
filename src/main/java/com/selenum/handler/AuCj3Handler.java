@@ -34,6 +34,11 @@ public class AuCj3Handler {
 			driver.get(offerUrl);
 			Thread.sleep(30000);
 			
+			try {
+				driver.findElementByXPath("//*[@id=\"page1\"]/div[2]/div[1]/div/div[2]/div/div[3]").click();
+				Thread.sleep(3000);
+			} catch (Exception e) {}
+			
 			try {					         
 				driver.findElementByXPath("//*[@id=\"page1\"]/div[1]/div[1]/div[5]/button").click(); //let's do this right now
 				Thread.sleep(3000);
@@ -61,7 +66,7 @@ public class AuCj3Handler {
 			} catch (Exception e) {}
 			
 			try {
-				try {
+				try {						   
 					driver.findElementByXPath("//*[@id='page1']/div[2]/div/div[2]/div/div[2]/div[1]/a["+ getNumber(4) + "]").click();
 				} catch (Exception e) {
 					driver.findElementByXPath("//*[@id='page1']/div[2]/div/div[2]/div/div[2]/div[1]/a["+ getNumber(2) + "]").click();
@@ -129,7 +134,9 @@ public class AuCj3Handler {
 			Thread.sleep(2000);
 			((JavascriptExecutor) driver).executeScript("document.getElementById('postcode').blur();");
 			Thread.sleep(20000);
-			((JavascriptExecutor) driver).executeScript("var city = document.getElementById('city');city.options[1].selected = true") ; 
+			try {
+				((JavascriptExecutor) driver).executeScript("var city = document.getElementById('city');city.options[1].selected = true"); 
+			} catch (Exception e) {}
 //					"for(var i = 0; i < city.options.length; i++){" + 
 //					"    if(city.options[i].value == '" + data.getCity() + "') {" + 
 //					"       city.options[i].selected = true;" + 
@@ -286,7 +293,7 @@ public class AuCj3Handler {
 					continue;
 				} catch (Exception e) {System.out.println("no - {} " +  as);}
 				
-				as = "//Who is your current electricity supplier?";
+				as = "Who is your current electricity supplier?";
 				try {
 					Select electricitySelect = new Select(driver.findElementByXPath("//*[@id=\"question-437\"]/div/div[2]/select"));
 					RangeMap<Integer, String> rangeMap = TreeRangeMap.create();
@@ -437,7 +444,7 @@ public class AuCj3Handler {
 					continue;
 				} catch (Exception e) {System.out.println("no - {} " +  as);}
 				
-				as = "//Are you a member of Woolworths Rewards?";
+				as = "Are you a member of Woolworths Rewards?";
 				try {
 					driver.findElementByXPath("//*[@id=\"question-1811\"]/div/div[2]/button["+ gloab + "]").click();
 					System.out.println("yes - {} " +  as);
@@ -445,7 +452,7 @@ public class AuCj3Handler {
 					continue;
 				} catch (Exception e) {System.out.println("no - {} " +  as);}
 				
-				as = "//Join Kogan and get big discounts on electronics, appliances, homewares, fashion & more!";
+				as = "Join Kogan and get big discounts on electronics, appliances, homewares, fashion & more!";
 				try {
 					suiji = random.nextInt(100);
 					if(suiji <= 30) {
@@ -472,7 +479,7 @@ public class AuCj3Handler {
 					continue;
 				} catch (Exception e) {System.out.println("no - {} " +  as);}
 				
-				as = "//Do you love discounts?";
+				as = "Do you love discounts?";
 				try {
 					suiji = random.nextInt(100);
 					if(suiji <= 10) {
@@ -485,7 +492,42 @@ public class AuCj3Handler {
 					continue;
 				} catch (Exception e) {System.out.println("no - {} " +  as);}
 				
-				as = "//Would you like to join FreeLotto.com and start playing for your chance to win over $11,000,000.00 Tonight for FREE?";
+				as = "Deposit $12 today and win prizes over";
+				try {
+					suiji = random.nextInt(100);
+					if(suiji <= 30) {
+						driver.findElementByXPath("//*[@id=\"question-7927\"]/div[2]/ul/li[1]/label/span").click();
+					} else {
+						driver.findElementByXPath("//*[@id=\"question-7927\"]/div[2]/ul/li[2]/label/span").click();
+					}
+					System.out.println("yes - {} " +  as);
+					Thread.sleep(10000);
+					continue;
+				} catch (Exception e) {System.out.println("no - {} " +  as); }
+				
+				as = "Caged, tortured, alone and scared. Bears around the world need your help.";
+				
+				try {
+					suiji = random.nextInt(100);
+					if(suiji <= 30) {
+						driver.findElementByXPath("//*[@id=\"question-7914\"]/div[2]/div[3]/button[2]").click();
+					} else {
+						driver.findElementByXPath("//*[@id=\"question-7914\"]/div[2]/div[3]/button[1]").click();
+					}
+					System.out.println("yes - {} " +  as);
+					Thread.sleep(10000);
+					continue;
+				} catch (Exception e) {System.out.println("no - {} " +  as); }
+				
+				as = "Thank you, please select how much you would like to donate and we will be in touch. ";
+				try {
+					driver.findElementByXPath("//*[@id=\"question-7915\"]/div[2]/ul/li[5]/label/span").click();
+					System.out.println("no - {} " +  as);
+					Thread.sleep(10000);
+					continue;
+				} catch (Exception e) {}
+				
+				as = "Would you like to join FreeLotto.com and start playing for your chance to win over $11,000,000.00 Tonight for FREE?";
 				try {
 					suiji = random.nextInt(100);
 					if(suiji <= 30) {
