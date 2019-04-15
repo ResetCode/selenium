@@ -173,7 +173,7 @@ public class AuCj3Handler {
 			Integer beforeSubmitNumber = getNumberHas0(6);
 			String[] beforeSubmit = {"Pacific Islands" , "Europe" , "Alaska" , "NZ/ Australia","Asia","Other","Not interested"};
 			try {
-				new Select(driver.findElementByXPath("//*[@id=\"coreg-container\"]/div[3]/div/div/span/select")).selectByVisibleText(beforeSubmit[3]);
+				new Select(driver.findElementByXPath("//*[@id=\"coreg-container\"]/div[3]/div/div/span/select")).selectByVisibleText(beforeSubmit[getNumberHas0(6)]);
 				Thread.sleep(3000);
 			} catch (Exception e) {
 				System.out.println("未检测到手机号最后一步选项！");
