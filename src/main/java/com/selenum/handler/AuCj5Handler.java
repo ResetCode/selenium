@@ -109,15 +109,7 @@ public class AuCj5Handler {
 			((JavascriptExecutor) driver).executeScript("document.getElementById('269').blur();");
 			Thread.sleep(5000);
 			
-			try {
-				((JavascriptExecutor) driver).executeScript("var city = document.getElementById('273').getElementsByTagName('select')[0]; "
-				  + "for(var i = 0; i < city.options.length; i++){" + 
-					"    if(city.options[i].text == '" + data.getCity() + "') {" + 
-					"       city.options[i].selected = true;" + 
-					"       break;" + 
-					"    }" + 
-					"}"); 
-			} catch (Exception e) {}
+			new Select(driver.findElementByXPath("//*[@id=\"273\"]/select")).selectByVisibleText(data.getCity());
 			Thread.sleep(3000);
 					
 			driver.findElement(By.xpath("//*[@id='277']")).sendKeys(data.getAddress2());
