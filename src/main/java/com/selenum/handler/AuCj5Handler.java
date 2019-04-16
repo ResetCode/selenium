@@ -61,7 +61,7 @@ public class AuCj5Handler {
 				Thread.sleep(3000);
 			} catch (Exception e) {}
 			
-			Thread.sleep(50000);
+			Thread.sleep(10000);
 			String sex = "ld_gender_M";
 			if(data.getName().equals("f")) {
 				sex = "ld_gender_F";
@@ -436,7 +436,7 @@ public class AuCj5Handler {
 			
 	   } catch(Exception e) {
 		   e.printStackTrace();
-		   Thread.sleep(6000);
+		   Thread.sleep(60000);
 		   return 3;
 	   }
 	}
