@@ -35,66 +35,81 @@ public class AuCj3Handler {
 			Thread.sleep(30000);
 			
 			try {							 
-				driver.findElementByXPath("//*[@id=\"page1\"]/div[2]/div[2]/div/button").click();
+				driver.findElementByXPath("//*[@id=\"page1\"]/div[2]/div[2]/div/button").click(); //let's do this right now
 				Thread.sleep(3000);
 			} catch (Exception e) {}
 			
 			try {					         
 				driver.findElementByXPath("//*[@id=\"page1\"]/div[1]/div[1]/div[5]/button").click(); //let's do this right now
 				Thread.sleep(3000);
-				//How many times a week do you visit the supermarket?
-				driver.findElementByXPath("//*[@id='page1']/div[2]/div[1]/div/div[2]/div/div[2]/div["+ 1 + "]/a["+ getNumber(2) + "]").click();
-				//What do you typically spend a week on groceries?
-				driver.findElementByXPath("//*[@id='page1']/div[2]/div[1]/div/div[2]/div/div[2]/div["+ 2 + "]/a["+ getNumber(2) + "]").click();
-				//Have you ever had groceries delivered to your house?						   
-				driver.findElementByXPath("//*[@id='page1']/div[2]/div[1]/div/div[2]/div/div[2]/div["+ 3 + "]/a["+ getNumber(2) + "]").click();
-				Thread.sleep(10000); //回答完问题，等待跳转填写资料
-			} catch (Exception e) {}
-			
-			try {							
-				driver.findElementByXPath("//*[@id=\"page1\"]/div[1]/div/div[2]/div[2]/div[2]/div[1]/a["+ getNumber(2) + "]").click();
-				Thread.sleep(3000);		     
-				driver.findElementByXPath("//*[@id=\"page1\"]/div[1]/div/div[2]/div[2]/div[2]/div[2]/a["+ getNumber(2) +"]").click();
-				Thread.sleep(3000);
-				try {						     
-					driver.findElementByXPath("//*[@id=\"page1\"]/div[1]/div/div[2]/div[2]/div[2]/div[3]/a["+ getNumber(2) +"]").click();
-				} catch (Exception e) {}
-				try {						     
-					driver.findElementByXPath("//*[@id=\"page1\"]/div[1]/div/div[2]/div[2]/div[2]/div[4]/a["+ getNumber(2) +"]").click();
-				} catch (Exception e) {}
-				Thread.sleep(10000);
 			} catch (Exception e) {}
 			
 			try {
-				try {						   
-					driver.findElementByXPath("//*[@id='page1']/div[2]/div/div[2]/div/div[2]/div[1]/a["+ getNumber(4) + "]").click();
-				} catch (Exception e) {
-					driver.findElementByXPath("//*[@id='page1']/div[2]/div/div[2]/div/div[2]/div[1]/a["+ getNumber(2) + "]").click();
-				}
+				driver.findElementByXPath("//*[@id='page1']/div[2]/div[1]/div/div[2]/div/div[2]/div[1]/a["+ getNumber(2) + "]").click();
 				Thread.sleep(3000);
-				try {
-					driver.findElementByXPath("//*[@id='page1']/div[2]/div/div[2]/div/div[2]/div[2]/a["+ getNumber(4) + "]").click();
-				} catch (Exception e) {
-					driver.findElementByXPath("//*[@id='page1']/div[2]/div/div[2]/div/div[2]/div[2]/a["+ getNumber(2) + "]").click();
-				}
+			} catch (Exception e) {}
+			try {
+				driver.findElementByXPath("//*[@id='page1']/div[2]/div[1]/div/div[2]/div/div[2]/div[2]/a["+ getNumber(2) + "]").click();
 				Thread.sleep(3000);
-				try {
-					driver.findElementByXPath("//*[@id='page1']/div[2]/div/div[2]/div/div[2]/div[3]/a["+ getNumber(4) + "]").click();
-					Thread.sleep(3000);
-				} catch (Exception e) {}
+			} catch (Exception e) {}
+			try {
+				driver.findElementByXPath("//*[@id='page1']/div[2]/div[1]/div/div[2]/div/div[2]/div[3]/a["+ getNumber(2) + "]").click();
+			} catch (Exception e) {}
 				
-				try {						   
-					driver.findElementByXPath("//*[@id='page1']/div[2]/div/div[2]/div/div[2]/div[4]/a["+ getNumber(4) + "]").click();
-				} catch (Exception e) {}
-				
-				try {
-					driver.findElementByXPath("//*[@id='page1']/div[2]/div/div[2]/div/div[2]/div[5]/a["+ getNumber(4) + "]").click();
-				} catch (Exception e) {}
-				
-				Thread.sleep(10000);
+			
+			try {
+				driver.findElementByXPath("//*[@id=\"page1\"]/div[1]/div/div[2]/div[2]/div[2]/div[1]/a["+ getNumber(2) + "]").click();
+				Thread.sleep(3000);
+			} catch (Exception e) {}
+			try {
+				driver.findElementByXPath("//*[@id=\"page1\"]/div[1]/div/div[2]/div[2]/div[2]/div[2]/a["+ getNumber(2) +"]").click();
+				Thread.sleep(3000);
+			} catch (Exception e) {}
+			try {						     
+				driver.findElementByXPath("//*[@id=\"page1\"]/div[1]/div/div[2]/div[2]/div[2]/div[3]/a["+ getNumber(2) +"]").click();
+			} catch (Exception e) {}
+			try {						     
+				driver.findElementByXPath("//*[@id=\"page1\"]/div[1]/div/div[2]/div[2]/div[2]/div[4]/a["+ getNumber(2) +"]").click();
 			} catch (Exception e) {}
 			
 			
+			try {						   
+				driver.findElementByXPath("//*[@id='page1']/div[2]/div/div[2]/div/div[2]/div[1]/a["+ getNumber(4) + "]").click();
+				Thread.sleep(3000);
+			} catch (Exception e) {}
+			
+			try {
+				driver.findElementByXPath("//*[@id='page1']/div[2]/div/div[2]/div/div[2]/div[1]/a["+ getNumber(2) + "]").click();
+				Thread.sleep(3000);
+			} catch (Exception e) {}
+			
+			try {
+				driver.findElementByXPath("//*[@id='page1']/div[2]/div/div[2]/div/div[2]/div[2]/a["+ getNumber(4) + "]").click();
+				Thread.sleep(3000);
+			} catch (Exception e) {}
+			
+			try {
+				driver.findElementByXPath("//*[@id='page1']/div[2]/div/div[2]/div/div[2]/div[2]/a["+ getNumber(2) + "]").click();
+				Thread.sleep(3000);
+			} catch (Exception e) {}
+			
+			try {
+				driver.findElementByXPath("//*[@id='page1']/div[2]/div/div[2]/div/div[2]/div[3]/a["+ getNumber(4) + "]").click();
+				Thread.sleep(3000);
+			} catch (Exception e) {}
+			
+
+			try {						   
+				driver.findElementByXPath("//*[@id='page1']/div[2]/div/div[2]/div/div[2]/div[4]/a["+ getNumber(4) + "]").click();
+				Thread.sleep(3000);
+			} catch (Exception e) {}
+			
+			try {
+				driver.findElementByXPath("//*[@id='page1']/div[2]/div/div[2]/div/div[2]/div[5]/a["+ getNumber(4) + "]").click();
+				Thread.sleep(3000);
+			} catch (Exception e) {}
+			
+			Thread.sleep(10000);
 			Integer sex = 1; 
 			if(data.getName().equals("f")) {
 				sex = 2;
@@ -102,6 +117,7 @@ public class AuCj3Handler {
 			try {
 				driver.findElementByXPath("//*[@id='input1']/div/div/div[3]/div[2]/div[3]/div[1]/div/label[" + sex + "]/label").click();
 			} catch (Exception e) {
+										   //*[@id="input1"]/div[1]/div/div[2]/div[2]/div/div[1]/div/label[1]/label
 				driver.findElementByXPath("//*[@id='input1']/div[1]/div/div[2]/div[2]/div/div[1]/div/label[" + sex + "]/label").click();
 			}
 			driver.findElementByXPath("//*[@id='first-name']").sendKeys(data.getFirstName());
