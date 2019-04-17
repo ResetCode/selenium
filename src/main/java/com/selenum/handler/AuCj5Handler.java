@@ -124,7 +124,16 @@ public class AuCj5Handler {
 			((JavascriptExecutor) driver).executeScript("document.getElementById('269').blur();");
 			Thread.sleep(5000);
 			
-			new Select(driver.findElementByXPath("//*[@id=\"273\"]/select")).selectByVisibleText(data.getCity());
+			try {
+				new Select(driver.findElementByXPath("//*[@id=\"273\"]/select")).selectByVisibleText(data.getCity());
+			} catch (Exception e) {}
+			
+			try {
+				new Select(driver.findElementByXPath("//*[@id=\"273\"]/select")).selectByIndex(1);
+			} catch (Exception e) {
+				new Select(driver.findElementByXPath("//*[@id=\"273\"]/select")).selectByIndex(0);
+			}
+			
 			Thread.sleep(3000);
 					
 			driver.findElement(By.xpath("//*[@id='277']")).sendKeys(data.getAddress2());
@@ -142,11 +151,6 @@ public class AuCj5Handler {
 					return 5;
 				}
 			} catch (Exception e) {}
-			if(b < 10) {
-				System.out.println("0%-10%提交完毕！");
-				return 1;
-			}
-			
 			
 					
 			//开始问卷
