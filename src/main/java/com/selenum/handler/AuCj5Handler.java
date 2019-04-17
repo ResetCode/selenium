@@ -33,6 +33,21 @@ public class AuCj5Handler {
 			Thread.sleep(60000);
 			
 			try {
+				driver.findElementByXPath("//*[@id='mobimg" +  getNumber(6) + "']").click();
+				Thread.sleep(3000);
+			} catch (Exception e) {}
+			
+			try {
+				driver.findElementByXPath("//*[@id='mobimg" +  getNumber(4) + "']").click();
+				Thread.sleep(3000);
+			} catch (Exception e) {}
+			
+			try {
+				driver.findElementByXPath("//*[@id='mobimg" +  getNumber(3) + "']").click();
+				Thread.sleep(3000);
+			} catch (Exception e) {}
+			
+			try {
 				driver.findElementByXPath("//*[@id='img" +  getNumber(4) + "']").click();
 				Thread.sleep(3000);
 			} catch (Exception e) {}

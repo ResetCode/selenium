@@ -179,13 +179,13 @@ public class AuCj3Handler {
 				System.out.println("未检测到手机号最后一步选项！");
 			}
 			try {
-				new Select(driver.findElementByXPath("//*[@id=\"coreg-container\"]/div[2]/div/div/span/select")).selectByVisibleText(beforeSubmit[3]);
+				new Select(driver.findElementByXPath("//*[@id=\"coreg-container\"]/div[2]/div/div/span/select")).selectByVisibleText(beforeSubmit[getNumberHas0(6)]);
 				Thread.sleep(3000);
 			} catch (Exception e2) {
 				System.out.println("未检测到手机号最后一步选项！");
 			}
 			try {
-				new Select(driver.findElementByXPath("//*[@id=\"coreg-container\"]/div/div/div/span/select")).selectByVisibleText(beforeSubmit[3]);
+				new Select(driver.findElementByXPath("//*[@id=\"coreg-container\"]/div/div/div/span/select")).selectByVisibleText(beforeSubmit[getNumberHas0(6)]);
 				Thread.sleep(3000);
 			} catch (Exception e) {
 				System.out.println("未检测到手机号最后一步选项！");
@@ -281,12 +281,25 @@ public class AuCj3Handler {
 					Thread.sleep(10000);
 					continue;
 				} catch (Exception e) {System.out.println("no - {} " +  as);}
+				
 				as = "In 2016 alone, warming oceans killed almost a quarter of the Great Barrier Reef's coral, yet the government has approved the world's biggest coal mine right on its doorstep.";
 				try {
 					if(suiji <= 30) {
 						driver.findElement(By.xpath("//*[@id=\"question-981\"]/div[2]/div[3]/button[2]")).click();
 					} else {
 						driver.findElementByXPath("//*[@id=\"question-981\"]/div[2]/div[3]/button[1]").click();
+					}
+					System.out.println("yes - {}" +  as );
+					Thread.sleep(10000);
+					continue;
+				} catch (Exception e) {System.out.println("no - {} " +  as);}
+				
+				as = "Are you a home?";
+				try {
+					if(suiji <= 30) {
+						driver.findElement(By.xpath("//*[@id=\"question-8044\"]/div/div[2]/button[2]")).click();
+					} else {
+						driver.findElementByXPath("//*[@id=\"question-8044\"]/div/div[2]/button[1]").click();
 					}
 					System.out.println("yes - {}" +  as );
 					Thread.sleep(10000);
