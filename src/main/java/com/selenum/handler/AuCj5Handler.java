@@ -32,6 +32,12 @@ public class AuCj5Handler {
 			driver.manage().deleteAllCookies();
 			Thread.sleep(60000);
 			
+			
+			try {
+				driver.findElementByXPath("//*[@id='btn00" +  getNumber(3) + "']").click();
+				Thread.sleep(3000);
+			} catch (Exception e) {}
+			
 			try {
 				driver.findElementByXPath("//*[@id='mobimg" +  getNumber(6) + "']").click();
 				Thread.sleep(3000);
