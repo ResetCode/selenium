@@ -280,10 +280,10 @@ public class AuCj3Handler {
 				
 				as = "//Only Foxtel brings you the best choice of live sport, blockbuster movies, new shows and complete series.";
 				try {
-					if(suiji <= 30) {
-						driver.findElement(By.xpath("//*[@id=\"question-6204\"]/div[2]/div[2]/button[2]")).click();
+					if(suiji <= 30) {				   //*[@id="question-6204"]/div[2]/div[3]/button[1]
+						driver.findElement(By.xpath("//*[@id=\"question-6204\"]/div[2]/div[3]/button[2]")).click();
 					} else {
-						driver.findElementByXPath("//*[@id=\"question-6204\"]/div[2]/div[2]/button[1]").click();
+						driver.findElementByXPath("//*[@id=\"question-6204\"]/div[2]/div[3]/button[1]").click();
 					}
 					System.out.println("yes - {}" +  as );
 					Thread.sleep(10000);
