@@ -44,7 +44,11 @@ public class AuCj3Handler {
 				Thread.sleep(3000);
 			} catch (Exception e) {}
 			
-			try {
+			try {						     
+				driver.findElementByXPath("//*[@id=\"page1\"]/div[2]/div[1]/div/div[2]/div/div[2]/label[" + getNumber(3) + "]/div/div[1]").click();
+				Thread.sleep(3000);
+			} catch (Exception e) {}
+			try {						   
 				driver.findElementByXPath("//*[@id='page1']/div[2]/div[1]/div/div[2]/div/div[2]/div[1]/a["+ getNumber(2) + "]").click();
 				Thread.sleep(3000);
 			} catch (Exception e) {}
@@ -106,7 +110,12 @@ public class AuCj3Handler {
 			
 			try {
 				driver.findElementByXPath("//*[@id='page1']/div[2]/div/div[2]/div/div[2]/div[5]/a["+ getNumber(4) + "]").click();
-				Thread.sleep(3000);
+				Thread.sleep(3000);			
+			} catch (Exception e) {}
+			
+			try {
+				driver.findElementByXPath("//*[@id=\"page1\"]/div[2]/div[1]/div/div[2]/div/div[3]").click();
+				Thread.sleep(3000);			
 			} catch (Exception e) {}
 			
 			Thread.sleep(10000);
