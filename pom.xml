@@ -1,25 +1,26 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.selenium</groupId>
-  <artifactId>selenium</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  
-  <parent>
-	<groupId>com.using.common</groupId>
-	<artifactId>common-parent</artifactId>
-	<version>1.4.0-SNAPSHOT</version>
- </parent>
-  <properties>
-  		<using.common.groupId>com.using.common</using.common.groupId>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.selenium</groupId>
+	<artifactId>selenium</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<parent>
+		<groupId>com.using.common</groupId>
+		<artifactId>common-parent</artifactId>
+		<version>1.4.0-SNAPSHOT</version>
+	</parent>
+	<properties>
+		<using.common.groupId>com.using.common</using.common.groupId>
 		<using.common.version>1.4.0-SNAPSHOT</using.common.version>
-  </properties>
-  <dependencies>
+	</properties>
+	<dependencies>
 		<dependency>
-		    <groupId>org.seleniumhq.selenium</groupId>
-		    <artifactId>selenium-java</artifactId>
-		    <version>3.14.0</version><!--$NO-MVN-MAN-VER$-->
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>3.14.0</version><!--$NO-MVN-MAN-VER$ -->
 		</dependency>
-		
+
 		<!-- 通用模块 -->
 		<dependency>
 			<groupId>com.using.common</groupId>
@@ -64,6 +65,23 @@
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.googlecode.libphonenumber/libphonenumber -->
+		<dependency>
+			<groupId>com.googlecode.libphonenumber</groupId>
+			<artifactId>libphonenumber</artifactId>
+			<version>7.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.libphonenumber</groupId>
+			<artifactId>carrier</artifactId>
+			<version>1.11</version>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.libphonenumber</groupId>
+			<artifactId>geocoder</artifactId>
+			<version>2.12</version>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<plugins>

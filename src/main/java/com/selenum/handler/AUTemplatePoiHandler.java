@@ -17,7 +17,7 @@ import com.selenum.model.AuData;
 
 public class AUTemplatePoiHandler {
 
-	public static List<AuData> read(String filePath) throws Exception {
+	public static List<AuData> read(String filePath, Integer count) throws Exception {
 		
 		List<AuData> list = Lists.newArrayList();
 		
@@ -25,7 +25,7 @@ public class AUTemplatePoiHandler {
 		InputStream is = new FileInputStream(file);
 		XSSFWorkbook workbook = new XSSFWorkbook(is);
 		Sheet sheet = workbook.getSheetAt(0);
-		for(int i = 0; i < 50; i ++) {
+		for(int i = 0; i < count; i ++) {
 			
 			Row row = sheet.getRow(i);
 			for(Cell cell : row) {

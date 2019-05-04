@@ -10,7 +10,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriver.TargetLocator;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.google.common.collect.Maps;
 import com.selenum.model.AuData;
@@ -23,15 +22,20 @@ import com.selenum.model.AuWish;
 public class AuCj5Handler {
 
 	public static int handle(AuData data, ChromeDriver driver, String offerUrl,AuWish wish0) throws InterruptedException {
-		Random r = new Random();
-		int b = r.nextInt(101);
 		
-		WebDriverWait webDriverWait = new WebDriverWait(driver, 60);
 		try{
 			driver.get(offerUrl);
 			driver.manage().deleteAllCookies();
 			Thread.sleep(60000);
 			
+			try {
+				String text = driver.findElementByXPath("//*[@id=\"main-message\"]/h1/span").getText();
+				if(text.equals("This page isn’t working")) {
+					System.out.println("页面未打开，刷新当前页面！");
+					driver.get(offerUrl);
+					Thread.sleep(30000);
+				}
+			} catch (Exception e) {}
 			
 			try {
 				driver.findElementByXPath("//*[@id='btn00" +  getNumber(3) + "']").click();

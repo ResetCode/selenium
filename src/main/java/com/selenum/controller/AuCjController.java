@@ -33,6 +33,7 @@ import com.selenum.handler.AuCj2Handler;
 import com.selenum.handler.AuCj3Handler;
 import com.selenum.handler.AuCj5Handler;
 import com.selenum.handler.AuCj6Handler;
+import com.selenum.handler.AuCj7Handler;
 import com.selenum.handler.AuGetDataFromUrlHandler;
 import com.selenum.model.AuData;
 import com.selenum.model.AuWish;
@@ -57,8 +58,7 @@ public class AuCjController {
 	private static String prevIP = null;
 	
 	//家
-	private static String defaultIP = "111.194.44.159";
-//	private final static String driverPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\geckodriver.exe";
+	private static String defaultIP = "111.194.49.253";
 	private final static String driverPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\chromedriver.exe";
 	private final static String proxyToolPath = "E:\\911S5 2018-09-10\\ProxyTool\\AutoProxyTool.exe";
 	private final static String au_filePath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\au_data.xlsx";
@@ -114,19 +114,19 @@ public class AuCjController {
 		
 		//D 12/13/14/15
 		auofferList.add("http://www.kolosia.com/t/a2e-1do-lhb?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
-		auofferList.add("http://www.911game.xyz/click.php?c=20&key=5age6i3v2eno4p0nl8vu8947");
+		auofferList.add("http://www.kolosia.com/t/a73-ubq-ls7?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
 		auofferList.add("http://www.kolosia.com/t/01b-u0h-sa0?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
 		auofferList.add("http://www.kolosia.com/c/5261/9?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
 		
 //		E 16/17/18/19
 		auofferList.add("http://www.kolosia.com/t/ned-3u2-qqb?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
-		auofferList.add("http://www.911game.xyz/click.php?c=21&key=6k9h550vrf7ulw5p58pzhkf2");
+		auofferList.add("http://www.kolosia.com/t/0np-h3u-l76?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
 		auofferList.add("http://www.kolosia.com/t/vq3-9d4-jgo?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
 		auofferList.add("http://www.kolosia.com/c/5262/0?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
 		
 		//F 20/21/22/23
 		auofferList.add("http://www.kolosia.com/t/cui-7d3-m7c?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
-		auofferList.add("http://www.911game.xyz/click.php?c=22&key=qq6yz0madj6c0i5lc3rgy08k");
+		auofferList.add("http://www.kolosia.com/t/fuc-7hm-gq7?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
 		auofferList.add("http://www.kolosia.com/t/2mm-vcl-v3b?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
 		auofferList.add("http://www.kolosia.com/c/5263/5?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
 		
@@ -202,8 +202,6 @@ public class AuCjController {
 			
 			System.setProperty("webdriver.chrome.driver", driverPath);
 			ChromeOptions chromeOptions = new ChromeOptions();
-//			String prefs = "{'translate_accepted_count': { 'en': 0 },'translate_blocked_languages': ['en'],'translate_denied_count_for_language': { 'en': 2 },'translate_ignored_count_for_language': {'en': 2},'translate_last_denied_time_for_language': {'en': [1548577325633.297] }}";
-//			chromeOptions.setExperimentalOption("prefs", prefs);
 			chromeOptions.addArguments("--user-agent=" + ua.getUserAgent());
 			chromeOptions.addArguments("--window-size=" + screen.getScreen());
 			chromeOptions.addArguments("--incognito");
@@ -211,10 +209,6 @@ public class AuCjController {
 			chromeOptions.addArguments("--disable-infobars");
 			chromeOptions.addArguments("--test-type", "--ignore-certificate-errors");
 			ChromeDriver driver = new ChromeDriver(chromeOptions);
-			
-//			System.setProperty("webdriver.firefox.bin", driverPath);
-//			FirefoxProfile profile = new FirefoxProfile();
-//			profile.setPreference("intl.accept_languages", "en-au");
 			
 			Random r = new Random();
 			int step = r.nextInt(101);
@@ -270,22 +264,9 @@ public class AuCjController {
 //			data.setState(stateMap.get(state));
 			
 			AuWish wish0 = wishDao.findOne(0);
+			AuWish wish1 = wishDao.findOne(1);
 			
-			//执行脚本1
-//			if(offerIndex.intValue() == 32) {
-//				result = AuCj1_2Handler.handle(data, driver, auofferList.get(offerIndex), wish0);
-	//		} else if(offerIndex.intValue() != -1 && offerIndex.intValue() != 32) {
-	//			result = AuCj1Handler.handle(data, driver, auofferList.get(offerIndex), wish0);
-	//		} 
-	//		if(result == 5) {
-	//			auDataMapper.updateStatusById(result + "", data.getId(), new Date(), "phone no pass！");
-	//			driver.quit();
-	//			continue;
-	//		} else if(result == 6){
-	//			auDataMapper.updateStatusById(result + "", data.getId(), new Date(), "email no pass！");
-	//			driver.quit();
-	//			continue;
-	//		}
+			AuCj7Handler.handle(data, driver, auofferList.get(offerIndex), wish1);
 			
 			//执行脚本5
 			int result = -1;
@@ -294,7 +275,6 @@ public class AuCjController {
 			}
 			
 			//执行脚本3
-			AuWish wish1 = wishDao.findOne(1);
 			int result3 = 0;
 			if(offerIndex3 != -1) {
 				result3 = AuCj3Handler.handle(data, driver, auofferList.get(offerIndex3), wish1);
@@ -335,9 +315,9 @@ public class AuCjController {
 	 * 从外部excel文件中导入用户资料到AU
 	 * @throws Exception
 	 */
-	@RequestMapping("getUserMessageFromExcel")
-	public void importUserMessageFromExcelToAu() throws Exception {
-		List<AuData> ds = AUTemplatePoiHandler.read(au_filePath);
+	@RequestMapping("getUserMessageFromExcel/{count}")
+	public void importUserMessageFromExcelToAu(@PathVariable("count") Integer count) throws Exception {
+		List<AuData> ds = AUTemplatePoiHandler.read(au_filePath, count);
 		for(AuData d : ds) {
 			auDataMapper.insert(d);
 		}

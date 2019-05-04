@@ -20,6 +20,16 @@ public class AuCj2Handler {
 		try {
 			driver.get(offerUrl);
 			Thread.sleep(30000);
+			
+			try {
+				String text = driver.findElementByXPath("//*[@id=\"main-message\"]/h1/span").getText();
+				if(text.equals("This page isn’t working")) {
+					System.out.println("页面未打开，刷新当前页面！");
+					driver.get(offerUrl);
+					Thread.sleep(30000);
+				}
+			} catch (Exception e) {}
+			
 			int number0 = 0;
 			try {
 				

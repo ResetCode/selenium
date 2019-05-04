@@ -26,13 +26,19 @@ import com.selenum.model.AuWish;
  */
 public class AuCj3Handler {
 
-	private final static Logger logger = LoggerFactory.getLogger(AuCj3Handler.class);
-	
 	public static int handle(AuData data, ChromeDriver driver, String offerUrl, AuWish wish) throws InterruptedException {
 		
 		try {
 			driver.get(offerUrl);
-			Thread.sleep(30000);
+			Thread.sleep(15000);
+			try {
+				String text = driver.findElementByXPath("//*[@id=\"main-message\"]/h1/span").getText();
+				if(text.equals("This page isn’t working")) {
+					System.out.println("页面未打开，刷新当前页面！");
+					driver.get(offerUrl);
+					Thread.sleep(30000);
+				}
+			} catch (Exception e) {}
 			
 			try {							 
 				driver.findElementByXPath("//*[@id=\"page1\"]/div[2]/div[2]/div/button").click(); //let's do this right now
@@ -172,12 +178,26 @@ public class AuCj3Handler {
 			
 			String address = data.getAddress();
 			driver.findElementById("street").sendKeys(address);
-			Thread.sleep(20000);
-			((JavascriptExecutor) driver).executeScript("document.getElementById('ui-id-2').getElementsByTagName('li')[0].click();");
-			Thread.sleep(20000);
-			((JavascriptExecutor) driver).executeScript("var city = document.getElementById('house-number');" + 
-					"var randomNum = Math.random()*city.options.length;" + 
-					"city.options[parseInt(randomNum,10)].selected = true;");
+			Thread.sleep(10000);
+			try {
+				((JavascriptExecutor) driver).executeScript("document.getElementById('ui-id-2').getElementsByTagName('li')[0].click();");
+				Thread.sleep(10000);
+				((JavascriptExecutor) driver).executeScript("var city = document.getElementById('house-number');" + 
+						"var randomNum = Math.random()*city.options.length;" + 
+						"city.options[parseInt(randomNum,10)].selected = true;");
+			} catch (Exception e) {
+				String[] streets = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
+				for(int i = 0; i < 3; i++) {
+					driver.findElementById("street").sendKeys(streets[getNumber(26)]);
+					Thread.sleep(10000);
+					try {
+						((JavascriptExecutor) driver).executeScript("var city = document.getElementById('house-number');" + 
+								"var randomNum = Math.random()*city.options.length;" + 
+								"city.options[parseInt(randomNum,10)].selected = true;");
+					} catch (Exception e2) {continue;}
+					break;
+				}
+			}
 			
 			Thread.sleep(5000);
 			driver.findElementByXPath("//*[@id='phone']").sendKeys(data.getPhone().substring(1));
@@ -225,13 +245,16 @@ public class AuCj3Handler {
 			
 			try {
 				driver.findElementByXPath("//*[@id=\"input2\"]/div[1]/div/div[2]/div[2]/div/div[5]/div/button").click();
-			} catch (Exception e) {
-				try {
-					driver.findElementByXPath("//*[@id=\"input2\"]/div/div/div[3]/div[2]/div[3]/div[5]/div/button").click();
-				} catch (Exception e2) {
-					driver.findElementByXPath("//*[@id=\"input2\"]/div[1]/div/div[2]/div[3]/div/div[5]/div/button").click();
-				}
-			}
+				Thread.sleep(3000);
+			} catch (Exception e) {}
+			try {
+				driver.findElementByXPath("//*[@id=\"input2\"]/div/div/div[3]/div[2]/div[3]/div[5]/div/button").click();
+				Thread.sleep(3000);
+			} catch (Exception e2) {}
+			try {
+				driver.findElementByXPath("//*[@id=\"input2\"]/div[1]/div/div[2]/div[3]/div/div[5]/div/button").click();
+				Thread.sleep(3000);
+			} catch (Exception e) {}
 			
 			Thread.sleep(20000); //资料填写完毕，开始回答调查问卷
 			
