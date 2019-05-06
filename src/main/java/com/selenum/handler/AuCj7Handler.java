@@ -38,13 +38,17 @@ public class AuCj7Handler {
 			driver.findElementByXPath("//*[@id=\"f_email\"]").sendKeys(data.getEmail());
 			Thread.sleep(5000);
 			
-			//check phone sms
-			driver.findElementByXPath("/html/body/div[2]/div/div[1]/div[2]/div/div/form[1]/fieldset/div[2]/div/label/span[1]/span").click();
-			Thread.sleep(5000);
+			try {
+				//check phone sms          /html/body/div[2]/div/div[1]/div[2]/div/div/form[1]/fieldset/div[2]/div/label
+				driver.findElementByXPath("/html/body/div[2]/div/div[1]/div[2]/div/div/form[1]/fieldset/div[2]/div/label").click();
+				Thread.sleep(5000);
+			} catch (Exception e) {}
 			
-			//check
-			driver.findElementByXPath("/html/body/div[2]/div/div[1]/div[2]/div/div/form[1]/fieldset/div[3]/div/label/span/span").click();
-			Thread.sleep(5000);
+			try {
+				//check                    /html/body/div[2]/div/div[1]/div[2]/div/div/form[1]/fieldset/div[3]/div/label
+				driver.findElementByXPath("/html/body/div[2]/div/div[1]/div[2]/div/div/form[1]/fieldset/div[3]/div/label").click();
+				Thread.sleep(5000);
+			} catch (Exception e) {}		
 			
 			//next
 			driver.findElementByXPath("//*[@id=\"_sbtn_1\"]").click();
