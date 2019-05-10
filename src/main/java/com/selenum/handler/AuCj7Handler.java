@@ -8,6 +8,9 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriver.TargetLocator;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.ActionChainExecutor;
+import org.openqa.selenium.interactions.Actions;
 
 import com.selenum.model.AuData;
 import com.selenum.model.AuWish;
@@ -51,7 +54,10 @@ public class AuCj7Handler {
 			} catch (Exception e) {}		
 			
 			//next
-			driver.findElementByXPath("//*[@id=\"_sbtn_1\"]").click();
+			//*[@id="_sbtn_1"]
+//			driver.findElementByXPath("//*[@id='_sbtn_1']").click();
+			Actions action = new Actions(driver);
+			action.moveToElement(driver.findElementByXPath("//*[@id='_sbtn_1']")).click().perform();
 			Thread.sleep(50000);
 			
 			try {
