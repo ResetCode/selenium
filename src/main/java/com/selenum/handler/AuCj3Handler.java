@@ -12,8 +12,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Range;
 import com.google.common.collect.RangeMap;
@@ -194,7 +192,10 @@ public class AuCj3Handler {
 						((JavascriptExecutor) driver).executeScript("var city = document.getElementById('house-number');" + 
 								"var randomNum = Math.random()*city.options.length;" + 
 								"city.options[parseInt(randomNum,10)].selected = true;");
-					} catch (Exception e2) {continue;}
+					} catch (Exception e2) {
+						driver.findElementById("street").clear();
+						continue;
+					}
 					break;
 				}
 			}
