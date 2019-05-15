@@ -189,6 +189,8 @@ public class AuCj3Handler {
 					driver.findElementById("street").sendKeys(streets[getNumber(26)]);
 					Thread.sleep(10000);
 					try {
+						((JavascriptExecutor) driver).executeScript("document.getElementById('ui-id-2').getElementsByTagName('li')[0].click();");
+						Thread.sleep(10000);
 						((JavascriptExecutor) driver).executeScript("var city = document.getElementById('house-number');" + 
 								"var randomNum = Math.random()*city.options.length;" + 
 								"city.options[parseInt(randomNum,10)].selected = true;");
