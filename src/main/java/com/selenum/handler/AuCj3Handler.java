@@ -186,7 +186,7 @@ public class AuCj3Handler {
 			} catch (Exception e) {
 				String[] streets = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
 				for(int i = 0; i < 3; i++) {
-					driver.findElementById("street").sendKeys(streets[getNumber(26)]);
+					driver.findElementById("street").sendKeys(streets[getNumberHas0(25)]);
 					Thread.sleep(10000);
 					try {
 						((JavascriptExecutor) driver).executeScript("document.getElementById('ui-id-2').getElementsByTagName('li')[0].click();");
