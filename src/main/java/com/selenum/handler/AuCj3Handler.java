@@ -130,8 +130,11 @@ public class AuCj3Handler {
 			try {
 				driver.findElementByXPath("//*[@id='input1']/div/div/div[3]/div[2]/div[3]/div[1]/div/label[" + sex + "]/label").click();
 			} catch (Exception e) {
-										   //*[@id="input1"]/div[1]/div/div[2]/div[2]/div/div[1]/div/label[1]/label
-				driver.findElementByXPath("//*[@id='input1']/div[1]/div/div[2]/div[2]/div/div[1]/div/label[" + sex + "]/label").click();
+				try {
+					driver.findElementByXPath("//*[@id=\"input1\"]/div[1]/div/div[2]/div/div/div[1]/div/label[" + sex + "]/label").click();
+				} catch (Exception e2) {
+					driver.findElementByXPath("//*[@id='input1']/div[1]/div/div[2]/div[2]/div/div[1]/div/label[" + sex + "]/label").click();
+				}
 			}
 			driver.findElementByXPath("//*[@id='first-name']").sendKeys(data.getFirstName());
 			driver.findElementByXPath("//*[@id='last-name']").sendKeys(data.getLastName());
