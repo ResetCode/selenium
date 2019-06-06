@@ -156,14 +156,17 @@ public class AuCj5Handler {
 			
 			try {
 				new Select(driver.findElementByXPath("//*[@id=\"273\"]/select")).selectByIndex(1);
-			} catch (Exception e) {
+			} catch (Exception e) {}
+			try {
 				new Select(driver.findElementByXPath("//*[@id=\"273\"]/select")).selectByIndex(0);
-			}
+			} catch (Exception e) {}
+			
 			try {
 				new Select(driver.findElementByXPath("//*[@id=\"274\"]/select")).selectByIndex(1);
-			} catch (Exception e) {
+			} catch (Exception e) {}
+			try {
 				new Select(driver.findElementByXPath("//*[@id=\"274\"]/select")).selectByIndex(0);
-			}
+			} catch (Exception e) {}
 			
 			Thread.sleep(3000);
 			try {
