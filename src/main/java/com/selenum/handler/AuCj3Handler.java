@@ -147,12 +147,19 @@ public class AuCj3Handler {
 			selectYear.selectByVisibleText(data.getBirthYear());
 			Thread.sleep(20000);
 									    
-			try {
+			try {						  
 				driver.findElementByXPath("//*[@id=\"input1\"]/div/div/div[3]/div[2]/div[3]/div[6]/div/button").click();
 				driver.findElementByXPath("//*[@id=\"input1\"]/div/div/div[3]/div[2]/div[3]/div[6]/div/button").click();
 			} catch (Exception e) {
-				driver.findElementByXPath("//*[@id=\"input1\"]/div[1]/div/div[2]/div[2]/div/div[6]/div/button").click();
-				driver.findElementByXPath("//*[@id=\"input1\"]/div[1]/div/div[2]/div[2]/div/div[6]/div/button").click();
+										     
+				try {
+					driver.findElementByXPath("//*[@id=\"input1\"]/div[1]/div/div[2]/div[2]/div/div[6]/div/button").click();
+					driver.findElementByXPath("//*[@id=\"input1\"]/div[1]/div/div[2]/div[2]/div/div[6]/div/button").click();
+				} catch (Exception e2) {
+					driver.findElementByXPath("//*[@id=\"input1\"]/div[1]/div/div[2]/div/div/div[6]/div/button/span[2]").click();
+					driver.findElementByXPath("//*[@id=\"input1\"]/div[1]/div/div[2]/div/div/div[6]/div/button/span[2]").click();
+				}
+				
 			}
 			Thread.sleep(20000);
 			
