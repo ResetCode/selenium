@@ -130,12 +130,28 @@ public class AuCj5Handler {
 			driver.findElement(By.xpath("//*[@id=\"qubiq-container\"]/main/div/form/div/div[3]/button")).click(); //下一步
 			Thread.sleep(3000);
 			
-			driver.findElement(By.id("269")).sendKeys(data.getZipCode());
-			((JavascriptExecutor) driver).executeScript("document.getElementById('269').blur();");
-			Thread.sleep(5000);
+			try {
+				driver.findElement(By.id("269")).sendKeys(data.getZipCode());
+			} catch (Exception e) {}
+			try {
+				driver.findElement(By.id("270")).sendKeys(data.getZipCode());
+			} catch (Exception e) {}
 			
 			try {
+				((JavascriptExecutor) driver).executeScript("document.getElementById('269').blur();");
+			} catch (Exception e) {}
+			try {
+				((JavascriptExecutor) driver).executeScript("document.getElementById('270').blur();");
+			} catch (Exception e) {}
+			Thread.sleep(5000);
+			
+			
+			try {//*[@id="274"]/select
 				new Select(driver.findElementByXPath("//*[@id=\"273\"]/select")).selectByVisibleText(data.getCity());
+			} catch (Exception e) {}
+			
+			try {//*[@id="274"]/select
+				new Select(driver.findElementByXPath("//*[@id=\"274\"]/select")).selectByVisibleText(data.getCity());
 			} catch (Exception e) {}
 			
 			try {
@@ -143,15 +159,29 @@ public class AuCj5Handler {
 			} catch (Exception e) {
 				new Select(driver.findElementByXPath("//*[@id=\"273\"]/select")).selectByIndex(0);
 			}
+			try {
+				new Select(driver.findElementByXPath("//*[@id=\"274\"]/select")).selectByIndex(1);
+			} catch (Exception e) {
+				new Select(driver.findElementByXPath("//*[@id=\"274\"]/select")).selectByIndex(0);
+			}
 			
 			Thread.sleep(3000);
-					
-			driver.findElement(By.xpath("//*[@id='277']")).sendKeys(data.getAddress2());
+			try {
+				driver.findElement(By.xpath("//*[@id='277']")).sendKeys(data.getAddress2());
+			} catch (Exception e) {}
+			try {
+				driver.findElement(By.xpath("//*[@id='278']")).sendKeys(data.getAddress2());
+			} catch (Exception e) {}
 			Thread.sleep(3000);
 			
-			driver.findElement(By.id("282")).sendKeys(data.getPhone().substring(1));
-			Thread.sleep(3000);
+			try {
+				driver.findElement(By.id("282")).sendKeys(data.getPhone().substring(1));
+			} catch (Exception e) {}
+			try {
+				driver.findElement(By.id("283")).sendKeys(data.getPhone().substring(1));
+			} catch (Exception e) {}
 			
+			Thread.sleep(3000);
 			driver.findElementByXPath("//*[@id=\"qubiq-container\"]/main/div/form/div/div[3]/button").click();
 			Thread.sleep(15000);
 			
