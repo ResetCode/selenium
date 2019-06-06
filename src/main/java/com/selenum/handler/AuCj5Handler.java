@@ -130,7 +130,11 @@ public class AuCj5Handler {
 			driver.findElement(By.xpath("//*[@id=\"qubiq-container\"]/main/div/form/div/div[3]/button")).click(); //下一步
 			Thread.sleep(3000);
 			
-			driver.findElement(By.id("269")).sendKeys(data.getZipCode());
+			try {
+				driver.findElement(By.id("269")).sendKeys(data.getZipCode());
+			} catch (Exception e) {
+				driver.findElement(By.id("270")).sendKeys(data.getZipCode());
+			}
 			((JavascriptExecutor) driver).executeScript("document.getElementById('269').blur();");
 			Thread.sleep(5000);
 			
