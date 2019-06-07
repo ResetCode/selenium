@@ -149,19 +149,19 @@ public class AuCjController {
 		auofferList.add("http://www.kolosia.com/c/5266/2?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
 		
 		//D2 36/37/38/39
-		auofferList.add("http://www.kolosia.com/t/tag-6uc-uh2?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList.add("http://www.911game.xyz/click.php?c=37&key=8glq679r61q9o4oecy73asb9");
 		auofferList.add("http://www.kolosia.com/t/o6t-kgg-86o?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
 		auofferList.add("http://www.kolosia.com/t/i1n-urp-0h2?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
 		auofferList.add("http://www.kolosia.com/c/5267/f?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
 		
 		//E2 40/41/42/43
-		auofferList.add("http://www.kolosia.com/t/3kq-d7q-a5u?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList.add("http://www.911game.xyz/click.php?c=30&key=nao49von2nqcz8h68r96ef46");
 		auofferList.add("http://www.kolosia.com/t/777-vhg-sk1?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
 		auofferList.add("http://www.kolosia.com/t/qnv-f7k-5eq?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
 		auofferList.add("http://www.kolosia.com/c/5268/4?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
 		
 		//F2 44/45/46/47
-		auofferList.add("http://www.kolosia.com/t/0r9-kc1-bkh?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList.add("http://www.911game.xyz/click.php?c=31&key=mm3hyw3gj62c8p43296t8766");
 		auofferList.add("http://www.kolosia.com/t/1t9-9qn-lsq?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
 		auofferList.add("http://www.kolosia.com/t/m0g-3df-lhh?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
 		auofferList.add("http://www.kolosia.com/c/5269/9?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
