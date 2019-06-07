@@ -33,7 +33,6 @@ import com.selenum.handler.AuCj2Handler;
 import com.selenum.handler.AuCj3Handler;
 import com.selenum.handler.AuCj5Handler;
 import com.selenum.handler.AuCj6Handler;
-import com.selenum.handler.AuCj7Handler;
 import com.selenum.handler.AuGetDataFromUrlHandler;
 import com.selenum.model.AuData;
 import com.selenum.model.AuWish;
@@ -41,6 +40,8 @@ import com.selenum.model.Screen;
 import com.selenum.model.UserAgent;
 import com.using.common.core.bean.ErrorEnum;
 import com.using.common.core.bean.JsonResult;
+import com.using.common.core.cache.RedisCache;
+import com.using.common.core.cache.redis.RedisLock;
 
 @RestController
 @RequestMapping("cj/au")
@@ -54,17 +55,19 @@ public class AuCjController {
 	private AuWishDao wishDao;
 	@Autowired
 	private ScreenDao screenDao;
+	@Autowired
+	private RedisLock redisLock; 
 	
 	private static String prevIP = null;
 	
 	//家
-//	private static String defaultIP = "183.22.34.38";
-//	private final static String driverPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\chromedriver.exe";
-//	private final static String proxyToolPath = "E:\\911S5 2018-09-10\\ProxyTool\\AutoProxyTool.exe";
-//	private final static String au_filePath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\au_data.xlsx";
-//	private final static String ipPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\ip.html";
-//	private final static String wishPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\au_wish.txt";
-//	private final static String winPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\au_win.txt";
+	private static String defaultIP = "111.194.50.241";
+	private final static String driverPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\chromedriver.exe";
+	private final static String proxyToolPath = "E:\\911S5 2018-09-10\\ProxyTool\\AutoProxyTool.exe";
+	private final static String au_filePath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\au_data.xlsx";
+	private final static String ipPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\ip.html";
+	private final static String wishPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\au_wish.txt";
+	private final static String winPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\au_win.txt";
 	
 //	private static String defaultIP = "111.194.45.37";
 //	private final static String driverPath = "E:\\workspaces\\selenium\\src\\main\\resources\\chromedriver.exe";
@@ -82,13 +85,13 @@ public class AuCjController {
 //	private final static String wishPath = "D:\\workspaces\\workspaces\\selenium\\src\\main\\resources\\au_wish.txt";
 //	private final static String winPath = "D:\\workspaces\\workspaces\\selenium\\src\\main\\resources\\au_win.txt";
 	
-	private static String defaultIP = "111.194.45.37";
-	private final static String driverPath = "E:\\workspaces\\selenium\\selenium2\\src\\main\\resources\\chromedriver.exe";
-	private final static String proxyToolPath = "C:\\Users\\Administrator\\Desktop\\911S5+2018-0910\\911S5 2018-0910\\ProxyTool\\AutoProxyTool.exe";
-	private final static String au_filePath = "E:\\workspaces\\selenium\\selenium2\\src\\main\\resources\\au_data.xlsx";
-	private final static String ipPath = "E:\\workspaces\\selenium\\selenium2\\src\\main\\resources\\ip.html";
-	private final static String wishPath = "E:\\workspaces\\selenium\\selenium2\\src\\main\\resources\\au_wish.txt";
-	private final static String winPath = "E:\\workspaces\\selenium\\selenium2\\src\\main\\resources\\au_win.txt";
+//	private static String defaultIP = "111.194.45.37";
+//	private final static String driverPath = "E:\\workspaces\\selenium\\selenium2\\src\\main\\resources\\chromedriver.exe";
+//	private final static String proxyToolPath = "C:\\Users\\Administrator\\Desktop\\911S5+2018-0910\\911S5 2018-0910\\ProxyTool\\AutoProxyTool.exe";
+//	private final static String au_filePath = "E:\\workspaces\\selenium\\selenium2\\src\\main\\resources\\au_data.xlsx";
+//	private final static String ipPath = "E:\\workspaces\\selenium\\selenium2\\src\\main\\resources\\ip.html";
+//	private final static String wishPath = "E:\\workspaces\\selenium\\selenium2\\src\\main\\resources\\au_wish.txt";
+//	private final static String winPath = "E:\\workspaces\\selenium\\selenium2\\src\\main\\resources\\au_win.txt";
 	
 	private final static List<String> auofferList = Lists.newArrayList();
 	private final static Map<String, String> stateMap = Maps.newHashMap(); 
@@ -182,7 +185,7 @@ public class AuCjController {
 	 * @return
 	 * @throws InterruptedException 
 	 */
-	@RequestMapping("s/{offer}/{offer2}/{offer3}/{offer4}/{offer5}")
+	@RequestMapping("s/{offer}/{offer2}/{offer3}/{offer4}")
 	public JsonResult<String> au(
 			@PathVariable("offer") Integer offerIndex,@PathVariable("offer2") Integer offerIndex2,
 			@PathVariable("offer3") Integer offerIndex3,@PathVariable("offer4") Integer offerIndex4) throws InterruptedException {
@@ -207,6 +210,7 @@ public class AuCjController {
 			ChromeDriver driver = new ChromeDriver(chromeOptions);
 			AuData data;
 			try {
+				redisLock.lock();
 				data = auDataMapper.findByUseStatus(0);
 				if(data == null || data.getEmail()== null || data.getFirstName() == null) {
 					return JsonResult.error(ErrorEnum.ERROR_DATA_NOT_EXISTS, "数据库没有可用数据！");
@@ -262,7 +266,7 @@ public class AuCjController {
 				//标识资料数据被使用
 				auDataMapper.updateStatusById("99,99,99", data.getId(), new Date(), "");
 			} finally {
-				
+				redisLock.unlock();
 			}
 			
 			
