@@ -188,11 +188,6 @@ public class AuCjController {
 			@PathVariable("offer3") Integer offerIndex3,@PathVariable("offer4") Integer offerIndex4) throws InterruptedException {
 	
 		for(int i = 0; i< Integer.MAX_VALUE;i++) {
-			AuData data = auDataMapper.findByUseStatus(0);
-			if(data == null || data.getEmail()== null || data.getFirstName() == null) {
-				return JsonResult.error(ErrorEnum.ERROR_DATA_NOT_EXISTS, "数据库没有可用数据！");
-			}
-			
 			//随机ua
 			Integer count = userAgentDao.findCount();
 			Random random = new Random();
@@ -210,55 +205,66 @@ public class AuCjController {
 			chromeOptions.addArguments("--disable-infobars");
 			chromeOptions.addArguments("--test-type", "--ignore-certificate-errors");
 			ChromeDriver driver = new ChromeDriver(chromeOptions);
-			
-			Random r = new Random();
-			int step = r.nextInt(101);
-			System.err.println("步骤随机数为:" + step);
-			
-			Runtime rt = Runtime.getRuntime();
+			AuData data;
 			try {
-				rt.exec(proxyToolPath + " -changeproxy/AU/" + data.getState());
-			} catch (IOException e) {
-				driver.quit();
-				System.err.println("调用代理失败：插件路径错误！");
+				data = auDataMapper.findByUseStatus(0);
+				if(data == null || data.getEmail()== null || data.getFirstName() == null) {
+					return JsonResult.error(ErrorEnum.ERROR_DATA_NOT_EXISTS, "数据库没有可用数据！");
+				}
+				
+				
+				Random r = new Random();
+				int step = r.nextInt(101);
+				System.err.println("步骤随机数为:" + step);
+				
+				Runtime rt = Runtime.getRuntime();
+				try {
+					rt.exec(proxyToolPath + " -changeproxy/AU/" + data.getState());
+				} catch (IOException e) {
+					driver.quit();
+					System.err.println("调用代理失败：插件路径错误！");
+					
+				}
+				Thread.sleep(5000);
+				
+				//检测ip
+				WebElement ip = null;
+				WebDriverWait webDriverWait = new WebDriverWait(driver, 60);
+				try {
+					driver.get(ipPath); 
+					driver.navigate().to(driver.getCurrentUrl());
+					Thread.sleep(5000);
+					driver.get(ipPath);
+					Thread.sleep(5000);
+					ip = webDriverWait.until(new ExpectedCondition<WebElement>() {
+						@Override
+						public WebElement apply(WebDriver d) {
+							return d.findElement(By.id("ip"));
+						}
+					});
+					
+				} catch (Exception e) {
+					driver.quit();
+//					return JsonResult.error(ErrorEnum.ERROR_SYSTEM, "调用代理失败，测试页面ip读取不到！");
+					continue;
+				}
+				
+				String nowIP = ip.getText();
+				if(defaultIP.equals(nowIP) || (prevIP != null && prevIP.equals(nowIP))) {
+					System.out.println("调用代理失败：");
+					driver.quit();
+//					return JsonResult.error(ErrorEnum.ERROR_SYSTEM, "调用代理失败！");
+					continue;
+				}
+				prevIP = nowIP;
+				System.err.println("调用代理成功！");
+				
+				//标识资料数据被使用
+				auDataMapper.updateStatusById("99,99,99", data.getId(), new Date(), "");
+			} finally {
 				
 			}
-			Thread.sleep(5000);
 			
-			//检测ip
-			WebElement ip = null;
-			WebDriverWait webDriverWait = new WebDriverWait(driver, 60);
-			try {
-				driver.get(ipPath); 
-				driver.navigate().to(driver.getCurrentUrl());
-				Thread.sleep(5000);
-				driver.get(ipPath);
-				Thread.sleep(5000);
-				ip = webDriverWait.until(new ExpectedCondition<WebElement>() {
-					@Override
-					public WebElement apply(WebDriver d) {
-						return d.findElement(By.id("ip"));
-					}
-				});
-				
-			} catch (Exception e) {
-				driver.quit();
-//				return JsonResult.error(ErrorEnum.ERROR_SYSTEM, "调用代理失败，测试页面ip读取不到！");
-				continue;
-			}
-			
-			String nowIP = ip.getText();
-			if(defaultIP.equals(nowIP) || (prevIP != null && prevIP.equals(nowIP))) {
-				System.out.println("调用代理失败：");
-				driver.quit();
-//				return JsonResult.error(ErrorEnum.ERROR_SYSTEM, "调用代理失败！");
-				continue;
-			}
-			prevIP = nowIP;
-			System.err.println("调用代理成功！");
-			
-			//标识资料数据被使用
-			auDataMapper.updateStatusById("99,99,99", data.getId(), new Date(), "");
 			
 			//处理州名
 //			String state = data.getState();
