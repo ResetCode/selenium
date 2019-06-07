@@ -1,17 +1,26 @@
 package com.selenum.handler;
 
+import static org.mockito.Matchers.intThat;
+
+import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriver.TargetLocator;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.ActionChainExecutor;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.google.common.collect.Maps;
 import com.selenum.model.AuData;
 import com.selenum.model.AuWish;
 
@@ -37,34 +46,93 @@ public class AuCj7Handler {
 				}
 			} catch (Exception e) {}
 
+			driver.get(offerUrl);
+			Thread.sleep(10000);
+			
+			try {
+				String text = driver.findElementByXPath("//*[@id=\"main-message\"]/h1/span").getText();
+				if(text.contains("This page isn’t working") || text.contains("This site can’t be reached")) {
+					System.out.println("页面未打开，刷新当前页面！");
+					driver.get(offerUrl);
+					Thread.sleep(30000);
+				}
+			} catch (Exception e) {}
+
 			//email					 
 			driver.findElementByXPath("//*[@id=\"f_email\"]").sendKeys(data.getEmail());
 			Thread.sleep(5000);
 			
 			try {
-				//check phone sms          /html/body/div[2]/div/div[1]/div[2]/div/div/form[1]/fieldset/div[2]/div/label
+				//check phone sms          
 				driver.findElementByXPath("/html/body/div[2]/div/div[1]/div[2]/div/div/form[1]/fieldset/div[2]/div/label").click();
 				Thread.sleep(5000);
 			} catch (Exception e) {}
 			
 			try {
-				//check                    /html/body/div[2]/div/div[1]/div[2]/div/div/form[1]/fieldset/div[3]/div/label
+				//check                    
 				driver.findElementByXPath("/html/body/div[2]/div/div[1]/div[2]/div/div/form[1]/fieldset/div[3]/div/label").click();
 				Thread.sleep(5000);
 			} catch (Exception e) {}		
 			
 			//next
-			//*[@id="_sbtn_1"]
-//			driver.findElementByXPath("//*[@id='_sbtn_1']").click();
-			Actions action = new Actions(driver);
-			action.moveToElement(driver.findElementByXPath("//*[@id='_sbtn_1']")).click().perform();
+			try {
+				WebElement btn = driver.findElementByXPath("//*[@id=\"_sbtn_1\"]");
+				WebDriverWait wait = new WebDriverWait(driver, 20);
+				wait.until(ExpectedConditions.elementToBeClickable(btn));
+				btn.click();
+			} catch (Exception e) {}
 			Thread.sleep(50000);
 			
 			try {
+				String sex = "Mr";
+				if("f".equals(data.getName())) {
+					Random r = new Random();
+					int ram = r.nextInt(100);
+					if(ram <= 30) {
+						sex = "Mrs";
+					} else if(ram > 30 && ram <= 60) {
+						sex = "Miss";
+					} else {
+						sex = "Ms";
+					}
+				}
+				new Select(driver.findElementByXPath("//*[@id=\"f_title\"]")).selectByVisibleText(sex);
+				Thread.sleep(3000);
+				driver.findElementByXPath("//*[@id=\"f_fname\"]").sendKeys(data.getFirstName());
+				Thread.sleep(3000);
+				driver.findElementByXPath("//*[@id=\"f_lname\"]").sendKeys(data.getLastName());
+				Thread.sleep(3000);
+				driver.findElementByXPath("//*[@id=\"f_postcode\"]").sendKeys(data.getZipCode());
+				Thread.sleep(3000);
+				driver.findElementByXPath("//*[@id=\"f_address\"]").sendKeys(data.getAddress2());
+				Thread.sleep(6000);
+				driver.findElementByXPath("//*[@id=\"f_towncity\"]").sendKeys(data.getCity());
+				Thread.sleep(6000);
+				driver.findElementByXPath("//*[@id=\"f_telephone\"]").sendKeys(data.getPhone());
+				Thread.sleep(3000);
+				new Select(driver.findElementByXPath("//*[@id=\"f_ddob\"]")).selectByVisibleText(data.getBirthDay());
+				Thread.sleep(3000);
+				String[] months = {"January","February","March","April","May","June","July","August","September","October","November","December"};
+				Map<String, String> monthMap = Maps.newHashMap();
+				for(int a=0; a < months.length; a++) {
+					monthMap.put(new Integer(a+1).toString(), months[a]);
+				}
+				new Select(driver.findElementByXPath("//*[@id=\"f_mdob\"]")).selectByVisibleText(monthMap.get(data.getBirthMonth()));
+				Thread.sleep(3000);
+				new Select(driver.findElementByXPath("//*[@id=\"f_ydob\"]")).selectByVisibleText(data.getBirthYear());
+				Thread.sleep(3000);
 				
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
+				//next
+				try {
+					WebElement btn = driver.findElementByXPath("//*[@id=\"_sbtn_1\"]");
+					WebDriverWait wait = new WebDriverWait(driver, 20);
+					wait.until(ExpectedConditions.elementToBeClickable(btn));
+					btn.click();
+				} catch (Exception e) {}
+				
+				Thread.sleep(50000);
+			} catch (Exception e) {}
+			
 			//开始问卷
 			answer(driver, wish1);
 			//continue
