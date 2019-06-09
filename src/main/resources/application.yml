@@ -16,7 +16,8 @@ spring:
   datasource:
     druid:
       driverClassName: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://47.104.101.190:3306/choujiang?useSSL=false&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+#      url: jdbc:mysql://103.242.201.243:10639/choujiang?useSSL=false&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+      url: jdbc:mysql://103.242.201.243:10639/choujiang?useSSL=false
       username: root
       password: root
       # 初始化连接大小
@@ -72,4 +73,13 @@ mybatis:
     # 指定当结果集中值为 null 的时候是否调用映射对象的 setter（map 对象时为 put）方法
     call-setters-on-nulls: true
   mapper-locations: classpath:mapper/*Mapper.xml
-    
+redis:
+  host: 111.206.162.55
+  port: 6380
+  password: jrj.cn
+  timeout: 200
+  maxIdle: 50
+  maxWaitMillis: 1000
+  testOnBorrow: true
+  testOnReturn: true
+      
