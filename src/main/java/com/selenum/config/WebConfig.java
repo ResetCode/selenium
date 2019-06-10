@@ -54,14 +54,11 @@ public class WebConfig {
 		return jedisShardInfos;
 	}
 	
+	@Bean
 	public ShardedJedisPool jedisPool() {
 		ShardedJedisPool jedisPool = new ShardedJedisPool(jedisPoolConfig(), getSharedInfo());
 		return jedisPool;
 	}
 	
-	@Bean
-	public RedisLock redisLock() {
-		return new RedisLock("ziliao", jedisPool());
-	}
 	
 }
