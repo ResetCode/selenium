@@ -185,7 +185,7 @@ public class AuCj6Handler {
 			return 1;
 	   } catch(Exception e) {
 		   e.printStackTrace();
-		   Thread.sleep(120000);
+		   Thread.sleep(120000*3);
 		   return 3;
 	   }
 	}
