@@ -266,26 +266,42 @@ public class AuCj3Handler {
 			
 			Thread.sleep(20000); //资料填写完毕，开始回答调查问卷
 			
-			//选项一是 the bus， 选项二是圣诞老人
-			String firstAnswer = webDriverWait.until(new ExpectedCondition<WebElement>() {
-				@Override
-				public WebElement apply(WebDriver driver) {
-					return driver.findElement(By.xpath("//*[@id=\"question-374\"]/div/ul/li[1]/label/span"));
+			try {
+//				as = "How often do you use your Credit Card?";
+				Random random = new Random();
+				Integer suiji = random.nextInt(100);
+				if(suiji < 50) {
+					driver.findElementByXPath("//*[@id=\"question-8116\"]/div/ul/li[1]/label").click(); //yes 寮筼ffer
+				} else {
+					driver.findElementByXPath("//*[@id=\"question-8116\"]/div/ul/li[2]/label").click();
 				}
-			}).getText();
-			String sencodAnswer = driver.findElement(By.xpath("//*[@id=\"question-374\"]/div/ul/li[2]/label/span")).getText();
-			Integer firstLabel = 0;
-			if(firstAnswer.contains("The Bus") == true) {
-				firstLabel = 1;
-				System.out.println("问卷调查检测第一题为 校车问答！答案选择为 {}" +  firstLabel);
-			} else if(sencodAnswer.contains("The School Bus") == true) {
-				firstLabel = 2;
-				System.out.println("问卷调查检测第一题为 校车问答！答案选择为 {}" +  firstLabel);
-			} else {
-				firstLabel = 2;
-				System.out.println("问卷调查检测第一题为 圣诞老人！答案选择为 {}" +  firstLabel);
-			}
-			driver.findElement(By.xpath("//*[@id='question-374']/div/ul/li["+ firstLabel +"]/label")).click();
+				System.out.println("信用卡问答！");
+			} catch (Exception e) {}
+			
+			try {
+				//选项一是 the bus， 选项二是圣诞老人
+				String firstAnswer = webDriverWait.until(new ExpectedCondition<WebElement>() {
+					@Override
+					public WebElement apply(WebDriver driver) {
+						return driver.findElement(By.xpath("//*[@id=\"question-374\"]/div/ul/li[1]/label/span"));
+					}
+				}).getText();
+				String sencodAnswer = driver.findElement(By.xpath("//*[@id=\"question-374\"]/div/ul/li[2]/label/span")).getText();
+				Integer firstLabel = 0;
+				if(firstAnswer.contains("The Bus") == true) {
+					firstLabel = 1;
+					System.out.println("问卷调查检测第一题为 校车问答！答案选择为 {}" +  firstLabel);
+				} else if(sencodAnswer.contains("The School Bus") == true) {
+					firstLabel = 2;
+					System.out.println("问卷调查检测第一题为 校车问答！答案选择为 {}" +  firstLabel);
+				} else {
+					firstLabel = 2;
+					System.out.println("问卷调查检测第一题为 圣诞老人！答案选择为 {}" +  firstLabel);
+				}
+				driver.findElement(By.xpath("//*[@id='question-374']/div/ul/li["+ firstLabel +"]/label")).click();
+			} catch (Exception e) {}
+			
+			
 			Thread.sleep(15000);
 			
 			Random random = new Random();
