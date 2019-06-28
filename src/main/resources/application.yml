@@ -79,7 +79,7 @@ redis:
   password: jrj.cn
   timeout: 200
   maxIdle: 50
-  maxWaitMillis: 1000
+  maxWaitMillis: 5000
   testOnBorrow: true
   testOnReturn: true
       
