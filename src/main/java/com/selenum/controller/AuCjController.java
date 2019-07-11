@@ -33,7 +33,6 @@ import com.selenum.handler.AUTemplatePoiHandler;
 import com.selenum.handler.AuCj2Handler;
 import com.selenum.handler.AuCj3Handler;
 import com.selenum.handler.AuCj5Handler;
-import com.selenum.handler.AuCj6Handler;
 import com.selenum.handler.AuGetDataFromUrlHandler;
 import com.selenum.model.AuData;
 import com.selenum.model.AuWish;
@@ -56,162 +55,167 @@ public class AuCjController {
 	@Autowired
 	private ScreenDao screenDao;
 	@Autowired
-	private RedisLock redisLock;  
+	private RedisLock redisLock;
 
 	private static String prevIP = null;
 
 	// 家
-//	private static String defaultIP = "14.156.27.252";
-//	private final static String driverPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\chromedriver.exe";
-//	private final static String proxyToolPath = "E:\\911S5 2018-09-10\\ProxyTool\\AutoProxyTool.exe";
-//	private final static String au_filePath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\au_data.xlsx";
-//	private final static String ipPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\ip.html";
-//	private final static String wishPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\au_wish.txt";
-//	private final static String winPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\au_win.txt";
+	private static String defaultIP = "111.194.44.71";
+	private final static String driverPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\chromedriver.exe";
+	private final static String proxyToolPath = "E:\\911S5 2018-09-10\\ProxyTool\\AutoProxyTool.exe";
+	private final static String au_filePath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\au_data.xlsx";
+	private final static String ipPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\ip.html";
+	private final static String wishPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\au_wish.txt";
+	private final static String winPath = "E:\\workspaces\\Java\\selenium\\selenium\\src\\main\\resources\\au_win.txt";
 
-//	private static String defaultIP = "119.140.9.147";
-//	private final static String driverPath = "E:\\workspaces\\selenium\\src\\main\\resources\\chromedriver.exe";
-//	private final static String proxyToolPath = "C:\\Users\\Administrator.USER-20190127FQ\\Desktop\\911S5+2018-0910\\911S5 2018-0910\\ProxyTool\\AutoProxyTool.exe";
-//	private final static String au_filePath = "E:\\workspaces\\selenium\\src\\main\\resources\\au_data.xlsx";
-//	private final static String ipPath = "E:\\workspaces\\selenium\\src\\main\\resources\\ip.html";
-//	private final static String wishPath = "E:\\workspaces\\selenium\\src\\main\\resources\\au_wish.txt";
-//	private final static String winPath = "E:\\workspaces\\selenium\\src\\main\\resources\\au_win.txt";
+	// private static String defaultIP = "119.140.9.147";
+	// private final static String driverPath = "E:\\workspaces\\selenium\\src\\main\\resources\\chromedriver.exe";
+	// private final static String proxyToolPath = "C:\\Users\\Administrator.USER-20190127FQ\\Desktop\\911S5+2018-0910\\911S5 2018-0910\\ProxyTool\\AutoProxyTool.exe";
+	// private final static String au_filePath = "E:\\workspaces\\selenium\\src\\main\\resources\\au_data.xlsx";
+	// private final static String ipPath = "E:\\workspaces\\selenium\\src\\main\\resources\\ip.html";
+	// private final static String wishPath = "E:\\workspaces\\selenium\\src\\main\\resources\\au_wish.txt";
+	// private final static String winPath = "E:\\workspaces\\selenium\\src\\main\\resources\\au_win.txt";
 
-//	private static String defaultIP = "119.140.9.147";
-//	private final static String driverPath = "D:\\workspaces\\workspaces\\selenium\\src\\main\\resources\\chromedriver.exe";
-//	private final static String proxyToolPath = "C:\\Users\\Administrator.USER-20190131AX\\Desktop\\911S5+2018-0910\\911S5 2018-0910\\ProxyTool\\AutoProxyTool.exe";
-//	private final static String au_filePath = "D:\\workspaces\\workspaces\\selenium\\src\\main\\resources\\au_data.xlsx";
-//	private final static String ipPath = "D:\\workspaces\\workspaces\\selenium\\src\\main\\resources\\ip.html";
-//	private final static String wishPath = "D:\\workspaces\\workspaces\\selenium\\src\\main\\resources\\au_wish.txt";
-//	private final static String winPath = "D:\\workspaces\\workspaces\\selenium\\src\\main\\resources\\au_win.txt";
+	// private static String defaultIP = "119.140.9.147";
+	// private final static String driverPath = "D:\\workspaces\\workspaces\\selenium\\src\\main\\resources\\chromedriver.exe";
+	// private final static String proxyToolPath = "C:\\Users\\Administrator.USER-20190131AX\\Desktop\\911S5+2018-0910\\911S5 2018-0910\\ProxyTool\\AutoProxyTool.exe";
+	// private final static String au_filePath = "D:\\workspaces\\workspaces\\selenium\\src\\main\\resources\\au_data.xlsx";
+	// private final static String ipPath = "D:\\workspaces\\workspaces\\selenium\\src\\main\\resources\\ip.html";
+	// private final static String wishPath = "D:\\workspaces\\workspaces\\selenium\\src\\main\\resources\\au_wish.txt";
+	// private final static String winPath = "D:\\workspaces\\workspaces\\selenium\\src\\main\\resources\\au_win.txt";
 
-	private static String defaultIP = "119.140.9.147";
-	private final static String driverPath = "E:\\workspaces\\selenium\\selenium2\\src\\main\\resources\\chromedriver.exe";
-	private final static String proxyToolPath = "C:\\Users\\Administrator\\Desktop\\911S5+2018-0910\\911S5 2018-0910\\ProxyTool\\AutoProxyTool.exe";
-	private final static String au_filePath = "E:\\workspaces\\selenium\\selenium2\\src\\main\\resources\\au_data.xlsx";
-	private final static String ipPath = "E:\\workspaces\\selenium\\selenium2\\src\\main\\resources\\ip.html";
-	private final static String wishPath = "E:\\workspaces\\selenium\\selenium2\\src\\main\\resources\\au_wish.txt";
-	private final static String winPath = "E:\\workspaces\\selenium\\selenium2\\src\\main\\resources\\au_win.txt";
+	// private static String defaultIP = "119.140.9.147";
+	// private final static String driverPath = "E:\\workspaces\\selenium\\selenium2\\src\\main\\resources\\chromedriver.exe";
+	// private final static String proxyToolPath = "C:\\Users\\Administrator\\Desktop\\911S5+2018-0910\\911S5 2018-0910\\ProxyTool\\AutoProxyTool.exe";
+	// private final static String au_filePath = "E:\\workspaces\\selenium\\selenium2\\src\\main\\resources\\au_data.xlsx";
+	// private final static String ipPath = "E:\\workspaces\\selenium\\selenium2\\src\\main\\resources\\ip.html";
+	// private final static String wishPath = "E:\\workspaces\\selenium\\selenium2\\src\\main\\resources\\au_wish.txt";
+	// private final static String winPath = "E:\\workspaces\\selenium\\selenium2\\src\\main\\resources\\au_win.txt";
 
 	private final static List<String> auofferList = Lists.newArrayList();
 	private final static Map<String, String> stateMap = Maps.newHashMap();
 	private static AuData staticData;
 
 	static {
-		// A 0/1/2/3
-		auofferList.add(
-				"http://www.kolosia.com/t/u82-mu9-oro?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
-		auofferList.add(
-				"http://www.kolosia.com/t/h5g-v0o-r69?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
-		auofferList.add(
-				"http://www.kolosia.com/t/17e-aos-d11?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
-		auofferList.add(
-				"http://www.kolosia.com/c/5258/1?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		// A 0/1/2
+		auofferList
+				.add("http://www.kolosia.com/t/u82-mu9-oro?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList
+				.add("http://www.kolosia.com/t/h5g-v0o-r69?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList
+				.add("http://www.kolosia.com/t/17e-aos-d11?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
 
-		// B 4/5/6/7/
-		auofferList.add(
-				"http://www.kolosia.com/t/57r-h70-5u8?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
-		auofferList.add(
-				"http://www.kolosia.com/t/ubu-coo-chr?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
-		auofferList.add(
-				"http://www.kolosia.com/t/rfg-10a-qcg?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
-		auofferList.add(
-				"http://www.kolosia.com/c/5259/e?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		// B 3/4/5
+		auofferList
+				.add("http://www.kolosia.com/t/57r-h70-5u8?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList
+				.add("http://www.kolosia.com/t/ubu-coo-chr?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList
+				.add("http://www.kolosia.com/t/rfg-10a-qcg?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
 
-		// C 8/9/10/11
-		auofferList.add(
-				"http://www.kolosia.com/t/glh-c7t-8bs?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
-		auofferList.add(
-				"http://www.kolosia.com/t/ok6-lam-hgj?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
-		auofferList.add(
-				"http://www.kolosia.com/t/3lq-65b-hce?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
-		auofferList.add(
-				"http://www.kolosia.com/c/5260/4?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		// C 6/7/8
+		auofferList
+				.add("http://www.kolosia.com/t/glh-c7t-8bs?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList
+				.add("http://www.kolosia.com/t/ok6-lam-hgj?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList
+				.add("http://www.kolosia.com/t/3lq-65b-hce?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
 
-		// D 12/13/14/15
-		auofferList.add(
-				"http://www.kolosia.com/t/a2e-1do-lhb?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
-		auofferList.add(
-				"http://www.kolosia.com/t/a73-ubq-ls7?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
-		auofferList.add(
-				"http://www.kolosia.com/t/01b-u0h-sa0?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
-		auofferList.add(
-				"http://www.kolosia.com/c/5261/9?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		// D 9/10/11
+		auofferList
+				.add("http://www.kolosia.com/t/a2e-1do-lhb?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList
+				.add("http://www.kolosia.com/t/a73-ubq-ls7?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList
+				.add("http://www.kolosia.com/t/01b-u0h-sa0?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
 
-//		E 16/17/18/19
-		auofferList.add(
-				"http://www.kolosia.com/t/ned-3u2-qqb?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
-		auofferList.add(
-				"http://www.kolosia.com/t/0np-h3u-l76?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
-		auofferList.add(
-				"http://www.kolosia.com/t/vq3-9d4-jgo?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
-		auofferList.add(
-				"http://www.kolosia.com/c/5262/0?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		// E 12/13/14
+		auofferList
+				.add("http://www.kolosia.com/t/ned-3u2-qqb?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList
+				.add("http://www.kolosia.com/t/0np-h3u-l76?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList
+				.add("http://www.kolosia.com/t/vq3-9d4-jgo?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
 
-		// F 20/21/22/23
-		auofferList.add(
-				"http://www.kolosia.com/t/cui-7d3-m7c?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
-		auofferList.add(
-				"http://www.kolosia.com/t/fuc-7hm-gq7?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
-		auofferList.add(
-				"http://www.kolosia.com/t/2mm-vcl-v3b?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
-		auofferList.add(
-				"http://www.kolosia.com/c/5263/5?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		// F 15/16/17
+		auofferList
+				.add("http://www.kolosia.com/t/cui-7d3-m7c?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList
+				.add("http://www.kolosia.com/t/fuc-7hm-gq7?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList
+				.add("http://www.kolosia.com/t/2mm-vcl-v3b?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
 
-		// A2 24/25/26/27
-		auofferList.add(
-				"http://www.kolosia.com/t/52v-vse-a4f?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
-		auofferList.add(
-				"http://www.kolosia.com/t/2j9-444-vhs?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
-		auofferList.add("http://www.911game.xyz/click.php?c=36&key=t4v1724h2sm4da76o1dpbtqp");
-		auofferList.add(
-				"http://www.kolosia.com/c/5264/5?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		// A2 18/19/20
+		auofferList
+				.add("http://www.kolosia.com/t/52v-vse-a4f?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList
+				.add("http://www.kolosia.com/t/2j9-444-vhs?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList
+				.add("http://www.911game.xyz/click.php?c=36&key=t4v1724h2sm4da76o1dpbtqp");
 
-		// B2 28/29/30/31
-		auofferList.add(
-				"http://www.kolosia.com/t/q57-cfq-ktf?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
-		auofferList.add(
-				"http://www.kolosia.com/t/h4k-mis-ti2?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
-		auofferList.add("http://www.911game.xyz/click.php?c=35&key=j2osa2qvpz2pp02zyc1kck6m");
-		auofferList.add(
-				"http://www.kolosia.com/c/5265/5?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		// B2 21/22/23
+		auofferList
+				.add("http://www.kolosia.com/t/q57-cfq-ktf?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList
+				.add("http://www.kolosia.com/t/h4k-mis-ti2?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList
+				.add("http://www.911game.xyz/click.php?c=35&key=j2osa2qvpz2pp02zyc1kck6m");
 
-		// C2 32/33/34/35
-		auofferList.add(
-				"http://www.kolosia.com/t/n4d-e0m-c7s?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
-		auofferList.add(
-				"http://www.kolosia.com/t/oni-ahs-n49?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
-		auofferList.add(
-				"http://www.kolosia.com/t/4sg-qcu-ang?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
-		auofferList.add(
-				"http://www.kolosia.com/c/5266/2?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		// C2 24/25/26
+		auofferList
+				.add("http://www.kolosia.com/t/n4d-e0m-c7s?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList
+				.add("http://www.kolosia.com/t/oni-ahs-n49?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList
+				.add("http://www.kolosia.com/t/4sg-qcu-ang?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
 
-		// D2 36/37/38/39
-		auofferList.add("http://www.911game.xyz/click.php?c=37&key=8glq679r61q9o4oecy73asb9");
-		auofferList.add(
-				"http://www.kolosia.com/t/o6t-kgg-86o?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
-		auofferList.add(
-				"http://www.kolosia.com/t/i1n-urp-0h2?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
-		auofferList.add(
-				"http://www.kolosia.com/c/5267/f?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		// D2 27/28/29/30
+		auofferList
+				.add("http://www.kolosia.com/t/tag-6uc-uh2?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList
+				.add("http://www.kolosia.com/t/o6t-kgg-86o?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList
+				.add("http://www.kolosia.com/t/i1n-urp-0h2?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
 
-		// E2 40/41/42/43
-		auofferList.add("http://www.911game.xyz/click.php?c=30&key=nao49von2nqcz8h68r96ef46");
-		auofferList.add(
-				"http://www.kolosia.com/t/777-vhg-sk1?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
-		auofferList.add(
-				"http://www.kolosia.com/t/qnv-f7k-5eq?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
-		auofferList.add(
-				"http://www.kolosia.com/c/5268/4?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		// E2 31/32/33
+		auofferList
+				.add("http://www.kolosia.com/t/3kq-d7q-a5u?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList
+				.add("http://www.kolosia.com/t/777-vhg-sk1?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList
+				.add("http://www.kolosia.com/t/qnv-f7k-5eq?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
 
-		// F2 44/45/46/47
-		auofferList.add("http://www.911game.xyz/click.php?c=31&key=mm3hyw3gj62c8p43296t8766");
-		auofferList.add(
-				"http://www.kolosia.com/t/1t9-9qn-lsq?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
-		auofferList.add(
-				"http://www.kolosia.com/t/m0g-3df-lhh?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
-		auofferList.add(
-				"http://www.kolosia.com/c/5269/9?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		// F2 34/35/36
+		auofferList
+				.add("http://www.kolosia.com/t/0r9-kc1-bkh?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList
+				.add("http://www.kolosia.com/t/1t9-9qn-lsq?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList
+				.add("http://www.kolosia.com/t/m0g-3df-lhh?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+
+		// A3 37/38/39
+		auofferList
+				.add("http://www.kolosia.com/t/vsj-dim-var?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList
+				.add("http://www.kolosia.com/t/oru-9d5-623?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList
+				.add("http://www.kolosia.com/t/esf-ikc-nfb?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+
+		// B3 40/41/42
+		auofferList
+				.add("http://www.kolosia.com/t/8t7-qhq-42h?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList
+				.add("http://www.kolosia.com/t/tfq-irs-o5a?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList
+				.add("http://www.kolosia.com/t/imh-g97-a3n?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+
+		// c3 43/44/45
+		auofferList
+				.add("http://www.kolosia.com/t/u7h-tgl-kqd?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList
+				.add("http://www.kolosia.com/t/91o-jfm-qhb?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
+		auofferList
+				.add("http://www.kolosia.com/t/9nj-eni-j2m?clickid=[IMPRESSIONID]&bid=[BID]&websiteid=[WEBSITEID]&quality=[QUALITY]&categoryid=[CATEGORYID]&country=[COUNTRY]&formfactorname=[FORMFACTORNAME]&campaignid=[CAMPAIGNID]&campaignname=[CAMPAIGNNAME]&screenresolution=[SCREENRESOLUTION]");
 
 		stateMap.put("New South Wales", "NSW");
 		stateMap.put("Victoria", "Vic");
@@ -229,10 +233,8 @@ public class AuCjController {
 	 * @return
 	 * @throws InterruptedException
 	 */
-	@RequestMapping("s/{offer}/{offer2}/{offer3}/{offer4}")
-	public JsonResult<String> au(@PathVariable("offer") Integer offerIndex, @PathVariable("offer2") Integer offerIndex2,
-			@PathVariable("offer3") Integer offerIndex3, @PathVariable("offer4") Integer offerIndex4)
-			throws InterruptedException {
+	@RequestMapping("s/{offer}/{offer2}/{offer3}")
+	public JsonResult<String> au(@PathVariable("offer") Integer offerIndex, @PathVariable("offer2") Integer offerIndex2, @PathVariable("offer3") Integer offerIndex3) throws InterruptedException {
 
 		for (int i = 0; i < Integer.MAX_VALUE; i++) {
 			// 随机ua
@@ -250,15 +252,18 @@ public class AuCjController {
 			chromeOptions.addArguments("--incognito");
 			chromeOptions.addArguments("--lang=en-AU");
 			chromeOptions.addArguments("--disable-infobars");
-			chromeOptions.addArguments("--test-type", "--ignore-certificate-errors");
+			chromeOptions.addArguments("--test-type",
+					"--ignore-certificate-errors");
 			ChromeDriver driver = null;
 			AuData data;
 			try {
 				redisLock.lock();
 				System.out.println("锁定....");
 				data = auDataMapper.findByUseStatus(0);
-				if (data == null || data.getEmail() == null || data.getFirstName() == null) {
-					return JsonResult.error(ErrorEnum.ERROR_DATA_NOT_EXISTS, "数据库没有可用数据！");
+				if (data == null || data.getEmail() == null
+						|| data.getFirstName() == null) {
+					return JsonResult.error(ErrorEnum.ERROR_DATA_NOT_EXISTS,
+							"数据库没有可用数据！");
 				}
 
 				driver = new ChromeDriver(chromeOptions);
@@ -269,7 +274,8 @@ public class AuCjController {
 
 				Runtime rt = Runtime.getRuntime();
 				try {
-					rt.exec(proxyToolPath + " -changeproxy/AU/" + data.getState());
+					rt.exec(proxyToolPath + " -changeproxy/AU/"
+							+ data.getState());
 				} catch (IOException e) {
 					driver.quit();
 					System.err.println("调用代理失败：插件路径错误！");
@@ -286,16 +292,16 @@ public class AuCjController {
 					Thread.sleep(5000);
 					driver.get(ipPath);
 					Thread.sleep(5000);
-					ip = webDriverWait.until(new ExpectedCondition<WebElement>() {
-						@Override
-						public WebElement apply(WebDriver d) {
-							return d.findElement(By.id("ip"));
-						}
-					});
+					ip = webDriverWait
+							.until(new ExpectedCondition<WebElement>() {
+								@Override
+								public WebElement apply(WebDriver d) {
+									return d.findElement(By.id("ip"));
+								}
+							});
 
 				} catch (Exception e) {
 					driver.quit();
-//					return JsonResult.error(ErrorEnum.ERROR_SYSTEM, "调用代理失败，测试页面ip读取不到！");
 					continue;
 				}
 
@@ -303,33 +309,33 @@ public class AuCjController {
 				if (defaultIP.equals(nowIP) || (prevIP != null && prevIP.equals(nowIP))) {
 					System.out.println("调用代理失败：");
 					driver.quit();
-//					return JsonResult.error(ErrorEnum.ERROR_SYSTEM, "调用代理失败！");
 					continue;
 				}
 				prevIP = nowIP;
 				System.err.println("调用代理成功！");
 
 				// 标识资料数据被使用
-				auDataMapper.updateStatusById("99,99,99", data.getId(), new Date(), "");
+				auDataMapper.updateStatusById("99,99,99", data.getId(),
+						new Date(), "");
 			} finally {
 				System.out.println("休眠10s");
 				Thread.sleep(10000);
 				redisLock.unlock();
 				System.out.println("解锁...");
-//				Thread.sleep(10000);
 			}
 
 			// 处理州名
-//			String state = data.getState();
-//			data.setState(stateMap.get(state));
-
+			// String state = data.getState();
+			// data.setState(stateMap.get(state));
+			staticData = data;
 			AuWish wish0 = wishDao.findOne(0);
 			AuWish wish1 = wishDao.findOne(1);
 
 			// 执行脚本5
 			int result = -1;
 			if (offerIndex.intValue() != -1) {
-				result = AuCj5Handler.handle(data, driver, auofferList.get(offerIndex), wish0);
+				result = AuCj5Handler.handle(data, driver,
+						auofferList.get(offerIndex), wish0);
 			}
 
 			// 执行脚本3
@@ -339,13 +345,6 @@ public class AuCjController {
 				// 标识wish被使用
 				wishDao.update(wish1);
 			}
-
-			// 执行脚本6
-			int result4 = 0;
-			if (offerIndex4 != -1) {
-				result4 = AuCj6Handler.handle(data, driver, auofferList.get(offerIndex4), null);
-			}
-
 			// 执行脚本2
 			int result2 = 0;
 			if (offerIndex2 != -1) {
@@ -359,7 +358,6 @@ public class AuCjController {
 			resultBuffer.append(result);
 			resultBuffer.append(",").append(result2);
 			resultBuffer.append(",").append(result3);
-			resultBuffer.append(",").append(result4);
 			auDataMapper.updateStatusById(resultBuffer.toString(), data.getId(), new Date(), "");
 			Thread.sleep(20000);
 			driver.quit();
@@ -375,7 +373,8 @@ public class AuCjController {
 	 * @throws Exception
 	 */
 	@RequestMapping("getUserMessageFromExcel/{count}")
-	public void importUserMessageFromExcelToAu(@PathVariable("count") Integer count) throws Exception {
+	public void importUserMessageFromExcelToAu(
+			@PathVariable("count") Integer count) throws Exception {
 		List<AuData> ds = AUTemplatePoiHandler.read(au_filePath, count);
 		for (AuData d : ds) {
 			auDataMapper.insert(d);
@@ -389,7 +388,8 @@ public class AuCjController {
 	 * @return
 	 */
 	@RequestMapping("getUserMessageFromUrl/{num}")
-	public JsonResult<String> importUserMessageFromUrlToAu(@PathVariable("num") Integer num) {
+	public JsonResult<String> importUserMessageFromUrlToAu(
+			@PathVariable("num") Integer num) {
 
 		List<AuData> list = AuGetDataFromUrlHandler.handle(driverPath, num);
 		for (AuData d : list) {
